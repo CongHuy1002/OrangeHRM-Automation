@@ -106,4 +106,25 @@ public class LoginTest {
             Assert.assertEquals(messages.get(i).getText(),errormessage);
         }
     }
+
+    @Test
+    // Test Case: LILO-06 - Verify system shows error message when login with admin is invalid
+    public void loginWithAdminInvalid_ShowErrorMessage(){
+        String errormessage = "Invalid credentials";
+        String Username = "Admin12";
+        String Password = "0123456Huy***";
+        // wait chờ tối đa 10s cho đến khi ô username hiển thị trên UI trước khi thao tác
+        wait = new WebDriverWait(CD, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
+        WebElement inputUS = CD.findElement(By.name("username"));
+        inputUS.sendKeys(Username);
+        WebElement inputPS = CD.findElement(By.name("password"));
+        inputPS.sendKeys(Password);
+        WebElement btLogin = CD.findElement(By.cssSelector("button[type='submit']"));
+        btLogin.click();
+        wait = new WebDriverWait(CD, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("p[class='oxd-text oxd-text--p oxd-alert-content-text']")));
+        WebElement message = CD.findElement(By.cssSelector("p[class='oxd-text oxd-text--p oxd-alert-content-text']"));
+        Assert.assertEquals(message.getText(),errormessage);
+    }
 }
