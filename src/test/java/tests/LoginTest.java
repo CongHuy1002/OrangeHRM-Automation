@@ -63,10 +63,28 @@ public class LoginTest {
         WebElement btLogin = CD.findElement(By.cssSelector("button[type='submit']"));
         btLogin.click();
         WebElement messagePS = CD.findElement(By.cssSelector("span[class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message'"));
-        String messageps = messagePS.getText();
-        Assert.assertEquals(messageps, errormessagePS);
-        System.out.println(messageps);
+        messagePS.getText();
+        Assert.assertEquals(messagePS.getText(), errormessagePS);
+        System.out.println(messagePS.getText());
         System.out.println(errormessagePS);
     }
 
+    @Test
+    // Test Case: LILO-04 - Verify system shows error message when login with password only (admin is empty)
+    public void loginWithPasswordOnly_ShowErrorMessage(){
+        String Password = "0123456Huy***";
+        String errormessageUS = "Required";
+        // wait chờ tối đa 10s cho đến khi ô username hiển thị trên UI trước khi thao tác
+        wait = new WebDriverWait(CD, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("password")));
+        WebElement inputPS = CD.findElement(By.name("password"));
+        inputPS.sendKeys(Password);
+        WebElement btLogin = CD.findElement(By.cssSelector("button[type='submit']"));
+        btLogin.click();
+        WebElement messageUS = CD.findElement(By.cssSelector("span[class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']"));
+        messageUS.getText();
+        Assert.assertEquals(messageUS.getText(),errormessageUS);
+        System.out.println(messageUS.getText());
+        System.out.println(errormessageUS);
+    }
 }
