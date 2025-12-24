@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 
 import static java.lang.Thread.sleep;
 
@@ -86,5 +87,23 @@ public class LoginTest {
         Assert.assertEquals(messageUS.getText(),errormessageUS);
         System.out.println(messageUS.getText());
         System.out.println(errormessageUS);
+    }
+
+    @Test
+    // Test Case: LILO-05 - Verify system shows error message when login with admin and password is empty
+    public void loginWithAdminandPasswordIsEmpty_ShowErrorMessage(){
+        String errormessage = "Required";
+        // wait chờ tối đa 10s cho đến khi ô username hiển thị trên UI trước khi thao tác
+        wait = new WebDriverWait(CD, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
+        WebElement btLogin = CD.findElement(By.cssSelector("button[type='submit']"));
+        btLogin.click();
+
+        List<WebElement> messages = CD.findElements(By.cssSelector("span[class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']"));
+
+        int count = 0;
+        for (int i = 0; i < messages.size(); i ++){
+            Assert.assertEquals(messages.get(i).getText(),errormessage);
+        }
     }
 }
