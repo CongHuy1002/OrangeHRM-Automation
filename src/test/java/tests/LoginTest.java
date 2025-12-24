@@ -127,4 +127,25 @@ public class LoginTest {
         WebElement message = CD.findElement(By.cssSelector("p[class='oxd-text oxd-text--p oxd-alert-content-text']"));
         Assert.assertEquals(message.getText(),errormessage);
     }
+
+    @Test
+    // Test Case: LILO-07 - Verify system shows error message when login with password is invalid
+    public void loginWithPasswordInvalid_ShowErrorMessage(){
+        String errormessage = "Invalid credentials";
+        String Username = "Admin";
+        String Password = "0123456HUy***";
+        // wait chờ tối đa 10s cho đến khi ô username hiển thị trên UI trước khi thao tác
+        wait = new WebDriverWait(CD, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
+        WebElement inputUS = CD.findElement(By.name("username"));
+        inputUS.sendKeys(Username);
+        WebElement inputPS = CD.findElement(By.name("password"));
+        inputPS.sendKeys(Password);
+        WebElement btLogin = CD.findElement(By.cssSelector("button[type='submit']"));
+        btLogin.click();
+        wait = new WebDriverWait(CD, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("p[class='oxd-text oxd-text--p oxd-alert-content-text']")));
+        WebElement message = CD.findElement(By.cssSelector("p[class='oxd-text oxd-text--p oxd-alert-content-text']"));
+        Assert.assertEquals(message.getText(),errormessage);
+    }
 }
