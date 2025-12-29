@@ -1,12 +1,11 @@
 package tests;
 
+import base.BaseTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.Login_LogoutPage;
@@ -14,12 +13,9 @@ import pages.Login_LogoutPage;
 import java.util.List;
 
 
-public class Login_LogoutTest {
+public class Login_LogoutTest extends BaseTest {
 
-    WebDriver driver;
-    WebDriverWait wait ;
     Login_LogoutPage login_logoutPage;
-
     String Username = "Admin";
     String Password = "0123456Huy***";
     String UsernameWrong = "Admin12";
@@ -29,17 +25,8 @@ public class Login_LogoutTest {
     String invalidmessage = "Invalid credentials";
 
     @BeforeMethod
-    public void setup(){
-
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("http://localhost:1002/orangehrm/web/index.php/auth/login");
+    public void initPage(){
         login_logoutPage = new Login_LogoutPage(driver);
-    }
-
-    @AfterMethod
-    public void clean(){
-        driver.quit();
     }
 
     @Test
