@@ -1,4 +1,4 @@
-package pages.Admin;
+package pages;
 
 import base.BasePage;
 import org.openqa.selenium.By;
@@ -10,25 +10,29 @@ public class User_ManagementPage extends BasePage {
     }
 
     // Locators
-    private By usernameInput = By.xpath("//input[contains(@class,'oxd-input')][2]");
-    private By userroleInput = By.xpath("//div[contains(@class, 'oxd-select-text')]");
-    private By selectESSUserrole = By.xpath("button[text()='ESS']");
-    private By selectAdminUserrole = By.xpath("button[text()='Admin']");
-    private By employeenameInput = By.xpath("//input[contains(@class, 'oxd-autocomplete-text-input')]");
-    private By statusInput = By.xpath("//input[contains(@class, 'oxd-select-text')]");
-    private By selectEnabledStatus = By.xpath("button[text()='Enabled']");
-    private By selectDisabledStatus = By.xpath("button[text()='Disabled']");
-    private By resetButton = By.xpath("//input[contains(@class, 'oxd-button')]");
-    private By searchButton = By.xpath("//input[contains(@class, 'oxd-button')][2]");
-    private By addButton = By.xpath("//input[contains(@class, 'oxd-button')][3]");
-    private By iconButtonDelete = By.xpath("//input[contains(@class, 'oxd-icon-button')][3]");
+    private By moduleAdmin = By.xpath("//span[text()='Admin']/ancestor::a");
+    private By usernameInput = By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By userroleInput = By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
+    private By selectESSUserrole = By.xpath("//span[text()='ESS']");
+    private By selectAdminUserrole = By.xpath("//span[text()='Admin']");
+    private By employeenameInput = By.xpath("//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By statusInput = By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
+    private By selectEnabledStatus = By.xpath("//span[text()='Enabled']");
+    private By selectDisabledStatus = By.xpath("//span[text()='Disabled']");
+    private By resetButton = By.xpath("//button[.='Reset']");
+    private By searchButton = By.xpath("//button[.='Search']");
+    private By addButton = By.xpath("//button[.='Add']");
+    private By iconButtonDelete = By.xpath("(//button[contains(@class,'oxd-table-cell-action-space')])[3]");
     private By iconButtonEdit = By.xpath("//input[contains(@class, 'oxd-icon-button')][4]");
-    private By confirmDeleteButton = By.className("oxd-button oxd-button--medium oxd-button--label-danger orangehrm-button-margin");
-    private By confirmCancelButton = By.className("oxd-button oxd-button--medium oxd-button--ghost orangehrm-button-margin");
+    private By confirmDeleteButton = By.xpath("button[containns(@class, 'oxd-button--label-danger')]");
+    private By confirmCancelButton = By.xpath("button[contains(@class, 'oxd-button--ghost')][2]");
     private By checkboxUsername = By.xpath("//i[contains(@class, 'bi-check oxd-checkbox-input-icon')][3]");
-    private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
+    private By confirmDeleteCheckBox = By.xpath("button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
 
     // Actions
+    public void setModuleAdmin(){
+        click(moduleAdmin);
+    }
     public void enterUsername (String username){type(usernameInput, username);}
     public void setselectESSUserRole (){
         click(userroleInput);
@@ -78,13 +82,15 @@ public class User_ManagementPage extends BasePage {
     }
 
     public void Search(String username,String employeeName ){
+        setModuleAdmin();
         enterUsername(username);
-        setselectESSUserRole();
+        setselectAdminUserRole();
         enterEmployeeName(employeeName);
         setSelectEnabledStatus();
         clickSearch();
     }
     public void ResetBeforeSearch(String username,String employeeName ){
+        setModuleAdmin();
         enterUsername(username);
         setselectAdminUserRole();
         enterEmployeeName(employeeName);
@@ -92,6 +98,7 @@ public class User_ManagementPage extends BasePage {
         clickReset();
     }
     public void ResetAfterSearch(String username,String employeeName ){
+        setModuleAdmin();
         enterUsername(username);
         setselectAdminUserRole();
         enterEmployeeName(employeeName);
@@ -100,19 +107,23 @@ public class User_ManagementPage extends BasePage {
         clickReset();
     }
     public void DeleteAndConfirmDeleteIcon(){
+        setModuleAdmin();
         clickIconButtonDelete();
         clickConfirmDelete();
     }
     public void DeleteAndConfirmCancelIcon(){
+        setModuleAdmin();
         clickIconButtonDelete();
         clickConfirmCancel();
     }
     public void DeleteAndConfirmDeleteCheckBox(){
+        setModuleAdmin();
         clickCheckBox();
         clickDeleteCheckBox();
         clickConfirmDelete();
     }
     public void DeleteAndConfirmCancelCheckBox(){
+        setModuleAdmin();
         clickCheckBox();
         clickDeleteCheckBox();
         clickConfirmCancel();
