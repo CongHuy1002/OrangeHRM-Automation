@@ -11,17 +11,19 @@ public class User_ManagementPage extends BasePage {
 
     // Locators
     private By moduleAdmin = By.xpath("//span[text()='Admin']/ancestor::a");
-    private By usernameInput = By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By usernameInput = By.xpath("//div[contains(@class, 'oxd-grid-item oxd-grid-item--gutters')] / " +
+            ".//div[contains(@class, 'oxd-input-group oxd-input-field-bottom-space')] / .//input[contains(@class, 'oxd-input oxd-input--active')]");
     private By userroleInput = By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
-    private By selectESSUserrole = By.xpath("//span[text()='ESS']");
-    private By selectAdminUserrole = By.xpath("//span[text()='Admin']");
-    private By employeenameInput = By.xpath("//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By selectESSUserrole = By.xpath("//div[@role='option']//span[text()='ESS']");
+    private By selectAdminUserrole = By.xpath("//div[@role='option']//span[text()='Admin']");
+    private By employeenameInput = By.xpath("//input[@placeholder='Type for hints...']");
+    private By employeeSuggestion = By.xpath("//div[@role='listbox']//span");
     private By statusInput = By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
     private By selectEnabledStatus = By.xpath("//span[text()='Enabled']");
     private By selectDisabledStatus = By.xpath("//span[text()='Disabled']");
-    private By resetButton = By.xpath("//button[.='Reset']");
-    private By searchButton = By.xpath("//button[.='Search']");
-    private By addButton = By.xpath("//button[.='Add']");
+    private By resetButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']");
+    private By searchButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']");
+    private By addButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']");
     private By iconButtonDelete = By.xpath("(//button[contains(@class,'oxd-table-cell-action-space')])[3]");
     private By iconButtonEdit = By.xpath("//input[contains(@class, 'oxd-icon-button')][4]");
     private By confirmDeleteButton = By.xpath("button[containns(@class, 'oxd-button--label-danger')]");
@@ -44,6 +46,7 @@ public class User_ManagementPage extends BasePage {
     }
     public void enterEmployeeName(String employeeName){
         type(employeenameInput, employeeName);
+         click(employeeSuggestion);
     }
     public void setSelectEnabledStatus (){
         click(statusInput);
