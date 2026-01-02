@@ -18,7 +18,6 @@ public class User_ManagementTest extends BaseTestLogin {
 
     public void verifyAllRowsHaveUsername(String expectedUsername) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
         List<WebElement> rows = driver.findElements(
@@ -35,7 +34,6 @@ public class User_ManagementTest extends BaseTestLogin {
 
     public void verifyAllRowsHaveUserRole(String expectedRole) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
         List<WebElement> rows = driver.findElements(
@@ -52,7 +50,6 @@ public class User_ManagementTest extends BaseTestLogin {
 
     public void verifyAllRowsHaveEmployeeName(String expectedEmployeeName) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
         List<WebElement> rows = driver.findElements(
@@ -68,7 +65,6 @@ public class User_ManagementTest extends BaseTestLogin {
     }
     public void verifyAllRowsHaveStatus(String expectedStatus) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
         List<WebElement> rows = driver.findElements(
@@ -112,11 +108,20 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
-    // Test Case: ADM-04 - Verify search successfully with Username only
+    // Test Case: ADM-04 - Verify search successfully with Username only case_insensitive
     public void searchSuccessfullyWithUsernameOnlyCase_Insensitive(){
         user_managementPage.setModuleAdmin();
         user_managementPage.enterUsername("mltdat");
         user_managementPage.clickSearch();
         verifyAllRowsHaveUsername("MLTDat");
+    }
+
+    @Test
+    // Test Case: ADM-05 - Verify search successfully with User Role only
+    public void searchSuccessfullyWithUserRoleOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.clickSearch();
+        verifyAllRowsHaveUserRole("Admin");
     }
 }
