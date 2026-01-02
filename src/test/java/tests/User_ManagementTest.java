@@ -117,11 +117,20 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
-    // Test Case: ADM-05 - Verify search successfully with User Role only
-    public void searchSuccessfullyWithUserRoleOnly(){
+    // Test Case: ADM-05 - Verify search successfully with User Role only is Admin
+    public void searchSuccessfullyWithUserRoleOnlyIsAdmin(){
         user_managementPage.setModuleAdmin();
         user_managementPage.setselectAdminUserRole();
         user_managementPage.clickSearch();
         verifyAllRowsHaveUserRole("Admin");
+    }
+
+    @Test
+    // Test Case: ADM-06 - Verify search successfully with User Role only is ESS
+    public void searchSuccessfullyWithUserRoleOnlyIsESS(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.setselectESSUserRole();
+        user_managementPage.clickSearch();
+        verifyAllRowsHaveUserRole("ESS");
     }
 }
