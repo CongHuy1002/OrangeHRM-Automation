@@ -131,4 +131,5 @@ public class User_ManagementPage extends BasePage {
         clickDeleteCheckBox();
         clickConfirmCancel();
     }
+
 }
