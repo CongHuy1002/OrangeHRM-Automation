@@ -106,8 +106,17 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-03 - Verify search successfully with Username only
     public void searchSuccessfullyWithUsernameOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.enterUsername("VTGiang");
+        user_managementPage.enterUsername("MLTDat");
         user_managementPage.clickSearch();
-        verifyAllRowsHaveUsername("VTGiang");
+        verifyAllRowsHaveUsername("MLTDat");
+    }
+
+    @Test
+    // Test Case: ADM-04 - Verify search successfully with Username only
+    public void searchSuccessfullyWithUsernameOnlyCase_Insensitive(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.enterUsername("mltdat");
+        user_managementPage.clickSearch();
+        verifyAllRowsHaveUsername("MLTDat");
     }
 }
