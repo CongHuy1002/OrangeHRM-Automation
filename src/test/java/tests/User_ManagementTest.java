@@ -133,4 +133,13 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickSearch();
         verifyAllRowsHaveUserRole("ESS");
     }
+
+    @Test
+    // Test Case: ADM-07 - Verify search successfully with Employee Name only
+    public void searchSuccessfullyWithEmployeeNameOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.enterEmployeeName("Công Huy Trương");
+        user_managementPage.clickSearch();
+        verifyAllRowsHaveEmployeeName("Công Huy Trương");
+    }
 }
