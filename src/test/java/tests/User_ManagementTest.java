@@ -142,4 +142,13 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickSearch();
         verifyAllRowsHaveEmployeeName("Công Huy Trương");
     }
+
+    @Test
+    // Test Case: ADM-08 - Verify search successfully with Employee Name only case_insensitive
+    public void searchSuccessfullyWithEmployeeNameOnlyCase_Insensitive(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.enterEmployeeName("công huy trương");
+        user_managementPage.clickSearch();
+        verifyAllRowsHaveEmployeeName("Công Huy Trương");
+    }
 }
