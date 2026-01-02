@@ -162,4 +162,13 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickSearch();
         verifyAllRowsHaveStatus("Enabled");
     }
+
+    @Test
+    // Test Case: ADM-10 - Verify search successfully with Status only is Disabled
+    public void searchSuccessfullyWithStatusOnlyIsDisabled() {
+        user_managementPage.setModuleAdmin();
+        user_managementPage.setSelectDisabledStatus();
+        user_managementPage.clickSearch();
+        verifyAllRowsHaveStatus("Disabled");
+    }
 }
