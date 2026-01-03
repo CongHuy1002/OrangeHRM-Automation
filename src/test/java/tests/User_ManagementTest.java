@@ -171,4 +171,18 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickSearch();
         verifyAllRowsHaveStatus("Disabled");
     }
+
+    @Test
+    // Test Case: ADM-11 - Verify search successfully with empty values
+    public void searchSuccessfullyWithEmptyValues() {
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickSearch();
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+    }
 }
