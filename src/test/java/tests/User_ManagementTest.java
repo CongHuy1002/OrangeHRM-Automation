@@ -253,7 +253,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
-    // Test Case: ADM-12 - Verify reset successfully with enter all the information and completing the search
+    // Test Case: ADM-13 - Verify reset successfully with enter all the information and completing the search
     public void resetSuccessfullyWithEnterAllTheInformationAndCompletingTheSearch(){
         user_managementPage.Search("Admin123","Việt Thành Mai");
         user_managementPage.clickReset();
@@ -270,5 +270,19 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckUserRoleDropdown();
         CheckEmployeeNameInput();
         CheckStatusDropdown();
+    }
+
+    @Test
+    // Test Case: ADM-14 -
+    public void verifyNavigateToAddUserPage(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+        (ExpectedConditions.visibilityOfElementLocated
+            (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
+        );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Add User","It's not Add User page");
     }
 }
