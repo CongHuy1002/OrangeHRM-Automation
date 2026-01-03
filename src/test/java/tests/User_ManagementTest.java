@@ -232,12 +232,7 @@ public class User_ManagementTest extends BaseTestLogin {
     @Test
     // Test Case: ADM-12 - Verify reset successfully with enter all the information and do not search
     public void resetSuccessfullyWithEnterAllTheInformationAndDoNotSearch() {
-        user_managementPage.setModuleAdmin();
-        user_managementPage.enterUsername("Admin");
-        user_managementPage.setselectAdminUserRole();
-        user_managementPage.enterEmployeeName("Công Huy Trương");
-        user_managementPage.setSelectEnabledStatus();
-        user_managementPage.clickReset();
+        user_managementPage.ResetBeforeSearch("Admin","Công Huy Trương");
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
@@ -255,8 +250,9 @@ public class User_ManagementTest extends BaseTestLogin {
     @Test
     // Test Case: ADM-13 - Verify reset successfully with enter all the information and completing the search
     public void resetSuccessfullyWithEnterAllTheInformationAndCompletingTheSearch(){
-        user_managementPage.Search("Admin123","Việt Thành Mai");
-        user_managementPage.clickReset();
+        user_managementPage.ResetAfterSearch("Admin123","Việt Thành Mai");
+        /*user_managementPage.Search("Admin123","Việt Thành Mai");
+        user_managementPage.clickReset();*/
 
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -309,4 +305,9 @@ public class User_ManagementTest extends BaseTestLogin {
        Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Cancel']")).isEnabled());
     }
 
+  /*  @Test
+    // Test Case: ADM-15 - Verify add successfully with valid credentials
+    public void addSuccessfullyWithValidCredentials(){
+
+    }*/
 }

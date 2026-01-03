@@ -31,6 +31,9 @@ public class User_ManagementPage extends BasePage {
     private By checkboxUsername = By.xpath("//i[contains(@class, 'bi-check oxd-checkbox-input-icon')][3]");
     private By confirmDeleteCheckBox = By.xpath("button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
 
+    // Add User page
+    private By userroleInputAU = By.xpath("//lable[text()= 'User Role']/ancestor::div[contains(@class, 'oxd-select-wrapper')]//div[contains(@class,'oxd-select-text--error')]");
+
     // Actions
     public void setModuleAdmin(){
         click(moduleAdmin);
