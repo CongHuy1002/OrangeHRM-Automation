@@ -273,7 +273,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
-    // Test Case: ADM-14 -
+    // Test Case: ADM-14 - Verify navigate to Add User page
     public void verifyNavigateToAddUserPage(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
@@ -285,4 +285,28 @@ public class User_ManagementTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Add User","It's not Add User page");
     }
+
+    @Test
+    // Test Case: ADM-15 - Check UI Add User page
+    public void CheckUIAddUserPage(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+            (ExpectedConditions.visibilityOfElementLocated
+                    (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
+            );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Add User","It's not Add User page");
+
+       Assert.assertTrue( driver.findElement(By.xpath("//label[text()='User Role']")).isDisplayed());
+       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Employee Name']")).isDisplayed());
+       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Status']")).isDisplayed());
+       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Username']")).isDisplayed());
+       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Password']")).isDisplayed());
+       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Confirm Password']")).isDisplayed());
+       Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Save']")).isEnabled());
+       Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Cancel']")).isEnabled());
+    }
+
 }
