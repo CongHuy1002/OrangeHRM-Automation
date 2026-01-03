@@ -231,9 +231,33 @@ public class User_ManagementTest extends BaseTestLogin {
     // Reset Function
     @Test
     // Test Case: ADM-12 - Verify reset successfully with enter all the information and do not search
-    public void searchSuccessfullyWithEnterAllTheInformationAndDoNotSearch() {
-        user_managementPage.Search("Admin","Công Huy Trương");
+    public void resetSuccessfullyWithEnterAllTheInformationAndDoNotSearch() {
+        user_managementPage.setModuleAdmin();
+        user_managementPage.enterUsername("Admin");
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.enterEmployeeName("Công Huy Trương");
+        user_managementPage.setSelectEnabledStatus();
         user_managementPage.clickReset();
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+
+        CheckUsernameInput();
+        CheckUserRoleDropdown();
+        CheckEmployeeNameInput();
+        CheckStatusDropdown();
+    }
+
+    @Test
+    // Test Case: ADM-12 - Verify reset successfully with enter all the information and completing the search
+    public void resetSuccessfullyWithEnterAllTheInformationAndCompletingTheSearch(){
+        user_managementPage.Search("Admin123","Việt Thành Mai");
+        user_managementPage.clickReset();
+
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
