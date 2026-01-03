@@ -80,11 +80,52 @@ public class User_ManagementTest extends BaseTestLogin {
         }
     }
 
+    public void CheckUsernameInput(){
+        WebElement usernameInput = driver.findElement(By.xpath("//div[contains(@class, 'oxd-grid-item oxd-grid-item--gutters')] / " +
+                ".//div[contains(@class, 'oxd-input-group oxd-input-field-bottom-space')] / .//input[contains(@class, 'oxd-input oxd-input--active')]"));
+
+        String value = usernameInput.getAttribute("value");
+        System.out.println(value);
+
+        Assert.assertTrue(value== null || value.isEmpty(),
+                "Username input should be empty");
+    }
+
+    public void CheckUserRoleDropdown(){
+        WebElement userRoleDropdown = driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"));
+
+        String selectedText = userRoleDropdown.getText().trim();
+        System.out.println(selectedText);
+        String text = "-- Select --";
+        Assert.assertEquals(selectedText,text,"User Role should be empty by default");
+    }
+
+    public void CheckEmployeeNameInput(){
+        WebElement employeeInput = driver.findElement(By.xpath("//input[@placeholder='Type for hints...']"));
+
+        String value = employeeInput.getAttribute("value");
+        System.out.println(value);
+
+        Assert.assertTrue(value == null || value.isEmpty(),
+                "Employee Name should be empty");
+    }
+
+    public void CheckStatusDropdown(){
+        WebElement statusDropdown = driver.findElement(By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"));
+
+        String selectedText = statusDropdown.getText().trim();
+        System.out.println(selectedText);
+        String text = "-- Select --";
+        Assert.assertEquals(selectedText,text,"User Role should be empty by default");
+    }
+
     @BeforeMethod
     public void initPage() {
         user_managementPage = new User_ManagementPage(driver);
     }
 
+
+    // Search Function
     @Test
     // Test Case: ADM-02 - Verify search successfully with valid credentials
     public void searchSuccessfullyWithValidCredentials() {
@@ -184,5 +225,26 @@ public class User_ManagementTest extends BaseTestLogin {
                 By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
         );
         Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+    }
+
+
+    // Reset Function
+    @Test
+    // Test Case: ADM-12 - Verify reset successfully with enter all the information and do not search
+    public void searchSuccessfullyWithEnterAllTheInformationAndDoNotSearch() {
+        user_managementPage.Search("Admin","Công Huy Trương");
+        user_managementPage.clickReset();
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+
+        CheckUsernameInput();
+        CheckUserRoleDropdown();
+        CheckEmployeeNameInput();
+        CheckStatusDropdown();
     }
 }
