@@ -45,6 +45,8 @@ public class User_ManagementPage extends BasePage {
     private By confirmpasswordInputAU = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By saveButtonAU = By.xpath("//button[contains(@class, 'orangehrm-left-space')]");
     private By cancleButonAU = By.xpath("//button[contains(@class, 'oxd-button--ghost')]");
+    private By confirmpassworderrormessage = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+    private By passworderrormessage = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
 
     // Actions
     public void setModuleAdmin(){
@@ -179,5 +181,8 @@ public class User_ManagementPage extends BasePage {
     }
     public void ClickButtonCancel(){
         click(cancleButonAU);
+    }
+    public String getDidNotMatchMessage() {
+        return getText(confirmpassworderrormessage);
     }
 }
