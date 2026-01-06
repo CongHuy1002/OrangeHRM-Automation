@@ -127,6 +127,46 @@ public class User_ManagementTest extends BaseTestLogin {
 
     // Search Function
     @Test
+    // Test Case: ADM-01 - Check UI User Management page
+    public void CheckUIUserManagementPage(){
+        user_managementPage.setModuleAdmin();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+            (ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//div[@role='rowgroup']//div[@role='row']"))
+            );
+        // check Username input
+        Assert.assertTrue( driver.findElement(By.xpath("//div[contains(@class, 'oxd-grid-item oxd-grid-item--gutters')] /" +
+                ".//div[contains(@class, 'oxd-input-group oxd-input-field-bottom-space')] / .//input[contains(@class, 'oxd-input oxd-input--active')]")).isEnabled());
+        // check User Role input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
+        // check Employee Name input
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='Type for hints...']")).isEnabled());
+        // check Status input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
+        // check button Reset
+        Assert.assertTrue(driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']")).isEnabled());
+        // check button Search
+        Assert.assertTrue(driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']")).isEnabled());
+        // check button Add
+        Assert.assertTrue(driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']")).isEnabled());
+        // checkbox Username
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]")).isEnabled());
+        // check Icon button delete
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]")).isEnabled());
+        // check Icon button edit
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][1]")).isEnabled());
+        user_managementPage.clickCheckBox();
+        By deleteBtn = By.xpath("//button[normalize-space()='Delete Selected']");
+        Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(deleteBtn)).isDisplayed());
+    }
+    @Test
+    public void checkboxUsername(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickCheckBox();
+    }
+
+    @Test
     // Test Case: ADM-02 - Verify search successfully with valid credentials
     public void searchSuccessfullyWithValidCredentials() {
         user_managementPage.setModuleAdmin();
@@ -251,9 +291,6 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-13 - Verify reset successfully with enter all the information and completing the search
     public void resetSuccessfullyWithEnterAllTheInformationAndCompletingTheSearch(){
         user_managementPage.ResetAfterSearch("Admin123","Việt Thành Mai");
-        /*user_managementPage.Search("Admin123","Việt Thành Mai");
-        user_managementPage.clickReset();*/
-
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
@@ -295,7 +332,7 @@ public class User_ManagementTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Add User","It's not Add User page");
 
-       Assert.assertTrue( driver.findElement(By.xpath("//label[text()='User Role']")).isDisplayed());
+       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='User Role']")).isDisplayed());
        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Employee Name']")).isDisplayed());
        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Status']")).isDisplayed());
        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Username']")).isDisplayed());
@@ -305,9 +342,9 @@ public class User_ManagementTest extends BaseTestLogin {
        Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Cancel']")).isEnabled());
     }
 
-  /*  @Test
-    // Test Case: ADM-15 - Verify add successfully with valid credentials
+    @Test
+    // Test Case: ADM-16 - Verify add successfully with valid credentials
     public void addSuccessfullyWithValidCredentials(){
 
-    }*/
+    }
 }
