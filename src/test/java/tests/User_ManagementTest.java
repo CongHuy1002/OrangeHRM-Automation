@@ -345,6 +345,19 @@ public class User_ManagementTest extends BaseTestLogin {
     @Test
     // Test Case: ADM-16 - Verify add successfully with valid credentials
     public void addSuccessfullyWithValidCredentials(){
-
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
+                );
+        user_managementPage.setESSUserRoleAU();
+        user_managementPage.enterEmployeeNameAU("Phong Mai Lê Tiến");
+        user_managementPage.setEnabledStatusAU();
+        user_managementPage.enterUsernameAU("MLTPhong");
+        user_managementPage.enterPasswordAU("123456Phong*");
+        user_managementPage.enterConfirmPasswordAU("123456Phong*");
+        user_managementPage.ClickButtonSave();
     }
 }

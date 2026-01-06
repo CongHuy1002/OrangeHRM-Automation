@@ -43,8 +43,8 @@ public class User_ManagementPage extends BasePage {
     private By usernameInputAU = By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By passwordInputAU = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By confirmpasswordInputAU = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
-    private By saveButton = By.xpath("//button[text()='Save']");
-    private By cancleButon = By.xpath("//button[text()='Cancel']");
+    private By saveButtonAU = By.xpath("//button[contains(@class, 'orangehrm-left-space')]");
+    private By cancleButonAU = By.xpath("//button[contains(@class, 'oxd-button--ghost')]");
 
     // Actions
     public void setModuleAdmin(){
@@ -147,4 +147,37 @@ public class User_ManagementPage extends BasePage {
         clickConfirmCancel();
     }
 
+    public void enterUsernameAU (String username){type(usernameInputAU, username);}
+    public void setESSUserRoleAU (){
+        click(userroleInputAU);
+        click(selectESSUserroleAU);
+    }
+    public void setAdminUserRoleAU (){
+        click(userroleInputAU);
+        click(selectAdminUserroleAU);
+    }
+    public void enterEmployeeNameAU(String employeeName){
+        type(employeenameInputAU, employeeName);
+        click(employeeSuggestionAU);
+    }
+    public void setEnabledStatusAU () {
+        click(statusInputAU);
+        click(selectEnabledStatusAU);
+    }
+    public void setDisabledStatusAU () {
+        click(statusInputAU);
+        click(selectDisabledStatusAU);
+    }
+    public void enterPasswordAU(String password){
+        type(passwordInputAU, password);
+    }
+    public void enterConfirmPasswordAU(String confirmpassword){
+        type(confirmpasswordInputAU, confirmpassword);
+    }
+    public void ClickButtonSave(){
+        click(saveButtonAU);
+    }
+    public void ClickButtonCancel(){
+        click(cancleButonAU);
+    }
 }
