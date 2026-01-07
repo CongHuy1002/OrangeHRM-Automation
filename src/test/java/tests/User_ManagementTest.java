@@ -419,4 +419,17 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),5);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test
+    // Test Case: ADM-21 - Verify add user fail with Status only
+    public void addUserFailWithStatusOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.setEnabledStatusAU();
+        user_managementPage.ClickButtonSave();
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),5);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }
