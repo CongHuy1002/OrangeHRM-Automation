@@ -381,4 +381,16 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(user_managementPage.getDidNotMatchMessage(),"Passwords do not match");
     }
 
+    @Test
+    // Test Case: ADM-18 - Verify add user fail with User Role only
+    public void addUserFailWithUserRoleOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.setESSUserRoleAU();
+        user_managementPage.ClickButtonSave();
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),5);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }

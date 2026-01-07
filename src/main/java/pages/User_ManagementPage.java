@@ -3,6 +3,10 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class User_ManagementPage extends BasePage {
     public User_ManagementPage(WebDriver driver) {
@@ -47,6 +51,7 @@ public class User_ManagementPage extends BasePage {
     private By cancleButonAU = By.xpath("//button[contains(@class, 'oxd-button--ghost')]");
     private By confirmpassworderrormessage = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
     private By passworderrormessage = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
+    private By requiredmessage = By.xpath("//span[contains(@class, 'oxd-input-group__message')]");
 
     // Actions
     public void setModuleAdmin(){
@@ -184,5 +189,14 @@ public class User_ManagementPage extends BasePage {
     }
     public String getDidNotMatchMessage() {
         return getText(confirmpassworderrormessage);
+    }
+    public List<String> getAllRequiredMessages() {
+        List<WebElement> elements = driver.findElements(requiredmessage);
+        List<String> messages = new ArrayList<>();
+
+        for (WebElement el : elements) {
+            messages.add(el.getText());
+        }
+        return messages;
     }
 }
