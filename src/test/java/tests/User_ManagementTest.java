@@ -406,4 +406,17 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),5);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test
+    // Test Case: ADM-20 - Verify add user fail with Employee Name only case_insensitive
+    public void addUserFailWithEmployeeNameOnlyCase_Insensitive(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.enterEmployeeNameAU("việt thành mai");
+        user_managementPage.ClickButtonSave();
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),5);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }
