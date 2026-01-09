@@ -4,6 +4,7 @@ import base.BaseTestLogin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -430,6 +431,23 @@ public class User_ManagementTest extends BaseTestLogin {
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),5);
+        Assert.assertTrue(messages.contains("Required"));
+    }
+
+    @Test
+    // Test Case: ADM-22 - Verify add user fail with Ussername only
+    public void addUserFailWithUssernameOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.enterUsernameAU("MVThanh");
+        user_managementPage.ClickButtonSave();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
         Assert.assertTrue(messages.contains("Required"));
     }
 }

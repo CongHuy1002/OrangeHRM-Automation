@@ -4,6 +4,7 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,8 +48,8 @@ public class User_ManagementPage extends BasePage {
     private By usernameInputAU = By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By passwordInputAU = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By confirmpasswordInputAU = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
-    private By saveButtonAU = By.xpath("//button[contains(@class, 'orangehrm-left-space')]");
-    private By cancleButonAU = By.xpath("//button[contains(@class, 'oxd-button--ghost')]");
+    private By saveButtonAU = By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']");
+    private By cancleButonAU = By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']");
     private By confirmpassworderrormessage = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
     private By passworderrormessage = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
     private By requiredmessage = By.xpath("//span[contains(@class, 'oxd-input-group__message')]");
@@ -198,5 +199,30 @@ public class User_ManagementPage extends BasePage {
             messages.add(el.getText());
         }
         return messages;
+    }
+    public void ClickUserRole(){
+        click(userroleInputAU);
+    }
+    public void ClickEmployeeName(){
+        click(employeenameInputAU);
+    }
+    public void ClickStatus(){
+        click(statusInputAU);
+    }
+    public void ClickUsername(){
+        click(usernameInputAU);
+    }
+    public void ClickPassword(){
+        click(passwordInputAU);
+    }
+    public void ClickConfirmPassword(){
+        click(confirmpasswordInputAU);
+    }
+
+    public void blurCurrentField() {
+        click(employeenameInputAU);
+    }
+    public void WaitRequiredMessages(){
+        wait.until(ExpectedConditions.visibilityOfAllElements((List<WebElement>) requiredmessage));
     }
 }
