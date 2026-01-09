@@ -100,8 +100,8 @@ public class User_ManagementPage extends BasePage {
     public void clickDeleteCheckBox(){
         click(confirmDeleteCheckBox);
     }
-    public void ClickButtonSave(){click(saveButton);}
-    public void ClickButtonCancel(){
+    public void clickButtonSave(){click(saveButton);}
+    public void clickButtonCancel(){
         click(cancleButon);
     }
     public String getDidNotMatchMessage() {

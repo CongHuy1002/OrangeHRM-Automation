@@ -361,7 +361,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.enterUsername("MLTPhong");
         user_managementPage.enterPassword("123456Phong*");
         user_managementPage.enterConfirmPassword("123456Phong*");
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
     }
 
     @Test
@@ -377,7 +377,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.enterUsername("MLTHung");
         user_managementPage.enterPassword("123456Hung***");
         user_managementPage.enterConfirmPassword("123456Hung*");
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         Assert.assertEquals(user_managementPage.getDidNotMatchMessage(),"Passwords do not match");
     }
 
@@ -387,7 +387,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setselectESSUserRole();
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),5);
@@ -400,7 +400,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.enterEmployeeName("Việt Thành Mai");
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),5);
@@ -413,7 +413,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.enterEmployeeName("việt thành mai");
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),5);
@@ -426,7 +426,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setSelectEnabledStatus();
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),5);
@@ -439,7 +439,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.enterUsername("MVThanh");
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -453,7 +453,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.enterPassword("0123456Thanh*");
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -467,7 +467,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.enterConfirmPassword("0123456Thanh*");
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -488,7 +488,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.enterPassword("123456Phong*");
         user_managementPage.enterConfirmPassword("123456Phong*");
         Sleep();
-        user_managementPage.ClickButtonCancel();
+        user_managementPage.clickButtonCancel();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement title = wait.until
             (ExpectedConditions.visibilityOfElementLocated
@@ -503,7 +503,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithEmptyValues(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.ClickButtonSave();
+        user_managementPage.clickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -558,5 +558,14 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']")).isEnabled());
         // Check button Cancel
         Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']")).isEnabled());
+    }
+
+    @Test
+    // Test Case: ADM-29 - Verify edit user with User Role only
+    public void editUserWithUserRoleOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEdit();
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.clickButtonSave();
     }
 }
