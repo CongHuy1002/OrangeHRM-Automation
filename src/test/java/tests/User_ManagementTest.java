@@ -506,4 +506,18 @@ public class User_ManagementTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"System Users","It's not System Users page");
     }
+
+    @Test
+    // Test Case: ADM-26 - Verify add user fail with empty values
+    public void addUserFailWithEmptyValues(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.ClickButtonSave();
+        Sleep();
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),6);
+        Assert.assertTrue(messages.contains("Required"));
+        Assert.assertTrue(messages.contains("Passwords do not match"));
+    }
 }
