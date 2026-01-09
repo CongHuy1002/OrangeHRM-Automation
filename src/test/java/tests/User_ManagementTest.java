@@ -120,6 +120,14 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(selectedText,text,"User Role should be empty by default");
     }
 
+    public void Sleep(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @BeforeMethod
     public void initPage() {
         user_managementPage = new User_ManagementPage(driver);
@@ -441,13 +449,24 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickAdd();
         user_managementPage.enterUsernameAU("MVThanh");
         user_managementPage.ClickButtonSave();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
+        Assert.assertEquals(messages.size(),5);
+        Assert.assertTrue(messages.contains("Required"));
+    }
+
+    @Test
+    // Test Case: ADM-23 - Verify add user fail with Password only
+    public void addUserFailWithPasswordOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.enterPasswordAU("0123456Thanh*");
+        user_managementPage.ClickButtonSave();
+        Sleep();
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),5);
         Assert.assertTrue(messages.contains("Required"));
     }
 }
