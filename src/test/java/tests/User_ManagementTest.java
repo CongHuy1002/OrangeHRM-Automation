@@ -520,4 +520,18 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
         Assert.assertTrue(messages.contains("Passwords do not match"));
     }
+
+    @Test
+    // Test Case: ADM-27 - Verify navigate to Edit User page
+    public void verifyNavigateToEditUserPage(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEdit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+            (ExpectedConditions.visibilityOfElementLocated
+                    (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
+            );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Edit User","It's not Edit User page");
+    }
 }

@@ -30,7 +30,7 @@ public class User_ManagementPage extends BasePage {
     private By searchButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']");
     private By addButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']");
     private By iconButtonDeleteAD = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]");
-    private By iconButtonEditAD = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][1]");
+    private By iconButtonEditAD = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
     private By confirmDeleteButton = By.xpath("button[containns(@class, 'oxd-button--label-danger')]");
     private By confirmCancelButton = By.xpath("button[contains(@class, 'oxd-button--ghost')][2]");
     private By checkboxUsernameAD = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
