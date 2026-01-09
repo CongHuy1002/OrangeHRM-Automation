@@ -567,5 +567,22 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickIconButtonEdit();
         user_managementPage.setselectAdminUserRole();
         user_managementPage.clickButtonSave();
+        user_managementPage.clickIconButtonEdit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Admin","Edit User fail!!");
+    }
+
+    @Test
+    // Test Case: ADM-30 - Verify edit user with Status only
+    public void editUserWithStatusOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEdit();
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.clickButtonSave();
     }
 }
