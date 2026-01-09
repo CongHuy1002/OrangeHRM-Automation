@@ -469,4 +469,19 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),5);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test
+    // Test Case: ADM-24 - Verify add user fail with Confirm Password only
+    public void addUserFailWithConfirmPasswordOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.enterConfirmPasswordAU("0123456Thanh*");
+        user_managementPage.ClickButtonSave();
+        Sleep();
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),6);
+        Assert.assertTrue(messages.contains("Required"));
+        Assert.assertTrue(messages.contains("Passwords do not match"));
+    }
 }
