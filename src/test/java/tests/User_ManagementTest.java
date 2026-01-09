@@ -582,7 +582,15 @@ public class User_ManagementTest extends BaseTestLogin {
     public void editUserWithStatusOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
-        user_managementPage.setselectAdminUserRole();
+        user_managementPage.setSelectDisabledStatus();
         user_managementPage.clickButtonSave();
+        user_managementPage.clickIconButtonEdit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Disabled","Edit User fail!!");
     }
 }
