@@ -4,7 +4,6 @@ import base.BaseTestLogin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -140,13 +139,9 @@ public class User_ManagementTest extends BaseTestLogin {
     public void CheckUIUserManagementPage(){
         user_managementPage.setModuleAdmin();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-            (ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//div[@role='rowgroup']//div[@role='row']"))
-            );
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@role='rowgroup']//div[@role='row']")));
         // check Username input
-        Assert.assertTrue( driver.findElement(By.xpath("//div[contains(@class, 'oxd-grid-item oxd-grid-item--gutters')] /" +
-                ".//div[contains(@class, 'oxd-input-group oxd-input-field-bottom-space')] / .//input[contains(@class, 'oxd-input oxd-input--active')]")).isEnabled());
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
         // check User Role input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
         // check Employee Name input
@@ -164,15 +159,10 @@ public class User_ManagementTest extends BaseTestLogin {
         // check Icon button delete
         Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]")).isEnabled());
         // check Icon button edit
-        Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][1]")).isEnabled());
-        user_managementPage.clickCheckBox();
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]")).isEnabled());
+        user_managementPage.clickCheckBoxUsername();
         By deleteBtn = By.xpath("//button[normalize-space()='Delete Selected']");
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(deleteBtn)).isDisplayed());
-    }
-    @Test
-    public void checkboxUsername(){
-        user_managementPage.setModuleAdmin();
-        user_managementPage.clickCheckBox();
     }
 
     @Test
@@ -340,15 +330,22 @@ public class User_ManagementTest extends BaseTestLogin {
             );
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Add User","It's not Add User page");
-
-       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='User Role']")).isDisplayed());
-       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Employee Name']")).isDisplayed());
-       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Status']")).isDisplayed());
-       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Username']")).isDisplayed());
-       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Password']")).isDisplayed());
-       Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Confirm Password']")).isDisplayed());
-       Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Save']")).isEnabled());
-       Assert.assertTrue(driver.findElement(By.xpath("//button[normalize-space()='Cancel']")).isEnabled());
+        // Check User Role Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
+        // Check Employee Name Input
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='Type for hints...']")).isEnabled());
+        // Check Status Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
+        // Check Username Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Password Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Confirm Password Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check button Save
+        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']")).isEnabled());
+        // Check button Cancel
+        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']")).isEnabled());
     }
 
     @Test
@@ -357,16 +354,13 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-                (ExpectedConditions.visibilityOfElementLocated
-                        (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
-                );
-        user_managementPage.setESSUserRoleAU();
-        user_managementPage.enterEmployeeNameAU("Phong Mai Lê Tiến");
-        user_managementPage.setEnabledStatusAU();
-        user_managementPage.enterUsernameAU("MLTPhong");
-        user_managementPage.enterPasswordAU("123456Phong*");
-        user_managementPage.enterConfirmPasswordAU("123456Phong*");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h6[contains(@class,'orangehrm-main-title')]")));
+        user_managementPage.setselectESSUserRole();
+        user_managementPage.enterEmployeeName("Phong Mai Lê Tiến");
+        user_managementPage.setSelectEnabledStatus();
+        user_managementPage.enterUsername("MLTPhong");
+        user_managementPage.enterPassword("123456Phong*");
+        user_managementPage.enterConfirmPassword("123456Phong*");
         user_managementPage.ClickButtonSave();
     }
 
@@ -376,16 +370,13 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-            (ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
-            );
-        user_managementPage.setESSUserRoleAU();
-        user_managementPage.enterEmployeeNameAU("Hùng Mai Lê Tiến");
-        user_managementPage.setEnabledStatusAU();
-        user_managementPage.enterUsernameAU("MLTHung");
-        user_managementPage.enterPasswordAU("123456Hung***");
-        user_managementPage.enterConfirmPasswordAU("123456Hung*");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h6[contains(@class,'orangehrm-main-title')]")));
+        user_managementPage.setselectESSUserRole();
+        user_managementPage.enterEmployeeName("Hùng Mai Lê Tiến");
+        user_managementPage.setSelectEnabledStatus();
+        user_managementPage.enterUsername("MLTHung");
+        user_managementPage.enterPassword("123456Hung***");
+        user_managementPage.enterConfirmPassword("123456Hung*");
         user_managementPage.ClickButtonSave();
         Assert.assertEquals(user_managementPage.getDidNotMatchMessage(),"Passwords do not match");
     }
@@ -395,7 +386,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithUserRoleOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.setESSUserRoleAU();
+        user_managementPage.setselectESSUserRole();
         user_managementPage.ClickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -408,7 +399,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithEmployeeNameOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.enterEmployeeNameAU("Việt Thành Mai");
+        user_managementPage.enterEmployeeName("Việt Thành Mai");
         user_managementPage.ClickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -421,7 +412,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithEmployeeNameOnlyCase_Insensitive(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.enterEmployeeNameAU("việt thành mai");
+        user_managementPage.enterEmployeeName("việt thành mai");
         user_managementPage.ClickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -434,7 +425,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithStatusOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.setEnabledStatusAU();
+        user_managementPage.setSelectEnabledStatus();
         user_managementPage.ClickButtonSave();
         List<String> messages = user_managementPage.getAllRequiredMessages();
         System.out.println(messages);
@@ -447,7 +438,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithUssernameOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.enterUsernameAU("MVThanh");
+        user_managementPage.enterUsername("MVThanh");
         user_managementPage.ClickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
@@ -461,7 +452,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithPasswordOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.enterPasswordAU("0123456Thanh*");
+        user_managementPage.enterPassword("0123456Thanh*");
         user_managementPage.ClickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
@@ -475,7 +466,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithConfirmPasswordOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.enterConfirmPasswordAU("0123456Thanh*");
+        user_managementPage.enterConfirmPassword("0123456Thanh*");
         user_managementPage.ClickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
@@ -490,12 +481,12 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithValidCredentialsAndCancel(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.setESSUserRoleAU();
-        user_managementPage.enterEmployeeNameAU("Phong Mai Lê Tiến");
-        user_managementPage.setEnabledStatusAU();
-        user_managementPage.enterUsernameAU("MLTPhong");
-        user_managementPage.enterPasswordAU("123456Phong*");
-        user_managementPage.enterConfirmPasswordAU("123456Phong*");
+        user_managementPage.setselectESSUserRole();
+        user_managementPage.enterEmployeeName("Phong Mai Lê Tiến");
+        user_managementPage.setSelectEnabledStatus();
+        user_managementPage.enterUsername("MLTPhong");
+        user_managementPage.enterPassword("123456Phong*");
+        user_managementPage.enterConfirmPassword("123456Phong*");
         Sleep();
         user_managementPage.ClickButtonCancel();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -533,5 +524,39 @@ public class User_ManagementTest extends BaseTestLogin {
             );
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Edit User","It's not Edit User page");
+    }
+
+    @Test
+    // Test Case: ADM-28 - Check UI Edit User page
+    public void CheckUIEditUserPage(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEdit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Edit User","It's not Edit User page");
+
+        // Check User Role Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
+        // Check Employee Name Input
+        Assert.assertTrue(driver.findElement(By.xpath("//input[@placeholder='Type for hints...']")).isEnabled());
+        // Check Status Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
+        // Check Username Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check button Change Password?
+        Assert.assertTrue(driver.findElement(By.xpath("//label[normalize-space()='Yes']//span[contains(@class,'oxd-checkbox-input')]")).isEnabled());
+        user_managementPage.clickCheckBoxChangePassword();
+        // Check Password Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Confirm Password Input
+        Assert.assertTrue(driver.findElement(By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check button Save
+        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']")).isEnabled());
+        // Check button Cancel
+        Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']")).isEnabled());
     }
 }

@@ -19,6 +19,11 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         if (driver != null) {
             driver.quit();
         }
