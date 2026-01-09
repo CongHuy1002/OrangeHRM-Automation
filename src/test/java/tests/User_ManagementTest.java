@@ -484,4 +484,26 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
         Assert.assertTrue(messages.contains("Passwords do not match"));
     }
+
+    @Test
+    // Test Case: ADM-25 - Verify add user fail with valid credentials and Cancel
+    public void addUserFailWithValidCredentialsAndCancel(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickAdd();
+        user_managementPage.setESSUserRoleAU();
+        user_managementPage.enterEmployeeNameAU("Phong Mai Lê Tiến");
+        user_managementPage.setEnabledStatusAU();
+        user_managementPage.enterUsernameAU("MLTPhong");
+        user_managementPage.enterPasswordAU("123456Phong*");
+        user_managementPage.enterConfirmPasswordAU("123456Phong*");
+        Sleep();
+        user_managementPage.ClickButtonCancel();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+            (ExpectedConditions.visibilityOfElementLocated
+                    (By.xpath("//h5[contains(@class, 'oxd-table-filter-title')]"))
+            );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"System Users","It's not System Users page");
+    }
 }
