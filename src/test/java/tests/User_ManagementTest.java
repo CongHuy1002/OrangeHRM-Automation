@@ -127,14 +127,44 @@ public class User_ManagementTest extends BaseTestLogin {
         }
     }
 
+    public void CheckTitleIsSystemUsers(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h5[contains(@class, 'oxd-table-filter-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"System Users","It's not System Users Page");
+    }
+
+    public void CheckTitleIsAddUser(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Add User","It's not Add User Page");
+    }
+
+    public void CheckTitleIsEditUser(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Edit User","It's not Edit User Page");
+    }
+
     @BeforeMethod
     public void initPage() {
         user_managementPage = new User_ManagementPage(driver);
     }
 
 
-    // Search Function
     @Test
+    // Check UI
     // Test Case: ADM-01 - Check UI User Management page
     public void CheckUIUserManagementPage(){
         user_managementPage.setModuleAdmin();
@@ -166,6 +196,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-02 - Verify search successfully with valid credentials
     public void searchSuccessfullyWithValidCredentials() {
         user_managementPage.setModuleAdmin();
@@ -181,6 +212,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-03 - Verify search successfully with Username only
     public void searchSuccessfullyWithUsernameOnly() {
         user_managementPage.setModuleAdmin();
@@ -190,6 +222,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-04 - Verify search successfully with Username only case_insensitive
     public void searchSuccessfullyWithUsernameOnlyCase_Insensitive() {
         user_managementPage.setModuleAdmin();
@@ -199,6 +232,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-05 - Verify search successfully with User Role only is Admin
     public void searchSuccessfullyWithUserRoleOnlyIsAdmin() {
         user_managementPage.setModuleAdmin();
@@ -208,6 +242,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-06 - Verify search successfully with User Role only is ESS
     public void searchSuccessfullyWithUserRoleOnlyIsESS() {
         user_managementPage.setModuleAdmin();
@@ -217,6 +252,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-07 - Verify search successfully with Employee Name only
     public void searchSuccessfullyWithEmployeeNameOnly() {
         user_managementPage.setModuleAdmin();
@@ -226,6 +262,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-08 - Verify search successfully with Employee Name only case_insensitive
     public void searchSuccessfullyWithEmployeeNameOnlyCase_Insensitive() {
         user_managementPage.setModuleAdmin();
@@ -235,6 +272,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-09 - Verify search successfully with Status only is Enabled
     public void searchSuccessfullyWithStatusOnlyIsEnabled() {
         user_managementPage.setModuleAdmin();
@@ -244,6 +282,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-10 - Verify search successfully with Status only is Disabled
     public void searchSuccessfullyWithStatusOnlyIsDisabled() {
         user_managementPage.setModuleAdmin();
@@ -253,6 +292,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Search Function
     // Test Case: ADM-11 - Verify search successfully with empty values
     public void searchSuccessfullyWithEmptyValues() {
         user_managementPage.setModuleAdmin();
@@ -267,8 +307,8 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
 
-    // Reset Function
     @Test
+    // Reset Function
     // Test Case: ADM-12 - Verify reset successfully with enter all the information and do not search
     public void resetSuccessfullyWithEnterAllTheInformationAndDoNotSearch() {
         user_managementPage.ResetBeforeSearch("Admin","Công Huy Trương");
@@ -287,6 +327,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Reset Function
     // Test Case: ADM-13 - Verify reset successfully with enter all the information and completing the search
     public void resetSuccessfullyWithEnterAllTheInformationAndCompletingTheSearch(){
         user_managementPage.ResetAfterSearch("Admin123","Việt Thành Mai");
@@ -305,31 +346,21 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Check nagivate
     // Test Case: ADM-14 - Verify navigate to Add User page
     public void verifyNavigateToAddUserPage(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-        (ExpectedConditions.visibilityOfElementLocated
-            (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
-        );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"Add User","It's not Add User page");
+        CheckTitleIsAddUser();
     }
 
     @Test
+    // Check UI
     // Test Case: ADM-15 - Check UI Add User page
     public void CheckUIAddUserPage(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-            (ExpectedConditions.visibilityOfElementLocated
-                    (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
-            );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"Add User","It's not Add User page");
+        CheckTitleIsAddUser();
         // Check User Role Input
         Assert.assertTrue(driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
         // Check Employee Name Input
@@ -349,12 +380,11 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-16 - Verify add user successfully with valid credentials
     public void addSuccessfullyWithValidCredentials(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h6[contains(@class,'orangehrm-main-title')]")));
         user_managementPage.setselectESSUserRole();
         user_managementPage.enterEmployeeName("Phong Mai Lê Tiến");
         user_managementPage.setSelectEnabledStatus();
@@ -365,12 +395,11 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-17 - Verify add user fail with password and confirm password did not match
     public void addUserFailWithPasswordAndConfirmPasswordDidNotMatch(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h6[contains(@class,'orangehrm-main-title')]")));
         user_managementPage.setselectESSUserRole();
         user_managementPage.enterEmployeeName("Hùng Mai Lê Tiến");
         user_managementPage.setSelectEnabledStatus();
@@ -382,6 +411,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-18 - Verify add user fail with User Role only
     public void addUserFailWithUserRoleOnly(){
         user_managementPage.setModuleAdmin();
@@ -395,6 +425,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-19 - Verify add user fail with Employee Name only
     public void addUserFailWithEmployeeNameOnly(){
         user_managementPage.setModuleAdmin();
@@ -408,6 +439,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-20 - Verify add user fail with Employee Name only case_insensitive
     public void addUserFailWithEmployeeNameOnlyCase_Insensitive(){
         user_managementPage.setModuleAdmin();
@@ -421,6 +453,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-21 - Verify add user fail with Status only
     public void addUserFailWithStatusOnly(){
         user_managementPage.setModuleAdmin();
@@ -434,6 +467,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-22 - Verify add user fail with Ussername only
     public void addUserFailWithUssernameOnly(){
         user_managementPage.setModuleAdmin();
@@ -448,6 +482,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-23 - Verify add user fail with Password only
     public void addUserFailWithPasswordOnly(){
         user_managementPage.setModuleAdmin();
@@ -462,6 +497,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-24 - Verify add user fail with Confirm Password only
     public void addUserFailWithConfirmPasswordOnly(){
         user_managementPage.setModuleAdmin();
@@ -477,6 +513,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-25 - Verify add user fail with valid credentials and Cancel
     public void addUserFailWithValidCredentialsAndCancel(){
         user_managementPage.setModuleAdmin();
@@ -489,16 +526,11 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.enterConfirmPassword("123456Phong*");
         Sleep();
         user_managementPage.clickButtonCancel();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-            (ExpectedConditions.visibilityOfElementLocated
-                    (By.xpath("//h5[contains(@class, 'oxd-table-filter-title')]"))
-            );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"System Users","It's not System Users page");
+        CheckTitleIsSystemUsers();
     }
 
     @Test
+    // Add Function
     // Test Case: ADM-26 - Verify add user fail with empty values
     public void addUserFailWithEmptyValues(){
         user_managementPage.setModuleAdmin();
@@ -513,32 +545,21 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Check navigate
     // Test Case: ADM-27 - Verify navigate to Edit User page
     public void verifyNavigateToEditUserPage(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-            (ExpectedConditions.visibilityOfElementLocated
-                    (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
-            );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"Edit User","It's not Edit User page");
+        CheckTitleIsEditUser();
     }
 
     @Test
+    // Check UI
     // Test Case: ADM-28 - Check UI Edit User page
     public void CheckUIEditUserPage(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-                (ExpectedConditions.visibilityOfElementLocated
-                        (By.xpath("//h6[contains(@class,'orangehrm-main-title')]"))
-                );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"Edit User","It's not Edit User page");
-
+        CheckTitleIsEditUser();
         // Check User Role Input
         Assert.assertTrue(driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
         // Check Employee Name Input
@@ -561,29 +582,33 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test
+    // Edit Function
     // Test Case: ADM-29 - Verify edit user with User Role only
     public void editUserWithUserRoleOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
         user_managementPage.setselectAdminUserRole();
         user_managementPage.clickButtonSave();
+        CheckTitleIsSystemUsers();
         user_managementPage.clickIconButtonEdit();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
+        WebElement UserRole = wait.until
                 (ExpectedConditions.visibilityOfElementLocated
                         (By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
                 );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"Admin","Edit User fail!!");
+        System.out.println(UserRole.getText());
+        Assert.assertEquals(UserRole.getText(),"Admin","Edit User fail!!");
     }
 
     @Test
+    // Edit Function
     // Test Case: ADM-30 - Verify edit user with Status only
     public void editUserWithStatusOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
         user_managementPage.setSelectDisabledStatus();
         user_managementPage.clickButtonSave();
+        CheckTitleIsSystemUsers();
         user_managementPage.clickIconButtonEdit();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement title = wait.until

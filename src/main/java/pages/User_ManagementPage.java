@@ -36,6 +36,7 @@ public class User_ManagementPage extends BasePage {
     private By iconButtonEdit = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
     private By confirmDeleteButton = By.xpath("button[containns(@class, 'oxd-button--label-danger')]");
     private By confirmCancelButton = By.xpath("button[contains(@class, 'oxd-button--ghost')][2]");
+    private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
     private By checkboxUsername = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxChangePassword = By.xpath("//label[normalize-space()='Yes']//span[contains(@class,'oxd-checkbox-input')]");
     private By confirmDeleteCheckBox = By.xpath("button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
@@ -93,9 +94,8 @@ public class User_ManagementPage extends BasePage {
     public void clickConfirmCancel(){
         click(confirmCancelButton);
     }
-    public void clickCheckBoxUsername(){
-        click(checkboxUsername);
-    }
+    public void clickCheckBoxAllUsername(){click(checkboxAllUsername);}
+    public void clickCheckBoxUsername(){click(checkboxUsername);}
     public void clickCheckBoxChangePassword(){click(checkboxChangePassword);}
     public void clickDeleteCheckBox(){
         click(confirmDeleteCheckBox);
