@@ -719,4 +719,19 @@ public class User_ManagementTest extends BaseTestLogin {
         verifyAllRowsHaveEmployeeName("Việt Thành Mai");
     }
 
+    @Test
+    // Edit Function
+    // ID Bug: OTP-126
+    // Test Case: ADM-37 - Verify edit user with empty values
+    public void editUserWithEmptyValues(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEditAdmin123();
+        user_managementPage.clickButtonSave();
+        List<String> messages = user_managementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),1);
+        Assert.assertTrue(messages.contains("The values not change"));
+    }
+
+
 }
