@@ -12,8 +12,8 @@ public class BaseTestLogin extends BaseTest {
 
     @BeforeMethod
     public void login(){
-        driver.get("http://localhost:1002/orangehrm/web/index.php/auth/login");
+        driver.get("http://localhost:8080/orangehrm/web/index.php/auth/login");
         loginPage = new Login_LogoutPage(driver);
-        loginPage.login("Admin","0123456Huy***");
+        loginPage.login("Admin","123456Huy***");
     }
 }

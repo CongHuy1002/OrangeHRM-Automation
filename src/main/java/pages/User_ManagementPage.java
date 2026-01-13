@@ -2,6 +2,7 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -33,7 +34,7 @@ public class User_ManagementPage extends BasePage {
     private By searchButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']");
     private By addButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']");
     private By iconButtonDelete = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]");
-    private By iconButtonEdit = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonEdit = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]");
     private By confirmDeleteButton = By.xpath("button[containns(@class, 'oxd-button--label-danger')]");
     private By confirmCancelButton = By.xpath("button[contains(@class, 'oxd-button--ghost')][2]");
     private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
@@ -76,7 +77,38 @@ public class User_ManagementPage extends BasePage {
         type(confirmpasswordInput, confirmpassword);
     }
 
+    public void clear(){
 
+    }
+    public void clearAndEnterUsername(String username) {
+        WebElement input = driver.findElement(usernameInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(username);
+    }
+    public void clearAndEnterEmployeeName(String employeename) {
+        WebElement input = driver.findElement(employeenameInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        type(employeenameInput, employeename);
+        click(employeeSuggestion);
+    }
+    public void clearAndEnterPassword(String password) {
+        WebElement input = driver.findElement(passwordInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(password);
+    }
+    public void clearAndEnterConfirmPassword(String confirmpassword) {
+        WebElement input = driver.findElement(confirmpasswordInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(confirmpassword);
+    }
     public void clickSearch(){
         click(searchButton);
     }

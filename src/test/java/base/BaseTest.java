@@ -14,7 +14,7 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("http://localhost:1002/orangehrm/web/index.php/auth/login");
+        driver.get("http://localhost:8080/orangehrm/web/index.php/auth/login");
     }
 
     @AfterMethod

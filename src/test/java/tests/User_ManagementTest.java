@@ -189,7 +189,7 @@ public class User_ManagementTest extends BaseTestLogin {
         // check Icon button delete
         Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]")).isEnabled());
         // check Icon button edit
-        Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]")).isEnabled());
+        Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]")).isEnabled());
         user_managementPage.clickCheckBoxUsername();
         By deleteBtn = By.xpath("//button[normalize-space()='Delete Selected']");
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(deleteBtn)).isDisplayed());
@@ -386,11 +386,11 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setselectESSUserRole();
-        user_managementPage.enterEmployeeName("Phong Mai Lê Tiến");
+        user_managementPage.enterEmployeeName("Lê Tiến Phong Mai");
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.enterUsername("MLTPhong");
-        user_managementPage.enterPassword("123456Phong*");
-        user_managementPage.enterConfirmPassword("123456Phong*");
+        user_managementPage.enterPassword("123456Phong***");
+        user_managementPage.enterConfirmPassword("123456Phong***");
         user_managementPage.clickButtonSave();
     }
 
@@ -401,7 +401,7 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setselectESSUserRole();
-        user_managementPage.enterEmployeeName("Hùng Mai Lê Tiến");
+        user_managementPage.enterEmployeeName("Lê Tiến Hùng Mai");
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.enterUsername("MLTHung");
         user_managementPage.enterPassword("123456Hung***");
@@ -487,7 +487,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithPasswordOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.enterPassword("0123456Thanh*");
+        user_managementPage.enterPassword("123456Thanh***");
         user_managementPage.clickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
@@ -502,7 +502,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void addUserFailWithConfirmPasswordOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
-        user_managementPage.enterConfirmPassword("0123456Thanh*");
+        user_managementPage.enterConfirmPassword("123456Thanh***");
         user_managementPage.clickButtonSave();
         Sleep();
         List<String> messages = user_managementPage.getAllRequiredMessages();
@@ -519,11 +519,11 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setselectESSUserRole();
-        user_managementPage.enterEmployeeName("Phong Mai Lê Tiến");
+        user_managementPage.enterEmployeeName("Lê Tiến Hùng Mai");
         user_managementPage.setSelectEnabledStatus();
-        user_managementPage.enterUsername("MLTPhong");
-        user_managementPage.enterPassword("123456Phong*");
-        user_managementPage.enterConfirmPassword("123456Phong*");
+        user_managementPage.enterUsername("MLTHung");
+        user_managementPage.enterPassword("123456Hung***");
+        user_managementPage.enterConfirmPassword("123456Hung***");
         Sleep();
         user_managementPage.clickButtonCancel();
         CheckTitleIsSystemUsers();
@@ -587,7 +587,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void editUserWithUserRoleOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
-        user_managementPage.setselectAdminUserRole();
+        user_managementPage.setselectESSUserRole();
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
         user_managementPage.clickIconButtonEdit();
@@ -597,7 +597,7 @@ public class User_ManagementTest extends BaseTestLogin {
                         (By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
                 );
         System.out.println(UserRole.getText());
-        Assert.assertEquals(UserRole.getText(),"Admin","Edit User fail!!");
+        Assert.assertEquals(UserRole.getText(),"ESS","Edit User fail!!");
     }
 
     @Test
@@ -611,11 +611,31 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckTitleIsSystemUsers();
         user_managementPage.clickIconButtonEdit();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
+        WebElement Status = wait.until
                 (ExpectedConditions.visibilityOfElementLocated
                         (By.xpath("//label[text()='Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
                 );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"Disabled","Edit User fail!!");
+        System.out.println(Status.getText());
+        Assert.assertEquals(Status.getText(),"Disabled","Edit User fail!!");
+    }
+
+    @Test
+    // Edit Function
+    // Test Case: ADM-31 - Verify edit user with Employee Name only
+    public void editUserWithEmployeeNameOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEdit();
+        Sleep();
+        user_managementPage.clearAndEnterEmployeeName("Thu Giang Vũ");
+        user_managementPage.clickButtonSave();
+        CheckTitleIsSystemUsers();
+        user_managementPage.clickIconButtonEdit();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement EmployeeName = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//input[@placeholder='Type for hints...']"))
+                );
+        String EmployeeNameValue = EmployeeName.getAttribute("value");
+        Assert.assertEquals(EmployeeNameValue,"Thu Giang  Vũ","Edit User fail!");
     }
 }

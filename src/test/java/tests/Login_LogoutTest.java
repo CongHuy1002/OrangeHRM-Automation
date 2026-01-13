@@ -13,7 +13,7 @@ public class Login_LogoutTest extends BaseTest {
 
     Login_LogoutPage login_logoutPage;
     String Username = "Admin";
-    String Password = "0123456Huy***";
+    String Password = "123456Huy***";
     String UsernameWrong = "Admin12";
     String PasswordWrong = "0123456HUy***";
     String errormessageUS = "Required";
