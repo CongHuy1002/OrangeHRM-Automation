@@ -697,4 +697,26 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckTitleIsSystemUsers();
     }
 
+    @Test
+    // Edit Function
+    // Test Case: ADM-36 - Verify edit user with valid credentials
+    public void editUserWithValidCredentials(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEditMLTPhong();
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.clearAndEnterEmployeeName("Việt Thành Mai");
+        user_managementPage.setSelectEnabledStatus();
+        user_managementPage.clearAndEnterUsername("Admin1");
+        user_managementPage.clickCheckBoxChangePassword();
+        user_managementPage.clearAndEnterPassword("123456Thanh***");
+        user_managementPage.clearAndEnterConfirmPassword("123456Thanh***");
+        user_managementPage.clickButtonSave();
+        CheckTitleIsSystemUsers();
+        user_managementPage.enterUsername("Admin1");
+        user_managementPage.clickSearch();
+        Sleep();
+        verifyAllRowsHaveUsername("Admin1");
+        verifyAllRowsHaveEmployeeName("Việt Thành Mai");
+    }
+
 }
