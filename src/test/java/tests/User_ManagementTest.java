@@ -665,4 +665,18 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
     }
+
+    @Test
+    // Edit Function
+    // Test Case: ADM-34 - Verify edit user with Password and Confirm Password are not the same only
+    public void editUserWithPasswordAndConfirmPasswordAreNotTheSameOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEditMLTPhong();
+        user_managementPage.clickCheckBoxChangePassword();
+        user_managementPage.enterPassword("123456Phong*");
+        user_managementPage.enterConfirmPassword("123457Phong*");
+        user_managementPage.clickButtonSave();
+        Assert.assertEquals(user_managementPage.getDidNotMatchMessage(),"Passwords do not match");
+    }
+
 }
