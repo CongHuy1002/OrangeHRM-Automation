@@ -587,6 +587,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void editUserWithUserRoleOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
+        Sleep();
         user_managementPage.setselectESSUserRole();
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
@@ -606,6 +607,7 @@ public class User_ManagementTest extends BaseTestLogin {
     public void editUserWithStatusOnly(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickIconButtonEdit();
+        Sleep();
         user_managementPage.setSelectDisabledStatus();
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
@@ -638,4 +640,27 @@ public class User_ManagementTest extends BaseTestLogin {
         String EmployeeNameValue = EmployeeName.getAttribute("value");
         Assert.assertEquals(EmployeeNameValue,"Thu Giang  Vũ","Edit User fail!");
     }
+
+    @Test
+    // Edit Function
+    // Test Case: ADM-32 - Verify edit user with Username only
+    public void editUserWithUsernameOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEdit();
+        Sleep();
+        user_managementPage.clearAndEnterUsername("Admin12");
+        user_managementPage.clickButtonSave();
+        CheckTitleIsSystemUsers();
+        user_managementPage.enterUsername("Admin12");
+        user_managementPage.clickSearch();
+        Sleep();
+        verifyAllRowsHaveUsername("Admin12");
+        if (true){
+            System.out.println("Edit User thành công!");
+        }
+        else {
+            System.out.println("Edit User fail!");
+        }
+    }
+
 }

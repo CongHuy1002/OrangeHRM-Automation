@@ -77,9 +77,6 @@ public class User_ManagementPage extends BasePage {
         type(confirmpasswordInput, confirmpassword);
     }
 
-    public void clear(){
-
-    }
     public void clearAndEnterUsername(String username) {
         WebElement input = driver.findElement(usernameInput);
         input.click();
