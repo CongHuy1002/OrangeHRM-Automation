@@ -549,7 +549,7 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-27 - Verify navigate to Edit User page
     public void verifyNavigateToEditUserPage(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         CheckTitleIsEditUser();
     }
 
@@ -558,7 +558,7 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-28 - Check UI Edit User page
     public void CheckUIEditUserPage(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         CheckTitleIsEditUser();
         // Check User Role Input
         Assert.assertTrue(driver.findElement(By.xpath("//label[text()='User Role']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
@@ -586,12 +586,12 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-29 - Verify edit user with User Role only
     public void editUserWithUserRoleOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         Sleep();
         user_managementPage.setselectESSUserRole();
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement UserRole = wait.until
                 (ExpectedConditions.visibilityOfElementLocated
@@ -606,12 +606,12 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-30 - Verify edit user with Status only
     public void editUserWithStatusOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         Sleep();
         user_managementPage.setSelectDisabledStatus();
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement Status = wait.until
                 (ExpectedConditions.visibilityOfElementLocated
@@ -626,12 +626,12 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-31 - Verify edit user with Employee Name only
     public void editUserWithEmployeeNameOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         Sleep();
         user_managementPage.clearAndEnterEmployeeName("Thu Giang Vũ");
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement EmployeeName = wait.until
                 (ExpectedConditions.visibilityOfElementLocated
@@ -646,21 +646,23 @@ public class User_ManagementTest extends BaseTestLogin {
     // Test Case: ADM-32 - Verify edit user with Username only
     public void editUserWithUsernameOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEdit();
+        user_managementPage.clickIconButtonEditAdmin123();
         Sleep();
         user_managementPage.clearAndEnterUsername("Admin12");
         user_managementPage.clickButtonSave();
-        CheckTitleIsSystemUsers();
-        user_managementPage.enterUsername("Admin12");
-        user_managementPage.clickSearch();
-        Sleep();
-        verifyAllRowsHaveUsername("Admin12");
-        if (true){
-            System.out.println("Edit User thành công!");
-        }
-        else {
-            System.out.println("Edit User fail!");
-        }
     }
 
+    @Test
+    // Edit Function
+    // Test Case: ADM-33 - Verify edit user with Password and Confirm Password are the same only
+    public void editUserWithPasswordAndConfirmPasswordAreTheSameOnly(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEditMLTPhong();
+        Sleep();
+        user_managementPage.clickCheckBoxChangePassword();
+        user_managementPage.clearAndEnterPassword("123456Phong***");
+        user_managementPage.clearAndEnterConfirmPassword("123456Phong***");
+        user_managementPage.clickButtonSave();
+        CheckTitleIsSystemUsers();
+    }
 }

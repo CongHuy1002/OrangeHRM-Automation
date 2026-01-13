@@ -33,8 +33,10 @@ public class User_ManagementPage extends BasePage {
     private By resetButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--ghost']");
     private By searchButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']");
     private By addButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']");
-    private By iconButtonDelete = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]");
-    private By iconButtonEdit = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonDeleteAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]");
+    private By iconButtonDeleteMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//i[contains(@class,'bi-trash')]");
+    private By iconButtonEditAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonEditMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
     private By confirmDeleteButton = By.xpath("button[containns(@class, 'oxd-button--label-danger')]");
     private By confirmCancelButton = By.xpath("button[contains(@class, 'oxd-button--ghost')][2]");
     private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
@@ -115,8 +117,10 @@ public class User_ManagementPage extends BasePage {
     public void clickAdd(){
         click(addButton);
     }
-    public void clickIconButtonEdit(){click(iconButtonEdit);}
-    public void clickIconButtonDelete(){click(iconButtonDelete);}
+    public void clickIconButtonEditAdmin123(){click(iconButtonEditAdmin123);}
+    public void clickIconButtonEditMLTPhong(){click(iconButtonEditMLTPhong);}
+    public void clickIconButtonDeleteAdmin123(){click(iconButtonDeleteAdmin123);}
+    public void clickIconButtonDeleteMLTPhong(){click(iconButtonDeleteMLTPhong);}
     public void clickConfirmDelete(){
         click(confirmDeleteButton);
     }
@@ -174,12 +178,12 @@ public class User_ManagementPage extends BasePage {
     }
     public void DeleteAndConfirmDeleteIcon(){
         setModuleAdmin();
-        clickIconButtonDelete();
+        clickIconButtonDeleteMLTPhong();
         clickConfirmDelete();
     }
     public void DeleteAndConfirmCancelIcon(){
         setModuleAdmin();
-        clickIconButtonDelete();
+        clickIconButtonDeleteAdmin123();
         clickConfirmCancel();
     }
     public void DeleteAndConfirmDeleteCheckBox(){
