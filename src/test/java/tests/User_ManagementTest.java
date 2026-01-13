@@ -679,4 +679,22 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(user_managementPage.getDidNotMatchMessage(),"Passwords do not match");
     }
 
+
+    @Test
+    // Edit Function
+    // Test Case: ADM-35 - Verify edit user fail with valid credentials and Cancel
+    public void editUserFailWithValidCredentialsAndCancel(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonEditMLTPhong();
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.clearAndEnterEmployeeName("Việt Thành Mai");
+        user_managementPage.setSelectEnabledStatus();
+        user_managementPage.clearAndEnterUsername("Admin1");
+        user_managementPage.clickCheckBoxChangePassword();
+        user_managementPage.clearAndEnterPassword("123456Thanh***");
+        user_managementPage.clearAndEnterConfirmPassword("123456Thanh***");
+        user_managementPage.clickButtonCancel();
+        CheckTitleIsSystemUsers();
+    }
+
 }
