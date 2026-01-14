@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.User_ManagementPage;
@@ -176,6 +177,32 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage = new User_ManagementPage(driver);
     }
 
+    /*@BeforeMethod
+    public void createUser(){
+            user_managementPage.setModuleAdmin();
+            user_managementPage.clickAdd();
+            user_managementPage.setselectESSUserRole();
+            user_managementPage.enterEmployeeName("Lê Tiến Hùng Mai");
+            user_managementPage.setSelectEnabledStatus();
+            user_managementPage.enterUsername("MLTHung");
+            user_managementPage.enterPassword("123456Hung***");
+            user_managementPage.enterConfirmPassword("123456Hung***");
+            user_managementPage.clickButtonSave();
+    }
+
+    @AfterMethod
+    public void deleteUser(){
+        user_managementPage.enterUsername("Lê Tiến Hùng Mai");
+        user_managementPage.clickSearch();
+        By tableRows = By.xpath("//div[@class='oxd-table-body']//div[@role='row']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='oxd-table-body']")));
+        List<WebElement> rows = driver.findElements(tableRows);
+        if (rows.size() > 0) {
+            user_managementPage.clickIconButtonDeleteMLTHung();
+            user_managementPage.clickConfirmDelete();
+        }
+    }*/
 
     @Test
     // Check UI
@@ -759,4 +786,19 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.clickSearch();
         verifyUserIsDeleted("Admin123");
     }
+
+    @Test
+    // Delete Function
+    // Test Case: ADM-39 - Verify delete Cancel user with Icon button
+    public void deleteCancelUserWithIconButton(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonDeleteMLTPhong();
+        user_managementPage.clickConfirmCancel();
+        CheckTitleIsSystemUsers();
+        user_managementPage.enterUsername("MLTPhong");
+        user_managementPage.clickSearch();
+        Sleep();
+        verifyAllRowsHaveUsername("MLTPhong");
+    }
+
 }

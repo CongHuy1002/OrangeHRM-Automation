@@ -34,11 +34,14 @@ public class User_ManagementPage extends BasePage {
     private By searchButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']");
     private By addButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']");
     private By iconButtonDeleteAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]");
+    private By iconButtonDeleteMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//i[contains(@class,'bi-trash')]");
+
     private By iconButtonDeleteMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//i[contains(@class,'bi-trash')]");
     private By iconButtonEditAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonEditMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//button[contains(@class,'oxd-icon-button')][2]");
     private By iconButtonEditMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
     private By confirmDeleteButton = By.xpath("//button[contains(@class, 'oxd-button--label-danger')]");
-    private By confirmCancelButton = By.xpath("//button[contains(@class, 'oxd-button--ghost')][2]");
+    private By confirmCancelButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='No, Cancel']");
     private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
     private By checkboxUsername = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxChangePassword = By.xpath("//label[normalize-space()='Yes']//span[contains(@class,'oxd-checkbox-input')]");
@@ -118,8 +121,10 @@ public class User_ManagementPage extends BasePage {
         click(addButton);
     }
     public void clickIconButtonEditAdmin123(){click(iconButtonEditAdmin123);}
+    public void clickIconButtonEditMLTHung(){click(iconButtonEditMLTHung);}
     public void clickIconButtonEditMLTPhong(){click(iconButtonEditMLTPhong);}
     public void clickIconButtonDeleteAdmin123(){click(iconButtonDeleteAdmin123);}
+    public void clickIconButtonDeleteMLTHung(){click(iconButtonDeleteMLTHung);}
     public void clickIconButtonDeleteMLTPhong(){click(iconButtonDeleteMLTPhong);}
     public void clickConfirmDelete(){
         click(confirmDeleteButton);
