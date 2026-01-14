@@ -231,7 +231,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]")).isEnabled());
         // check Icon button edit
         Assert.assertTrue(driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]")).isEnabled());
-        user_managementPage.clickCheckBoxUsername();
+        user_managementPage.clickCheckBoxUsernameAdmin123();
         By deleteBtn = By.xpath("//button[normalize-space()='Delete Selected']");
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(deleteBtn)).isDisplayed());
     }
@@ -778,9 +778,7 @@ public class User_ManagementTest extends BaseTestLogin {
     // Delete Function
     // Test Case: ADM-38 - Verify delete user with Icon button
     public void deleteUserWithIconButton(){
-        user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonDeleteAdmin123();
-        user_managementPage.clickConfirmDelete();
+        user_managementPage.DeleteAndConfirmDeleteIcon();
         CheckTitleIsSystemUsers();
         user_managementPage.enterUsername("Admin123");
         user_managementPage.clickSearch();
@@ -791,14 +789,24 @@ public class User_ManagementTest extends BaseTestLogin {
     // Delete Function
     // Test Case: ADM-39 - Verify delete Cancel user with Icon button
     public void deleteCancelUserWithIconButton(){
-        user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonDeleteMLTPhong();
-        user_managementPage.clickConfirmCancel();
+        user_managementPage.DeleteAndConfirmCancelIcon();
         CheckTitleIsSystemUsers();
         user_managementPage.enterUsername("MLTPhong");
         user_managementPage.clickSearch();
         Sleep();
         verifyAllRowsHaveUsername("MLTPhong");
+    }
+
+    @Test
+    // Delete Function
+    // Test Case: ADM-40 - Verify delete user with checkbox Username
+    public void deleteUserWithCheckBoxUsername(){
+        user_managementPage.DeleteAndConfirmDeleteCheckBox();
+        CheckTitleIsSystemUsers();
+        user_managementPage.enterUsername("MLTPhong");
+        user_managementPage.clickSearch();
+        Sleep();
+        verifyUserIsDeleted("MLTPhong");
     }
 
 }

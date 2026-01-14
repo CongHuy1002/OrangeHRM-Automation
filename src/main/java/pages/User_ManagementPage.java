@@ -40,10 +40,11 @@ public class User_ManagementPage extends BasePage {
     private By iconButtonEditAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]");
     private By iconButtonEditMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//button[contains(@class,'oxd-icon-button')][2]");
     private By iconButtonEditMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
-    private By confirmDeleteButton = By.xpath("//button[contains(@class, 'oxd-button--label-danger')]");
+    private By confirmDeleteButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='Yes, Delete']");
     private By confirmCancelButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='No, Cancel']");
     private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
-    private By checkboxUsername = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxUsernameAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxUsernameMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxChangePassword = By.xpath("//label[normalize-space()='Yes']//span[contains(@class,'oxd-checkbox-input')]");
     private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
     private By confirmpassworderrormessage = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//span[contains(@class,'oxd-input-field-error-message')]");
@@ -133,7 +134,9 @@ public class User_ManagementPage extends BasePage {
         click(confirmCancelButton);
     }
     public void clickCheckBoxAllUsername(){click(checkboxAllUsername);}
-    public void clickCheckBoxUsername(){click(checkboxUsername);}
+    public void clickCheckBoxUsernameAdmin123(){click(checkboxUsernameAdmin123);}
+    public void clickCheckBoxUsernameMLTHung(){click(checkboxUsernameAdmin123);}
+    public void clickCheckBoxUsernameMLTPhong(){click(checkboxUsernameMLTPhong);}
     public void clickCheckBoxChangePassword(){click(checkboxChangePassword);}
     public void clickDeleteCheckBox(){
         click(confirmDeleteCheckBox);
@@ -183,23 +186,23 @@ public class User_ManagementPage extends BasePage {
     }
     public void DeleteAndConfirmDeleteIcon(){
         setModuleAdmin();
-        clickIconButtonDeleteMLTPhong();
+        clickIconButtonDeleteAdmin123();
         clickConfirmDelete();
     }
     public void DeleteAndConfirmCancelIcon(){
         setModuleAdmin();
-        clickIconButtonDeleteAdmin123();
+        clickIconButtonDeleteMLTPhong();
         clickConfirmCancel();
     }
     public void DeleteAndConfirmDeleteCheckBox(){
         setModuleAdmin();
-        clickCheckBoxUsername();
+        clickCheckBoxUsernameMLTPhong();
         clickDeleteCheckBox();
         clickConfirmDelete();
     }
     public void DeleteAndConfirmCancelCheckBox(){
         setModuleAdmin();
-        clickCheckBoxUsername();
+        clickCheckBoxUsernameMLTHung();
         clickDeleteCheckBox();
         clickConfirmCancel();
     }
