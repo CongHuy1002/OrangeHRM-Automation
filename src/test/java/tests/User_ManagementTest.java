@@ -821,4 +821,15 @@ public class User_ManagementTest extends BaseTestLogin {
         verifyAllRowsHaveUsername("MLTHung");
     }
 
+    @Test
+    // Delete Function
+    // Test Case: ADM-42 - Verify delete all users with checkbox Username
+    public void deleteUsersWithCheckBoxUsername(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickCheckBoxAllUsername();
+        user_managementPage.clickDeleteCheckBox();
+        user_managementPage.clickConfirmDelete();
+        CheckTitleIsSystemUsers();
+    }
+
 }
