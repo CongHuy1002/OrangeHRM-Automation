@@ -809,4 +809,16 @@ public class User_ManagementTest extends BaseTestLogin {
         verifyUserIsDeleted("MLTPhong");
     }
 
+    @Test
+    // Delete Function
+    // Test Case: ADM-41 - Verify delete Cancel user with checkbox Username
+    public void deleteCancelUserWithCheckBoxUsername(){
+        user_managementPage.DeleteAndConfirmCancelCheckBox();
+        CheckTitleIsSystemUsers();
+        user_managementPage.enterUsername("MLTHung");
+        user_managementPage.clickSearch();
+        Sleep();
+        verifyAllRowsHaveUsername("MLTHung");
+    }
+
 }

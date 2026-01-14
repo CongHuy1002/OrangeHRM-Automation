@@ -44,6 +44,7 @@ public class User_ManagementPage extends BasePage {
     private By confirmCancelButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='No, Cancel']");
     private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
     private By checkboxUsernameAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxUsernameMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxUsernameMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxChangePassword = By.xpath("//label[normalize-space()='Yes']//span[contains(@class,'oxd-checkbox-input')]");
     private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
@@ -135,7 +136,7 @@ public class User_ManagementPage extends BasePage {
     }
     public void clickCheckBoxAllUsername(){click(checkboxAllUsername);}
     public void clickCheckBoxUsernameAdmin123(){click(checkboxUsernameAdmin123);}
-    public void clickCheckBoxUsernameMLTHung(){click(checkboxUsernameAdmin123);}
+    public void clickCheckBoxUsernameMLTHung(){click(checkboxUsernameMLTHung);}
     public void clickCheckBoxUsernameMLTPhong(){click(checkboxUsernameMLTPhong);}
     public void clickCheckBoxChangePassword(){click(checkboxChangePassword);}
     public void clickDeleteCheckBox(){
