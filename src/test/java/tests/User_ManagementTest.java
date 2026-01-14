@@ -16,6 +16,7 @@ import java.util.List;
 public class User_ManagementTest extends BaseTestLogin {
     User_ManagementPage user_managementPage;
 
+    // Kiểm tra giá trị sau khi search
     public void verifyAllRowsHaveUsername(String expectedUsername) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -77,6 +78,19 @@ public class User_ManagementTest extends BaseTestLogin {
                     By.xpath(".//div[@role='cell'][5]")
             ).getText();
             Assert.assertEquals(actualRole, expectedStatus, "Status không đúng");
+        }
+    }
+
+    // Kiểm tra giá trị sau khi delete
+    public void verifyUserIsDeleted(String username) {
+        By tableRows = By.xpath("//div[@class='oxd-table-body']//div[@role='row']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='oxd-table-body']")));
+        List<WebElement> rows = driver.findElements(tableRows);
+        if (rows.size() == 0) {
+            System.out.println("Delete user '" + username + "' thành công");
+        } else {
+            Assert.fail("Delete user '" + username + "' KHÔNG thành công, vẫn còn trong danh sách");
         }
     }
 
@@ -733,5 +747,16 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("The values not change"));
     }
 
-
+    @Test
+    // Delete Function
+    // Test Case: ADM-38 - Verify delete user with Icon button
+    public void deleteUserWithIconButton(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickIconButtonDeleteAdmin123();
+        user_managementPage.clickConfirmDelete();
+        CheckTitleIsSystemUsers();
+        user_managementPage.enterUsername("Admin123");
+        user_managementPage.clickSearch();
+        verifyUserIsDeleted("Admin123");
+    }
 }
