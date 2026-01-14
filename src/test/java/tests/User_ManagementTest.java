@@ -832,4 +832,13 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckTitleIsSystemUsers();
     }
 
+    @Test
+    // Delete Function
+    // Test Case: ADM-43 - Verify delete Cancel users with check box Username
+    public void deleteCancelUsersWithCheckBoxUsername(){
+        user_managementPage.setModuleAdmin();
+        user_managementPage.clickCheckBoxAllUsername();
+        user_managementPage.clickDeleteCheckBox();
+        user_managementPage.clickConfirmCancel();
+    }
 }
