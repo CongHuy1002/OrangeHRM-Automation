@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,17 +33,28 @@ public class User_ManagementPage extends BasePage {
     private By searchButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']");
     private By addButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']");
     private By iconButtonDeleteAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//i[contains(@class,'bi-trash')]");
+    private By iconButtonDeletePHTPhat = By.xpath("//div[@role='row'][.//div[text()='PHTPhat']]//i[contains(@class,'bi-trash')]");
+    private By iconButtonDeleteVTGiang = By.xpath("//div[@role='row'][.//div[text()='VTGiang']]//i[contains(@class,'bi-trash')]");
+    private By iconButtonDeleteHADat = By.xpath("//div[@role='row'][.//div[text()='HADat']]//i[contains(@class,'bi-trash')]");
     private By iconButtonDeleteMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//i[contains(@class,'bi-trash')]");
-
+    private By iconButtonDeleteMLTDat = By.xpath("//div[@role='row'][.//div[text()='MLTDat']]//i[contains(@class,'bi-trash')]");
     private By iconButtonDeleteMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//i[contains(@class,'bi-trash')]");
     private By iconButtonEditAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonEditPHTPhat = By.xpath("//div[@role='row'][.//div[text()='PHTPhat']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonEditVTGiang = By.xpath("//div[@role='row'][.//div[text()='VTGiang']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonEditHADat = By.xpath("//div[@role='row'][.//div[text()='HADat']]//button[contains(@class,'oxd-icon-button')][2]");
     private By iconButtonEditMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//button[contains(@class,'oxd-icon-button')][2]");
+    private By iconButtonEditMLTDat = By.xpath("//div[@role='row'][.//div[text()='MLTDat']]//button[contains(@class,'oxd-icon-button')][2]");
     private By iconButtonEditMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
     private By confirmDeleteButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='Yes, Delete']");
     private By confirmCancelButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='No, Cancel']");
     private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
     private By checkboxUsernameAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxUsernamePHTPhat = By.xpath("//div[@role='row'][.//div[text()='PHTPhat']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxUsernameVTGiang = By.xpath("//div[@role='row'][.//div[text()='VTGiang']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxUsernameHADat = By.xpath("//div[@role='row'][.//div[text()='HADat']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxUsernameMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxUsernameMLTDat = By.xpath("//div[@role='row'][.//div[text()='MLTDat']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxUsernameMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxChangePassword = By.xpath("//label[normalize-space()='Yes']//span[contains(@class,'oxd-checkbox-input')]");
     private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
@@ -123,10 +133,18 @@ public class User_ManagementPage extends BasePage {
         click(addButton);
     }
     public void clickIconButtonEditAdmin123(){click(iconButtonEditAdmin123);}
+    public void clickIconButtonEditPHTPhat(){click(iconButtonEditPHTPhat);}
+    public void clickIconButtonEditVTGiang(){click(iconButtonEditVTGiang);}
+    public void clickIconButtonEditHADat(){click(iconButtonEditHADat);}
     public void clickIconButtonEditMLTHung(){click(iconButtonEditMLTHung);}
+    public void clickIconButtonEditMLTDat(){click(iconButtonEditMLTDat);}
     public void clickIconButtonEditMLTPhong(){click(iconButtonEditMLTPhong);}
     public void clickIconButtonDeleteAdmin123(){click(iconButtonDeleteAdmin123);}
+    public void clickIconButtonDeletePHTPhat(){click(iconButtonDeletePHTPhat);}
+    public void clickIconButtonDeleteVTGiang(){click(iconButtonDeleteVTGiang);}
+    public void clickIconButtonDeleteHADat(){click(iconButtonDeleteHADat);}
     public void clickIconButtonDeleteMLTHung(){click(iconButtonDeleteMLTHung);}
+    public void clickIconButtonDeleteMLTDat(){click(iconButtonDeleteMLTDat);}
     public void clickIconButtonDeleteMLTPhong(){click(iconButtonDeleteMLTPhong);}
     public void clickConfirmDelete(){
         click(confirmDeleteButton);
@@ -136,7 +154,11 @@ public class User_ManagementPage extends BasePage {
     }
     public void clickCheckBoxAllUsername(){click(checkboxAllUsername);}
     public void clickCheckBoxUsernameAdmin123(){click(checkboxUsernameAdmin123);}
+    public void clickCheckBoxUsernamePHTPhat(){click(checkboxUsernamePHTPhat);}
+    public void clickCheckBoxUsernameVTGiang(){click(checkboxUsernameVTGiang);}
+    public void clickCheckBoxUsernameHADat(){click(checkboxUsernameHADat);}
     public void clickCheckBoxUsernameMLTHung(){click(checkboxUsernameMLTHung);}
+    public void clickCheckBoxUsernameMLTDat(){click(checkboxUsernameMLTDat);}
     public void clickCheckBoxUsernameMLTPhong(){click(checkboxUsernameMLTPhong);}
     public void clickCheckBoxChangePassword(){click(checkboxChangePassword);}
     public void clickDeleteCheckBox(){
@@ -192,12 +214,12 @@ public class User_ManagementPage extends BasePage {
     }
     public void DeleteAndConfirmCancelIcon(){
         setModuleAdmin();
-        clickIconButtonDeleteMLTPhong();
+        clickIconButtonDeleteMLTDat();
         clickConfirmCancel();
     }
     public void DeleteAndConfirmDeleteCheckBox(){
         setModuleAdmin();
-        clickCheckBoxUsernameMLTPhong();
+        clickCheckBoxUsernameMLTDat();
         clickDeleteCheckBox();
         clickConfirmDelete();
     }

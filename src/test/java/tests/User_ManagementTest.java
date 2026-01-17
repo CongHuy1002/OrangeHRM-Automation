@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.User_ManagementPage;
@@ -204,7 +203,7 @@ public class User_ManagementTest extends BaseTestLogin {
         }
     }*/
 
-    @Test
+    @Test(priority = 1)
     // Check UI
     // Test Case: ADM-01 - Check UI User Management page
     public void CheckUIUserManagementPage(){
@@ -236,103 +235,112 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(deleteBtn)).isDisplayed());
     }
 
-    @Test
+    @Test(priority = 2)
     // Search Function
     // Test Case: ADM-02 - Verify search successfully with valid credentials
     public void searchSuccessfullyWithValidCredentials() {
         user_managementPage.setModuleAdmin();
         user_managementPage.enterUsername("PHTPhat");
         user_managementPage.setselectESSUserRole();
-        user_managementPage.enterEmployeeName("Huỳnh Tấn Phát Phạm");
+        user_managementPage.enterEmployeeName("Huỳnh Tấn Phát  Phạm");
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.clickSearch();
+        Sleep();
         verifyAllRowsHaveUsername("PHTPhat");
         verifyAllRowsHaveUserRole("ESS");
         verifyAllRowsHaveEmployeeName("Huỳnh Tấn Phát Phạm");
         verifyAllRowsHaveStatus("Enabled");
     }
 
-    @Test
+    @Test(priority = 3)
     // Search Function
     // Test Case: ADM-03 - Verify search successfully with Username only
     public void searchSuccessfullyWithUsernameOnly() {
         user_managementPage.setModuleAdmin();
-        user_managementPage.enterUsername("MLTDat");
+        user_managementPage.enterUsername("VTGiang");
         user_managementPage.clickSearch();
-        verifyAllRowsHaveUsername("MLTDat");
+        Sleep();
+        verifyAllRowsHaveUsername("VTGiang");
     }
 
-    @Test
+    @Test(priority = 4)
     // Search Function
     // Test Case: ADM-04 - Verify search successfully with Username only case_insensitive
     public void searchSuccessfullyWithUsernameOnlyCase_Insensitive() {
         user_managementPage.setModuleAdmin();
-        user_managementPage.enterUsername("mltdat");
+        user_managementPage.enterUsername("vtgiang");
         user_managementPage.clickSearch();
-        verifyAllRowsHaveUsername("MLTDat");
+        Sleep();
+        verifyAllRowsHaveUsername("VTGiang");
     }
 
-    @Test
+    @Test(priority = 5)
     // Search Function
     // Test Case: ADM-05 - Verify search successfully with User Role only is Admin
     public void searchSuccessfullyWithUserRoleOnlyIsAdmin() {
         user_managementPage.setModuleAdmin();
         user_managementPage.setselectAdminUserRole();
         user_managementPage.clickSearch();
+        Sleep();
         verifyAllRowsHaveUserRole("Admin");
     }
 
-    @Test
+    @Test(priority = 6)
     // Search Function
     // Test Case: ADM-06 - Verify search successfully with User Role only is ESS
     public void searchSuccessfullyWithUserRoleOnlyIsESS() {
         user_managementPage.setModuleAdmin();
         user_managementPage.setselectESSUserRole();
         user_managementPage.clickSearch();
+        Sleep();
         verifyAllRowsHaveUserRole("ESS");
     }
 
-    @Test
+    @Test(priority = 7)
     // Search Function
     // Test Case: ADM-07 - Verify search successfully with Employee Name only
     public void searchSuccessfullyWithEmployeeNameOnly() {
         user_managementPage.setModuleAdmin();
         user_managementPage.enterEmployeeName("Công Huy Trương");
         user_managementPage.clickSearch();
+        Sleep();
         verifyAllRowsHaveEmployeeName("Công Huy Trương");
     }
 
-    @Test
+    @Test(priority = 8)
     // Search Function
     // Test Case: ADM-08 - Verify search successfully with Employee Name only case_insensitive
     public void searchSuccessfullyWithEmployeeNameOnlyCase_Insensitive() {
         user_managementPage.setModuleAdmin();
         user_managementPage.enterEmployeeName("công huy trương");
         user_managementPage.clickSearch();
+        Sleep();
         verifyAllRowsHaveEmployeeName("Công Huy Trương");
     }
 
-    @Test
+    @Test(priority = 9)
     // Search Function
     // Test Case: ADM-09 - Verify search successfully with Status only is Enabled
     public void searchSuccessfullyWithStatusOnlyIsEnabled() {
         user_managementPage.setModuleAdmin();
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.clickSearch();
+        Sleep();
         verifyAllRowsHaveStatus("Enabled");
     }
 
-    @Test
+    @Test(priority = 10)
     // Search Function
     // Test Case: ADM-10 - Verify search successfully with Status only is Disabled
     public void searchSuccessfullyWithStatusOnlyIsDisabled() {
         user_managementPage.setModuleAdmin();
         user_managementPage.setSelectDisabledStatus();
         user_managementPage.clickSearch();
+        Sleep();
         verifyAllRowsHaveStatus("Disabled");
     }
 
-    @Test
+    @Test(priority = 11)
     // Search Function
     // Test Case: ADM-11 - Verify search successfully with empty values
     public void searchSuccessfullyWithEmptyValues() {
@@ -348,7 +356,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
 
-    @Test
+    @Test(priority = 12)
     // Reset Function
     // Test Case: ADM-12 - Verify reset successfully with enter all the information and do not search
     public void resetSuccessfullyWithEnterAllTheInformationAndDoNotSearch() {
@@ -367,7 +375,7 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckStatusDropdown();
     }
 
-    @Test
+    @Test(priority = 13)
     // Reset Function
     // Test Case: ADM-13 - Verify reset successfully with enter all the information and completing the search
     public void resetSuccessfullyWithEnterAllTheInformationAndCompletingTheSearch(){
@@ -386,7 +394,7 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckStatusDropdown();
     }
 
-    @Test
+    @Test(priority = 14)
     // Check nagivate
     // Test Case: ADM-14 - Verify navigate to Add User page
     public void verifyNavigateToAddUserPage(){
@@ -395,7 +403,7 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckTitleIsAddUser();
     }
 
-    @Test
+    @Test(priority = 15)
     // Check UI
     // Test Case: ADM-15 - Check UI Add User page
     public void CheckUIAddUserPage(){
@@ -420,29 +428,29 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']")).isEnabled());
     }
 
-    @Test
+    @Test(priority = 16)
     // Add Function
     // Test Case: ADM-16 - Verify add user successfully with valid credentials
     public void addSuccessfullyWithValidCredentials(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setselectESSUserRole();
-        user_managementPage.enterEmployeeName("Lê Tiến Phong Mai");
-        user_managementPage.setSelectEnabledStatus();
-        user_managementPage.enterUsername("MLTPhong");
-        user_managementPage.enterPassword("123456Phong***");
-        user_managementPage.enterConfirmPassword("123456Phong***");
+        user_managementPage.enterEmployeeName("Minh Tâm Đặng");
+        user_managementPage.setSelectDisabledStatus();
+        user_managementPage.enterUsername("DMTam");
+        user_managementPage.enterPassword("123456Tam***");
+        user_managementPage.enterConfirmPassword("123456Tam***");
         user_managementPage.clickButtonSave();
     }
 
-    @Test
+    @Test(priority = 17)
     // Add Function
     // Test Case: ADM-17 - Verify add user fail with password and confirm password did not match
     public void addUserFailWithPasswordAndConfirmPasswordDidNotMatch(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setselectESSUserRole();
-        user_managementPage.enterEmployeeName("Lê Tiến Hùng Mai");
+        user_managementPage.enterEmployeeName("Lê Tiến Hùng  Mai");
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.enterUsername("MLTHung");
         user_managementPage.enterPassword("123456Hung***");
@@ -451,7 +459,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(user_managementPage.getDidNotMatchMessage(),"Passwords do not match");
     }
 
-    @Test
+    @Test(priority = 18)
     // Add Function
     // Test Case: ADM-18 - Verify add user fail with User Role only
     public void addUserFailWithUserRoleOnly(){
@@ -465,7 +473,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
     }
 
-    @Test
+    @Test(priority = 19)
     // Add Function
     // Test Case: ADM-19 - Verify add user fail with Employee Name only
     public void addUserFailWithEmployeeNameOnly(){
@@ -479,7 +487,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
     }
 
-    @Test
+    @Test(priority = 20)
     // Add Function
     // Test Case: ADM-20 - Verify add user fail with Employee Name only case_insensitive
     public void addUserFailWithEmployeeNameOnlyCase_Insensitive(){
@@ -493,7 +501,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
     }
 
-    @Test
+    @Test(priority = 21)
     // Add Function
     // Test Case: ADM-21 - Verify add user fail with Status only
     public void addUserFailWithStatusOnly(){
@@ -507,7 +515,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
     }
 
-    @Test
+    @Test(priority = 22)
     // Add Function
     // Test Case: ADM-22 - Verify add user fail with Ussername only
     public void addUserFailWithUssernameOnly(){
@@ -522,7 +530,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
     }
 
-    @Test
+    @Test(priority = 23)
     // Add Function
     // Test Case: ADM-23 - Verify add user fail with Password only
     public void addUserFailWithPasswordOnly(){
@@ -537,7 +545,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Required"));
     }
 
-    @Test
+    @Test(priority = 24)
     // Add Function
     // Test Case: ADM-24 - Verify add user fail with Confirm Password only
     public void addUserFailWithConfirmPasswordOnly(){
@@ -553,14 +561,14 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Passwords do not match"));
     }
 
-    @Test
+    @Test(priority = 25)
     // Add Function
     // Test Case: ADM-25 - Verify add user fail with valid credentials and Cancel
     public void addUserFailWithValidCredentialsAndCancel(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickAdd();
         user_managementPage.setselectESSUserRole();
-        user_managementPage.enterEmployeeName("Lê Tiến Hùng Mai");
+        user_managementPage.enterEmployeeName("Lê Tiến Hùng  Mai");
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.enterUsername("MLTHung");
         user_managementPage.enterPassword("123456Hung***");
@@ -570,7 +578,7 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckTitleIsSystemUsers();
     }
 
-    @Test
+    @Test(priority = 26)
     // Add Function
     // Test Case: ADM-26 - Verify add user fail with empty values
     public void addUserFailWithEmptyValues(){
@@ -585,7 +593,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("Passwords do not match"));
     }
 
-    @Test
+    @Test(priority = 27)
     // Check navigate
     // Test Case: ADM-27 - Verify navigate to Edit User page
     public void verifyNavigateToEditUserPage(){
@@ -594,7 +602,7 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckTitleIsEditUser();
     }
 
-    @Test
+    @Test(priority = 28)
     // Check UI
     // Test Case: ADM-28 - Check UI Edit User page
     public void CheckUIEditUserPage(){
@@ -622,14 +630,14 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']")).isEnabled());
     }
 
-    @Test
+    @Test(priority = 29)
     // Edit Function
     // Test Case: ADM-29 - Verify edit user with User Role only
     public void editUserWithUserRoleOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditAdmin123();
+        user_managementPage.clickIconButtonEditPHTPhat();
         Sleep();
-        user_managementPage.setselectESSUserRole();
+        user_managementPage.setselectAdminUserRole();
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
         user_managementPage.clickIconButtonEditAdmin123();
@@ -642,17 +650,17 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(UserRole.getText(),"ESS","Edit User fail!!");
     }
 
-    @Test
+    @Test(priority = 30)
     // Edit Function
     // Test Case: ADM-30 - Verify edit user with Status only
     public void editUserWithStatusOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditAdmin123();
+        user_managementPage.clickIconButtonEditVTGiang();
         Sleep();
         user_managementPage.setSelectDisabledStatus();
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
-        user_managementPage.clickIconButtonEditAdmin123();
+        user_managementPage.clickIconButtonEditVTGiang();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement Status = wait.until
                 (ExpectedConditions.visibilityOfElementLocated
@@ -662,14 +670,14 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(Status.getText(),"Disabled","Edit User fail!!");
     }
 
-    @Test
+    @Test(priority = 31)
     // Edit Function
     // Test Case: ADM-31 - Verify edit user with Employee Name only
     public void editUserWithEmployeeNameOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditAdmin123();
+        user_managementPage.clickIconButtonEditVTGiang();
         Sleep();
-        user_managementPage.clearAndEnterEmployeeName("Thu Giang Vũ");
+        user_managementPage.clearAndEnterEmployeeName("Việt Thành Mai");
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
         user_managementPage.clickIconButtonEditAdmin123();
@@ -682,55 +690,55 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertEquals(EmployeeNameValue,"Thu Giang  Vũ","Edit User fail!");
     }
 
-    @Test
+    @Test(priority = 32)
     // Edit Function
     // Test Case: ADM-32 - Verify edit user with Username only
     public void editUserWithUsernameOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditAdmin123();
+        user_managementPage.clickIconButtonEditHADat();
         Sleep();
         user_managementPage.clearAndEnterUsername("Admin12");
         user_managementPage.clickButtonSave();
     }
 
-    @Test
+    @Test(priority = 33)
     // Edit Function
     // Test Case: ADM-33 - Verify edit user with Password and Confirm Password are the same only
     public void editUserWithPasswordAndConfirmPasswordAreTheSameOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditMLTPhong();
+        user_managementPage.clickIconButtonEditVTGiang();
         Sleep();
         user_managementPage.clickCheckBoxChangePassword();
-        user_managementPage.clearAndEnterPassword("123456Phong***");
-        user_managementPage.clearAndEnterConfirmPassword("123456Phong***");
+        user_managementPage.clearAndEnterPassword("123456Giang****");
+        user_managementPage.clearAndEnterConfirmPassword("123456Giang****");
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
     }
 
-    @Test
+    @Test(priority = 34)
     // Edit Function
     // Test Case: ADM-34 - Verify edit user with Password and Confirm Password are not the same only
     public void editUserWithPasswordAndConfirmPasswordAreNotTheSameOnly(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditMLTPhong();
+        user_managementPage.clickIconButtonEditVTGiang();
         user_managementPage.clickCheckBoxChangePassword();
-        user_managementPage.enterPassword("123456Phong*");
-        user_managementPage.enterConfirmPassword("123457Phong*");
+        user_managementPage.enterPassword("123456Giang*");
+        user_managementPage.enterConfirmPassword("1234578Giang*");
         user_managementPage.clickButtonSave();
         Assert.assertEquals(user_managementPage.getDidNotMatchMessage(),"Passwords do not match");
     }
 
 
-    @Test
+    @Test(priority = 35)
     // Edit Function
     // Test Case: ADM-35 - Verify edit user fail with valid credentials and Cancel
     public void editUserFailWithValidCredentialsAndCancel(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditMLTPhong();
+        user_managementPage.clickIconButtonEditVTGiang();
         user_managementPage.setselectAdminUserRole();
-        user_managementPage.clearAndEnterEmployeeName("Việt Thành Mai");
+        user_managementPage.clearAndEnterEmployeeName("Anh Đạt  Huỳnh");
         user_managementPage.setSelectEnabledStatus();
-        user_managementPage.clearAndEnterUsername("Admin1");
+        user_managementPage.clearAndEnterUsername("Admin123");
         user_managementPage.clickCheckBoxChangePassword();
         user_managementPage.clearAndEnterPassword("123456Thanh***");
         user_managementPage.clearAndEnterConfirmPassword("123456Thanh***");
@@ -738,29 +746,29 @@ public class User_ManagementTest extends BaseTestLogin {
         CheckTitleIsSystemUsers();
     }
 
-    @Test
+    @Test(priority = 36)
     // Edit Function
     // Test Case: ADM-36 - Verify edit user with valid credentials
     public void editUserWithValidCredentials(){
         user_managementPage.setModuleAdmin();
-        user_managementPage.clickIconButtonEditMLTPhong();
+        user_managementPage.clickIconButtonEditVTGiang();
         user_managementPage.setselectAdminUserRole();
         user_managementPage.clearAndEnterEmployeeName("Việt Thành Mai");
         user_managementPage.setSelectEnabledStatus();
-        user_managementPage.clearAndEnterUsername("Admin1");
+        user_managementPage.clearAndEnterUsername("Admin123");
         user_managementPage.clickCheckBoxChangePassword();
         user_managementPage.clearAndEnterPassword("123456Thanh***");
         user_managementPage.clearAndEnterConfirmPassword("123456Thanh***");
         user_managementPage.clickButtonSave();
         CheckTitleIsSystemUsers();
-        user_managementPage.enterUsername("Admin1");
+        user_managementPage.enterUsername("Admin123");
         user_managementPage.clickSearch();
         Sleep();
-        verifyAllRowsHaveUsername("Admin1");
+        verifyAllRowsHaveUsername("Admin123");
         verifyAllRowsHaveEmployeeName("Việt Thành Mai");
     }
 
-    @Test
+    @Test(priority = 37)
     // Edit Function
     // ID Bug: OTP-126
     // Test Case: ADM-37 - Verify edit user with empty values
@@ -774,7 +782,7 @@ public class User_ManagementTest extends BaseTestLogin {
         Assert.assertTrue(messages.contains("The values not change"));
     }
 
-    @Test
+    @Test(priority = 38)
     // Delete Function
     // Test Case: ADM-38 - Verify delete user with Icon button
     public void deleteUserWithIconButton(){
@@ -785,34 +793,34 @@ public class User_ManagementTest extends BaseTestLogin {
         verifyUserIsDeleted("Admin123");
     }
 
-    @Test
+    @Test(priority = 39)
     // Delete Function
-    // Test Case: ADM-39 - Verify delete Cancel user with Icon button
-    public void deleteCancelUserWithIconButton(){
+    // Test Case: ADM-39 - Verify Cancel delete user with Icon button
+    public void cancelDeleteUserWithIconButton(){
         user_managementPage.DeleteAndConfirmCancelIcon();
         CheckTitleIsSystemUsers();
-        user_managementPage.enterUsername("MLTPhong");
+        user_managementPage.enterUsername("MLTDat");
         user_managementPage.clickSearch();
         Sleep();
-        verifyAllRowsHaveUsername("MLTPhong");
+        verifyAllRowsHaveUsername("MLTDat");
     }
 
-    @Test
+    @Test(priority = 40)
     // Delete Function
     // Test Case: ADM-40 - Verify delete user with checkbox Username
     public void deleteUserWithCheckBoxUsername(){
         user_managementPage.DeleteAndConfirmDeleteCheckBox();
         CheckTitleIsSystemUsers();
-        user_managementPage.enterUsername("MLTPhong");
+        user_managementPage.enterUsername("MLTDat");
         user_managementPage.clickSearch();
         Sleep();
-        verifyUserIsDeleted("MLTPhong");
+        verifyUserIsDeleted("MLTDat");
     }
 
-    @Test
+    @Test(priority = 41)
     // Delete Function
-    // Test Case: ADM-41 - Verify delete Cancel user with checkbox Username
-    public void deleteCancelUserWithCheckBoxUsername(){
+    // Test Case: ADM-41 - Verify Cancel delete user with checkbox Username
+    public void cancelDeleteUserWithCheckBoxUsername(){
         user_managementPage.DeleteAndConfirmCancelCheckBox();
         CheckTitleIsSystemUsers();
         user_managementPage.enterUsername("MLTHung");
@@ -821,21 +829,21 @@ public class User_ManagementTest extends BaseTestLogin {
         verifyAllRowsHaveUsername("MLTHung");
     }
 
-    @Test
+    //@Test(priority = 42)
     // Delete Function
     // Test Case: ADM-42 - Verify delete all users with checkbox Username
-    public void deleteUsersWithCheckBoxUsername(){
+    /*public void deleteUsersWithCheckBoxUsername(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickCheckBoxAllUsername();
         user_managementPage.clickDeleteCheckBox();
         user_managementPage.clickConfirmDelete();
         CheckTitleIsSystemUsers();
-    }
+    }*/
 
-    @Test
+    @Test(priority = 43)
     // Delete Function
-    // Test Case: ADM-43 - Verify delete Cancel users with check box Username
-    public void deleteCancelUsersWithCheckBoxUsername(){
+    // Test Case: ADM-43 - Verify Cancel delete all users with check box Username
+    public void cancelDeleteUsersWithCheckBoxUsername(){
         user_managementPage.setModuleAdmin();
         user_managementPage.clickCheckBoxAllUsername();
         user_managementPage.clickDeleteCheckBox();
