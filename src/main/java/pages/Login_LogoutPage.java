@@ -24,6 +24,7 @@ public class Login_LogoutPage extends BasePage {
     private By errorMessages  = By.cssSelector("span.oxd-input-field-error-message");
     private By invalidAlert  = By.cssSelector("p.oxd-alert-content-text");
 
+
     // Actions
     public void enterUsername(String username) {
         type(usernameInput, username);
