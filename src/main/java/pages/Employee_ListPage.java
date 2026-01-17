@@ -97,4 +97,80 @@ public class Employee_ListPage extends BasePage {
         click(includeInput);
         click(selectPastInclude);
     }
+
+    public void clickButtonReset(){
+        click(resetButton);
+    }
+    public void clickButtonSearch(){
+        click(searchButton);
+    }
+    public void clickButtonAdd(){
+        click(addButton);
+    }
+    public void clickIconButtonEditAdmin123(){
+        click(iconButtonEditAdmin123);
+    }
+    public void clickIconButtonEditHADat(){
+        click(iconButtonEditHADat);
+    }
+    public void clickIconButtonEditVTGiang(){
+        click(iconButtonEditVTGiang);
+    }
+    public void clickIconButtonEditPHTPhat(){
+        click(iconButtonEditPHTPhat);
+    }
+    public void clickIconButtonEditMLTPhong(){
+        click(iconButtonEditMLTPhong);
+    }
+    public void clickIconButtonEditMLTDat(){
+        click(iconButtonEditMLTDat);
+    }
+    public void clickIconButtonEditMLTHung(){
+        click(iconButtonEditMLTHung);
+    }
+    public void clickIconButtonDeleteAdmin123(){
+        click(iconButtonDeleteAdmin123);
+    }
+    public void clickIconButtonDeleteHADat(){
+        click(iconButtonDeleteHADat);
+    }
+    public void clickIconButtonDeleteVTGiang(){
+        click(iconButtonDeleteVTGiang);
+    }
+    public void clickIconButtonDeletePHTPhat(){
+        click(iconButtonDeletePHTPhat);
+    }
+    public void clickIconButtonDeleteMLTPhong(){
+        click(iconButtonDeleteMLTPhong);
+    }
+    public void clickIconButtonDeleteMLTDat(){
+        click(iconButtonDeleteMLTDat);
+    }
+    public void clickIconButtonDeleteMLTHung(){
+        click(iconButtonDeleteMLTHung);
+    }
+    public void clickCheckboxAllUsername(){
+        click(checkboxAllUsername);
+    }
+    public void clickCheckboxUsernameAdmin123(){
+        click(checkboxUsernameAdmin123);
+    }
+    public void clickCheckboxUsernameHADat(){
+        click(checkboxUsernameHADat);
+    }
+    public void clickCheckboxUsernameVTGiang(){
+        click(checkboxUsernameVTGiang);
+    }
+    public void clickCheckboxUsernamePHTPhat(){
+        click(checkboxUsernamePHTPhat);
+    }
+    public void clickCheckboxUsernameMLTPhong(){
+        click(checkboxUsernameMLTPhong);
+    }
+    public void clickCheckboxUsernameMLTDat(){
+        click(checkboxUsernameMLTDat);
+    }
+    public void clickCheckboxUsernameMLTHung(){
+        click(checkboxUsernameMLTHung);
+    }
 }
