@@ -243,4 +243,13 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveId("0005");
     }
+
+    @Test(priority = 7)
+    // Test Case: PIM-07 - Verify search successfully with Employment Status Only
+    public void searchSuccessfullyWithEmploymentStatusOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectPartTimeEmploymentStatus();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveEmploymentStatus("Part-Time");
+    }
 }
