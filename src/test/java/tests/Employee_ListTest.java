@@ -224,4 +224,15 @@ public class Employee_ListTest extends BaseTestLogin {
         verifyAllRowsHaveFirstName("Thu Giang");
         verifyAllRowsHaveLastName("Vũ");
     }
+
+    @Test(priority = 5)
+    // Test Case: PIM-05 - Verify search successfully with Employee Name Only case_insensitive
+    public void searchSuccessfullyWithEmployeeNameOnlyCase_insensitive(){
+        employeeListPage.setModulePIM();
+        employeeListPage.enterEmployeeName("thu giang vũ");
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveFirstName("Thu Giang");
+        verifyAllRowsHaveLastName("Vũ");
+    }
+
 }
