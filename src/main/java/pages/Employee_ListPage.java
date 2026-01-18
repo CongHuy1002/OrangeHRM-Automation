@@ -54,14 +54,14 @@ public class Employee_ListPage extends BasePage {
     private By iconButtonEditMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//button[contains(@class,'oxd-icon-button')][2]");
     private By confirmDeleteButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='Yes, Delete']");
     private By confirmCancelButton = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='No, Cancel']");
-    private By checkboxAllUsername = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
-    private By checkboxUsernameAdmin123 = By.xpath("//div[@role='row'][.//div[text()='Admin123']]//span[contains(@class,'oxd-checkbox-input')]");
-    private By checkboxUsernamePHTPhat = By.xpath("//div[@role='row'][.//div[text()='PHTPhat']]//span[contains(@class,'oxd-checkbox-input')]");
-    private By checkboxUsernameVTGiang = By.xpath("//div[@role='row'][.//div[text()='VTGiang']]//span[contains(@class,'oxd-checkbox-input')]");
-    private By checkboxUsernameHADat = By.xpath("//div[@role='row'][.//div[text()='HADat']]//span[contains(@class,'oxd-checkbox-input')]");
-    private By checkboxUsernameMLTHung = By.xpath("//div[@role='row'][.//div[text()='MLTHung']]//span[contains(@class,'oxd-checkbox-input')]");
-    private By checkboxUsernameMLTDat = By.xpath("//div[@role='row'][.//div[text()='MLTDat']]//span[contains(@class,'oxd-checkbox-input')]");
-    private By checkboxUsernameMLTPhong = By.xpath("//div[@role='row'][.//div[text()='MLTPhong']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxAllId = By.xpath("//div[contains(@class,'oxd-table-header')]//label");
+    private By checkboxIdThanh = By.xpath("//div[@role='row'][.//div[text()='Việt Thành  ']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxIdPhat = By.xpath("//div[@role='row'][.//div[text()='Huỳnh Tấn Phát  ']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxIdGiang = By.xpath("//div[@role='row'][.//div[text()='Thu Giang  ']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxIdHADat = By.xpath("//div[@role='row'][.//div[text()='Anh Đạt  ']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxIdMLTHung = By.xpath("//div[@role='row'][.//div[text()='Lê Tiến Hùng  ']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxIdMLTDat = By.xpath("//div[@role='row'][.//div[text()='Lê Tiến Đạt  ']]//span[contains(@class,'oxd-checkbox-input')]");
+    private By checkboxIdMLTPhong = By.xpath("//div[@role='row'][.//div[text()='Lê Tiến Phong  ']]//span[contains(@class,'oxd-checkbox-input')]");
     private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
 
     // Actions
@@ -97,6 +97,50 @@ public class Employee_ListPage extends BasePage {
         click(includeInput);
         click(selectPastInclude);
     }
+    public void enterSupervisorName(String supervisorName){
+        type(supervisornameInput, supervisorName);
+        click(supervisornameSuggestion);
+    }
+    public void setSelectFullstackJobtitle (){
+        click(jobtitleInput);
+        click(selectFullstackJobtitle);
+    }
+    public void setSelectHRJobtitle (){
+        click(jobtitleInput);
+        click(selectHRJobtitle);
+    }
+    public void setSelectPMJobtitle (){
+        click(jobtitleInput);
+        click(selectPMJobtitle);
+    }
+    public void setSelectQAJobtitle (){
+        click(jobtitleInput);
+        click(selectQAJobtitle);
+    }
+    public void setSelectQASubunit (){
+        click(subunitInput);
+        click(selectQASubunit);
+    }
+    public void setSelectITSubunit (){
+        click(subunitInput);
+        click(selectITSubunit);
+    }
+    public void setSelectHRSubunit (){
+        click(subunitInput);
+        click(selectHRSubunit);
+    }
+    public void setSelectRecruitmentSubunit (){
+        click(subunitInput);
+        click(selectRecruitmentSubunit);
+    }
+    public void setSelectSalesSubunit (){
+        click(subunitInput);
+        click(selectSalesSubunit);
+    }
+    public void setSelectMaketingSubunit (){
+        click(subunitInput);
+        click(selectMaketingSubunit);
+    }
 
     public void clickButtonReset(){
         click(resetButton);
@@ -107,27 +151,20 @@ public class Employee_ListPage extends BasePage {
     public void clickButtonAdd(){
         click(addButton);
     }
-    public void clickIconButtonEditAdmin123(){
-        click(iconButtonEditAdmin123);
-    }
+    public void clickButtonconfirmDelete(){click(confirmDeleteButton);}
+    public void clickButtonconfirmCancel(){click(confirmCancelButton);}
+    public void clickButtonconfirmDeleteCheckbox(){click(confirmDeleteCheckBox);}
+    public void clickIconButtonEditAdmin123(){click(iconButtonEditAdmin123);}
     public void clickIconButtonEditHADat(){
         click(iconButtonEditHADat);
     }
     public void clickIconButtonEditVTGiang(){
         click(iconButtonEditVTGiang);
     }
-    public void clickIconButtonEditPHTPhat(){
-        click(iconButtonEditPHTPhat);
-    }
-    public void clickIconButtonEditMLTPhong(){
-        click(iconButtonEditMLTPhong);
-    }
-    public void clickIconButtonEditMLTDat(){
-        click(iconButtonEditMLTDat);
-    }
-    public void clickIconButtonEditMLTHung(){
-        click(iconButtonEditMLTHung);
-    }
+    public void clickIconButtonEditPHTPhat(){click(iconButtonEditPHTPhat);}
+    public void clickIconButtonEditMLTPhong(){click(iconButtonEditMLTPhong);}
+    public void clickIconButtonEditMLTDat(){click(iconButtonEditMLTDat);}
+    public void clickIconButtonEditMLTHung(){click(iconButtonEditMLTHung);}
     public void clickIconButtonDeleteAdmin123(){
         click(iconButtonDeleteAdmin123);
     }
@@ -137,9 +174,7 @@ public class Employee_ListPage extends BasePage {
     public void clickIconButtonDeleteVTGiang(){
         click(iconButtonDeleteVTGiang);
     }
-    public void clickIconButtonDeletePHTPhat(){
-        click(iconButtonDeletePHTPhat);
-    }
+    public void clickIconButtonDeletePHTPhat(){click(iconButtonDeletePHTPhat);}
     public void clickIconButtonDeleteMLTPhong(){
         click(iconButtonDeleteMLTPhong);
     }
@@ -149,28 +184,24 @@ public class Employee_ListPage extends BasePage {
     public void clickIconButtonDeleteMLTHung(){
         click(iconButtonDeleteMLTHung);
     }
-    public void clickCheckboxAllUsername(){
-        click(checkboxAllUsername);
+    public void clickCheckboxAllId(){
+        click(checkboxAllId);
     }
-    public void clickCheckboxUsernameAdmin123(){
-        click(checkboxUsernameAdmin123);
+    public void clickCheckboxThanh(){
+        click(checkboxIdThanh);
     }
-    public void clickCheckboxUsernameHADat(){
-        click(checkboxUsernameHADat);
+    public void clickCheckboxHADat(){
+        click(checkboxIdHADat);
     }
-    public void clickCheckboxUsernameVTGiang(){
-        click(checkboxUsernameVTGiang);
+    public void clickCheckboxVTGiang(){
+        click(checkboxIdGiang);
     }
-    public void clickCheckboxUsernamePHTPhat(){
-        click(checkboxUsernamePHTPhat);
+    public void clickCheckboxPHTPhat(){click(checkboxIdPhat);}
+    public void clickCheckboxMLTPhong(){
+        click(checkboxIdMLTPhong);
     }
-    public void clickCheckboxUsernameMLTPhong(){
-        click(checkboxUsernameMLTPhong);
-    }
-    public void clickCheckboxUsernameMLTDat(){
-        click(checkboxUsernameMLTDat);
-    }
-    public void clickCheckboxUsernameMLTHung(){
-        click(checkboxUsernameMLTHung);
+    public void clickCheckboxMLTDat(){click(checkboxIdMLTDat);}
+    public void clickCheckboxMLTHung(){
+        click(checkboxIdMLTHung);
     }
 }
