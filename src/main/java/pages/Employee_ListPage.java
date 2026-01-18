@@ -10,7 +10,7 @@ public class Employee_ListPage extends BasePage {
 
     // Locators
     private By modulePIM = By.xpath("//span[text()='PIM']/ancestor::a");
-    private By employeenameInput = By.xpath("//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-autocomplete-text-input')]");
+    private By employeenameInput = By.xpath("//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-autocomplete-text-input')]//input");
     private By employeenameSuggestion = By.xpath("//div[@role='listbox']//span");
     private By employeeidInput  = By.xpath("//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By employmentstatus = By.xpath("//label[text()='Employment Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
@@ -21,7 +21,7 @@ public class Employee_ListPage extends BasePage {
     private By selectCurrentInclude = By.xpath("//div[@role='listbox']//span[text()='Current Employees Only']");
     private By selectCurrentAndPastInclude = By.xpath("//div[@role='listbox']//span[text()='Current and Past Employees']");
     private By selectPastInclude = By.xpath("//div[@role='listbox']//span[text()='Past Employees Only']");
-    private By supervisornameInput = By.xpath("//label[text()='Supervisor Name']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-autocomplete-text-input')]");
+    private By supervisornameInput = By.xpath("//label[text()='Supervisor Name']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-autocomplete-text-input')]//input");
     private By supervisornameSuggestion = By.xpath("//div[@role='listbox']//span");
     private By jobtitleInput = By.xpath("//label[text()='Job Title']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
     private By selectFullstackJobtitle = By.xpath("//div[@role='listbox']//span[text()='Fullstack Developer']");
