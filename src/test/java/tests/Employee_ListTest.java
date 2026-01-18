@@ -235,4 +235,12 @@ public class Employee_ListTest extends BaseTestLogin {
         verifyAllRowsHaveLastName("Vũ");
     }
 
+    @Test(priority = 6)
+    // Test Case: PIM-06 - Verify search successfully with Employee Id Only
+    public void searchSuccessfullyWithEmployeeIdOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.enterEmployeeId("0005");
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveId("0005");
+    }
 }
