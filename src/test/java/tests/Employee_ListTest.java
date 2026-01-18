@@ -24,6 +24,7 @@ public class Employee_ListTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Employee Information","It's not Employee List Page");
     }
+
     public void Sleep(){
         try {
             Thread.sleep(5000);
@@ -39,7 +40,7 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 1)
     // Check UI
-    // Test Case: ADM-01 - Check UI Employee List page
+    // Test Case: PIM-01 - Check UI Employee List page
     public void checkUIEmployeeListPage(){
         employeeListPage.setModulePIM();
         CheckTitleIsEmployeeInformation();
@@ -74,4 +75,17 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertTrue( driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Anh Đạt  ']]//i[contains(@class,'bi-trash')]")).isEnabled());
     }
 
+    @Test(priority = 2)
+    // Check UI
+    // Test Case: PIM-02 - Check The Default Value Of The Include Field
+    public void checkTheDefaultValueOfTheIncludeField(){
+        employeeListPage.setModulePIM();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//label[text()='Include']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Current Employees Only","The default value isn't 'Current Employees Only'.");
+    }
 }
