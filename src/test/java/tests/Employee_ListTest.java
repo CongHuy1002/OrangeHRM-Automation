@@ -214,4 +214,14 @@ public class Employee_ListTest extends BaseTestLogin {
         verifyAllRowsHaveSubUnit("HR Department");
         verifyAllRowsHaveSupervisor("Công Huy Trương");
     }
+
+    @Test(priority = 4)
+    // Test Case: PIM-04 - Verify search successfully with Employee Name Only
+    public void searchSuccessfullyWithEmployeeNameOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.enterEmployeeName("Thu Giang Vũ");
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveFirstName("Thu Giang");
+        verifyAllRowsHaveLastName("Vũ");
+    }
 }
