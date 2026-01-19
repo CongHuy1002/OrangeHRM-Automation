@@ -395,7 +395,7 @@ public class User_ManagementTest extends BaseTestLogin {
     }
 
     @Test(priority = 14)
-    // Check nagivate
+    // Check navigate
     // Test Case: ADM-14 - Verify navigate to Add User page
     public void verifyNavigateToAddUserPage(){
         user_managementPage.setModuleAdmin();

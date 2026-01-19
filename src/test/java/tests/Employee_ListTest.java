@@ -25,6 +25,17 @@ public class Employee_ListTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Employee Information","It's not Employee List Page");
     }
+
+    public void CheckTitleIsAddEmployee(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Add Employee","It's not Add Employee Page");
+    }
+
     public void verifyAllRowsHaveId(String expectedId) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -604,5 +615,14 @@ public class Employee_ListTest extends BaseTestLogin {
         CheckSupervisorNameInput();
         CheckJobTitleDropdown();
         CheckSubUnitDropdown();
+    }
+
+    @Test(priority = 29)
+    // Check navigate
+    // Test Case: PIM-29 - Verify navigate to Add Employee page
+    public void VerifyNavigateToAddEmployeePage(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        CheckTitleIsAddEmployee();
     }
 }
