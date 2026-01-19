@@ -409,4 +409,14 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveJobTitle("QA Engineer");
     }
+
+    @Test(priority = 19)
+    // Search function
+    // Test Case: PIM-19 - Verify search successfully with Sub Unit Is QA Department Only
+    public void searchSuccessfullyWithSubUnitIsQADepartmentOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectQASubunit();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveSubUnit("QA Department");
+    }
 }
