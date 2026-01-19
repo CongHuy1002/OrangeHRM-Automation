@@ -399,4 +399,14 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveJobTitle("Project Manager");
     }
+
+    @Test(priority = 18)
+    // Search function
+    // Test Case: PIM-18 - Verify search successfully with Job Title Is QA Engineer Only
+    public void searchSuccessfullyWithJobTitleIsQAEngineerOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectQAJobtitle();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveJobTitle("QA Engineer");
+    }
 }
