@@ -35,6 +35,16 @@ public class Employee_ListPage extends BasePage {
     private By selectRecruitmentSubunit = By.xpath("//div[@role='listbox']//span[text()='Recruitment Team']");
     private By selectSalesSubunit = By.xpath("//div[@role='listbox']//span[text()='Sales Department']");
     private By selectMaketingSubunit = By.xpath("//div[@role='listbox']//span[text()='Marketing Department']");
+    private By employeenameFirstNameInput = By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-firstname']");
+    private By employeenameMiddleNameInput = By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-middlename']");
+    private By employeenameLastNameInput = By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-lastname']");
+    private By usernameInput = By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By passwordInput = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By confirmpasswordInput = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By enabledRadioButton = By.xpath("//label[text()='Enabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input");
+    private By disabledRadioButton = By.xpath("//label[text()='Disabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input");
+    private By cancleButton = By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']");
+    private By saveButton = By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']");
     private By resetButton = By.xpath("//button[@type='reset']");
     private By searchButton = By.xpath("//button[@type='submit']");
     private By addButton = By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']");
@@ -63,6 +73,7 @@ public class Employee_ListPage extends BasePage {
     private By checkboxIdMLTDat = By.xpath("//div[@role='row'][.//div[text()='Lê Tiến Đạt  ']]//span[contains(@class,'oxd-checkbox-input')]");
     private By checkboxIdMLTPhong = By.xpath("//div[@role='row'][.//div[text()='Lê Tiến Phong  ']]//span[contains(@class,'oxd-checkbox-input')]");
     private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
+    private By checkboxCreateLoginDetails = By.xpath("//span[@class = 'oxd-switch-input oxd-switch-input--active --label-right']");
 
     // Actions
     public void setModulePIM(){
@@ -141,7 +152,19 @@ public class Employee_ListPage extends BasePage {
         click(subunitInput);
         click(selectMaketingSubunit);
     }
+    public void enteremployeefirstname(String firstname){type(employeenameFirstNameInput,firstname);}
+    public void enteremployeemiddlename(String middlename){type(employeenameMiddleNameInput,middlename);}
+    public void enteremployeelastname(String lastname){type(employeenameLastNameInput,lastname);}
+    public void enterusername(String username){type(usernameInput,username);}
+    public void enterpassword(String password){type(passwordInput,password);}
+    public void enterconfirmpassword(String confirmpassword){type(confirmpasswordInput,confirmpassword);}
 
+
+    public void clickButtonCancel(){click(cancleButton);}
+    public void clickButtonSave(){click(saveButton);}
+    public void clickButtonEnabled(){click(enabledRadioButton);}
+    public void clickButtonDisabled(){click(disabledRadioButton);}
+    public void clickButtonCreateLoginDetails(){click(checkboxCreateLoginDetails);}
     public void clickButtonReset(){
         click(resetButton);
     }
@@ -204,4 +227,5 @@ public class Employee_ListPage extends BasePage {
     public void clickCheckboxMLTHung(){
         click(checkboxIdMLTHung);
     }
+    public void clickCheckboxCreateLoginDetails(){click(checkboxCreateLoginDetails);}
 }

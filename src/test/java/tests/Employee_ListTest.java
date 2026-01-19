@@ -240,7 +240,7 @@ public class Employee_ListTest extends BaseTestLogin {
 
     public void Sleep(){
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -624,5 +624,39 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.setModulePIM();
         employeeListPage.clickButtonAdd();
         CheckTitleIsAddEmployee();
+    }
+
+    @Test(priority = 30)
+    // Check UI
+    // Test Case: PIM-30 - Check UI Add Employee Page
+    public void CheckUIAddEmployeePage(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        Sleep();
+        // Check Employee First Name Input
+        Assert.assertTrue( driver.findElement(By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-firstname']")).isEnabled());
+        // Check Employee Middle Name Input
+        Assert.assertTrue( driver.findElement(By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-middlename']")).isEnabled());
+        // Check Employee Last Name Input
+        Assert.assertTrue( driver.findElement(By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-lastname']")).isEnabled());
+        // Check Employee id Input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-grid-item')]//input")).isEnabled());
+        // Check button Create Login Details
+        Assert.assertTrue( driver.findElement(By.xpath("//span[@class = 'oxd-switch-input oxd-switch-input--active --label-right']")).isEnabled());
+        employeeListPage.clickCheckboxCreateLoginDetails();
+        // Check Username Input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check radio button Enabled
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Enabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input")).isEnabled());
+        // Check radio button Disabled
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Disabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input")).isEnabled());
+        // Check Password Input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Confirm Password Input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check button Cancel
+        Assert.assertTrue( driver.findElement(By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']")).isEnabled());
+        // Check button Save
+        Assert.assertTrue( driver.findElement(By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']")).isEnabled());
     }
 }
