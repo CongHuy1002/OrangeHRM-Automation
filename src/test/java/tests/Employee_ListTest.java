@@ -171,6 +171,62 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(count , 0);
     }
 
+    public void CheckEmployeeNameInput(){
+        WebElement employeenameInput = driver.findElement(By.xpath("//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-autocomplete-text-input')]//input"));
+        String value = employeenameInput.getAttribute("value");
+        System.out.println(value);
+        Assert.assertTrue(value== null || value.isEmpty(),
+                "Employee Name input should be empty");
+    }
+
+    public void CheckIdInput(){
+        WebElement idInput = driver.findElement(By.xpath("//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input"));
+        String value = idInput.getAttribute("value");
+        System.out.println(value);
+        Assert.assertTrue(value== null || value.isEmpty(),
+                "Id input should be empty");
+    }
+
+    public void CheckEmploymentStatusDropdown(){
+        WebElement employmentstatusDropdown = driver.findElement(By.xpath("//label[text()='Employment Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"));
+        String selectedText = employmentstatusDropdown.getText().trim();
+        System.out.println(selectedText);
+        String text = "-- Select --";
+        Assert.assertEquals(selectedText,text,"Employment Status should be empty by default");
+    }
+
+    public void CheckIncludeDropdown(){
+        WebElement includeDropdown = driver.findElement(By.xpath("//label[text()='Include']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"));
+        String selectedText = includeDropdown.getText().trim();
+        System.out.println(selectedText);
+        String text = "Current Employees Only";
+        Assert.assertEquals(selectedText,text,"Include should be 'Current Employees Only' by default");
+    }
+
+    public void CheckSupervisorNameInput(){
+        WebElement supervisornameInput = driver.findElement(By.xpath("//label[text()='Supervisor Name']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-autocomplete-text-input')]//input"));
+        String value = supervisornameInput.getAttribute("value");
+        System.out.println(value);
+        Assert.assertTrue(value== null || value.isEmpty(),
+                "Supervisor Name input should be empty");
+    }
+
+    public void CheckJobTitleDropdown(){
+        WebElement jobtitleDropdown = driver.findElement(By.xpath("//label[text()='Job Title']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"));
+        String selectedText = jobtitleDropdown.getText().trim();
+        System.out.println(selectedText);
+        String text = "-- Select --";
+        Assert.assertEquals(selectedText,text,"Job Title should be empty by default");
+    }
+
+    public void CheckSubUnitDropdown(){
+        WebElement subunitDropdown = driver.findElement(By.xpath("//label[text()='Sub Unit']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"));
+        String selectedText = subunitDropdown.getText().trim();
+        System.out.println(selectedText);
+        String text = "-- Select --";
+        Assert.assertEquals(selectedText,text,"Sub Unit should be empty by default");
+    }
+
     public void Sleep(){
         try {
             Thread.sleep(5000);
@@ -485,5 +541,28 @@ public class Employee_ListTest extends BaseTestLogin {
         CheckThisIDRequiredInRows("0008");
         CheckThisIDRequiredInRows("0009");
         CheckThisIDRequiredIsNotInRows("0007");
+    }
+
+    @Test(priority = 26)
+    // Reset function
+    // Test Case: PIM-26 - Verify reset successfully with valid credentials
+    public void resetSuccessfullyWithValidCredentials(){
+        employeeListPage.setModulePIM();
+        employeeListPage.enterEmployeeName("Huỳnh Tấn Phát Phạm");
+        employeeListPage.enterEmployeeId("0003");
+        employeeListPage.setSelectPartTimeEmploymentStatus();
+        employeeListPage.setSelectCurrentInclude();
+        employeeListPage.enterSupervisorName("Công Huy Trương");
+        employeeListPage.setSelectHRJobtitle();
+        employeeListPage.setSelectRecruitmentSubunit();
+        employeeListPage.clickButtonReset();
+        CheckTitleIsEmployeeInformation();
+        CheckEmployeeNameInput();
+        CheckIdInput();
+        CheckEmploymentStatusDropdown();
+        CheckIncludeDropdown();
+        CheckSupervisorNameInput();
+        CheckJobTitleDropdown();
+        CheckSubUnitDropdown();
     }
 }
