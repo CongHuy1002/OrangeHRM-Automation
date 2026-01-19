@@ -545,8 +545,8 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 26)
     // Reset function
-    // Test Case: PIM-26 - Verify reset successfully with valid credentials
-    public void resetSuccessfullyWithValidCredentials(){
+    // Test Case: PIM-26 - Verify reset successfully with valid credentials before search
+    public void resetSuccessfullyWithValidCredentialsBeforeSearch(){
         employeeListPage.setModulePIM();
         employeeListPage.enterEmployeeName("Huỳnh Tấn Phát Phạm");
         employeeListPage.enterEmployeeId("0003");
@@ -555,6 +555,30 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.enterSupervisorName("Công Huy Trương");
         employeeListPage.setSelectHRJobtitle();
         employeeListPage.setSelectRecruitmentSubunit();
+        employeeListPage.clickButtonReset();
+        CheckTitleIsEmployeeInformation();
+        CheckEmployeeNameInput();
+        CheckIdInput();
+        CheckEmploymentStatusDropdown();
+        CheckIncludeDropdown();
+        CheckSupervisorNameInput();
+        CheckJobTitleDropdown();
+        CheckSubUnitDropdown();
+    }
+
+    @Test(priority = 27)
+    // Reset function
+    // Test Case: PIM-26 - Verify reset successfully with valid credentials after search
+    public void resetSuccessfullyWithValidCredentialsAfterSearch(){
+        employeeListPage.setModulePIM();
+        employeeListPage.enterEmployeeName("Huỳnh Tấn Phát Phạm");
+        employeeListPage.enterEmployeeId("0003");
+        employeeListPage.setSelectPartTimeEmploymentStatus();
+        employeeListPage.setSelectCurrentInclude();
+        employeeListPage.enterSupervisorName("Công Huy Trương");
+        employeeListPage.setSelectHRJobtitle();
+        employeeListPage.setSelectRecruitmentSubunit();
+        employeeListPage.clickButtonSearch();
         employeeListPage.clickButtonReset();
         CheckTitleIsEmployeeInformation();
         CheckEmployeeNameInput();
