@@ -349,4 +349,14 @@ public class Employee_ListTest extends BaseTestLogin {
         CheckThisIDRequiredInRows("0007");
         CheckThisIDRequiredIsNotInRows("0009");
     }
+
+    @Test(priority = 13)
+    // Search function
+    // Test Case: PIM-13 - Verify search successfully with Supervisor Name Only
+    public void searchSuccessfullyWithSupervisorNameOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.enterSupervisorName("Công Huy Trương");
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveSupervisor("Công Huy Trương");
+    }
 }
