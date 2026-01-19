@@ -439,4 +439,14 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveSubUnit("Recruitment Team");
     }
+
+    @Test(priority = 22)
+    // Search function
+    // Test Case: PIM-22 - Verify search successfully with Sub Unit Is HR Department Only
+    public void searchSuccessfullyWithSubUnitIsHRDepartmentOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectHRSubunit();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveSubUnit("HR Department");
+    }
 }
