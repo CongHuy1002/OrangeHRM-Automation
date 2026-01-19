@@ -2,7 +2,9 @@ package pages;
 
 import base.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Employee_ListPage extends BasePage {
 
@@ -41,8 +43,8 @@ public class Employee_ListPage extends BasePage {
     private By usernameInput = By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By passwordInput = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By confirmpasswordInput = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
-    private By enabledRadioButton = By.xpath("//label[text()='Enabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input");
-    private By disabledRadioButton = By.xpath("//label[text()='Disabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input");
+    private By enabledRadioButton = By.xpath("//label[normalize-space()='Enabled']//span[contains(@class,'oxd-radio-input')]");
+    private By disabledRadioButton = By.xpath("//label[normalize-space()='Disabled']//span[contains(@class,'oxd-radio-input')]");
     private By cancleButton = By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']");
     private By saveButton = By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']");
     private By resetButton = By.xpath("//button[@type='reset']");
@@ -74,6 +76,7 @@ public class Employee_ListPage extends BasePage {
     private By checkboxIdMLTPhong = By.xpath("//div[@role='row'][.//div[text()='Lê Tiến Phong  ']]//span[contains(@class,'oxd-checkbox-input')]");
     private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
     private By checkboxCreateLoginDetails = By.xpath("//span[@class = 'oxd-switch-input oxd-switch-input--active --label-right']");
+    private By avatarButton = By.xpath("//div[@class = 'employee-image-wrapper']");
 
     // Actions
     public void setModulePIM(){
@@ -84,6 +87,13 @@ public class Employee_ListPage extends BasePage {
         click(employeenameSuggestion);
     }
     public void enterEmployeeId (String employeeId){type(employeeidInput, employeeId);}
+    public void clearandenterEmployeeId(String employeeId) {
+        WebElement input = driver.findElement(employeeidInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(employeeId);
+    }
     public void setSelectFullTimeEmploymentStatus (){
         click(employmentstatus);
         click(selectFullTimeEmploymentStatus);
@@ -151,6 +161,12 @@ public class Employee_ListPage extends BasePage {
     public void setSelectMaketingSubunit (){
         click(subunitInput);
         click(selectMaketingSubunit);
+    }
+    public void uploadEmployeePhoto(String filePath) {
+        WebElement uploadInput = driver.findElement(
+                By.xpath("//input[@type='file']")
+        );
+        uploadInput.sendKeys(filePath);
     }
     public void enteremployeefirstname(String firstname){type(employeenameFirstNameInput,firstname);}
     public void enteremployeemiddlename(String middlename){type(employeenameMiddleNameInput,middlename);}
@@ -228,4 +244,5 @@ public class Employee_ListPage extends BasePage {
         click(checkboxIdMLTHung);
     }
     public void clickCheckboxCreateLoginDetails(){click(checkboxCreateLoginDetails);}
+    public void clickAvatarButton(){click(avatarButton);}
 }

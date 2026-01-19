@@ -36,6 +36,16 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(title.getText(),"Add Employee","It's not Add Employee Page");
     }
 
+    public void CheckTitleIsPersonalDetails(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Personal Details","It's not Personal Details Page");
+    }
+
     public void verifyAllRowsHaveId(String expectedId) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -240,7 +250,7 @@ public class Employee_ListTest extends BaseTestLogin {
 
     public void Sleep(){
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -633,6 +643,8 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.setModulePIM();
         employeeListPage.clickButtonAdd();
         Sleep();
+        // Check button Avatar
+        Assert.assertTrue( driver.findElement(By.xpath("//div[@class = 'employee-image-wrapper']")).isEnabled());
         // Check Employee First Name Input
         Assert.assertTrue( driver.findElement(By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-firstname']")).isEnabled());
         // Check Employee Middle Name Input
@@ -647,9 +659,9 @@ public class Employee_ListTest extends BaseTestLogin {
         // Check Username Input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
         // Check radio button Enabled
-        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Enabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input")).isEnabled());
+        Assert.assertTrue( driver.findElement(By.xpath("//label[normalize-space()='Enabled']//span[contains(@class,'oxd-radio-input')]")).isEnabled());
         // Check radio button Disabled
-        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Disabled']/ancestor::div[contains(@class,'oxd-input-field-bottom-space')]//input")).isEnabled());
+        Assert.assertTrue( driver.findElement(By.xpath("//label[normalize-space()='Disabled']//span[contains(@class,'oxd-radio-input')]")).isEnabled());
         // Check Password Input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
         // Check Confirm Password Input
@@ -658,5 +670,27 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertTrue( driver.findElement(By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']")).isEnabled());
         // Check button Save
         Assert.assertTrue( driver.findElement(By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']")).isEnabled());
+    }
+
+    @Test(priority = 31)
+    // Add function
+    // Test Case: PIM-30 - Verify add user successfully with valid credentials
+    public void addUserSuccessfullyWithValidCredentials(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        employeeListPage.enteremployeefirstname("Đức Huy");
+        employeeListPage.enteremployeelastname("Bùi");
+        employeeListPage.clearandenterEmployeeId("0018");
+        String imagePath = System.getProperty("user.dir")
+                + "/src/test/java/images/Avatar.jpg";
+        employeeListPage.uploadEmployeePhoto(imagePath);
+        employeeListPage.clickCheckboxCreateLoginDetails();
+        employeeListPage.enterusername("BDHuy");
+        employeeListPage.clickButtonDisabled();
+        employeeListPage.enterpassword("123456Huy***");
+        employeeListPage.enterconfirmpassword("123456Huy***");
+        employeeListPage.clickButtonSave();
+        Sleep();
+        CheckTitleIsPersonalDetails();
     }
 }
