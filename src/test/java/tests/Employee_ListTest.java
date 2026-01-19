@@ -369,4 +369,14 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveSupervisor("Công Huy Trương");
     }
+
+    @Test(priority = 15)
+    // Search function
+    // Test Case: PIM-15 - Verify search successfully with Job Title Is Only
+    public void searchSuccessfullyWithJobTitleIsOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectFullstackJobtitle();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveJobTitle("Fullstack Developer");
+    }
 }
