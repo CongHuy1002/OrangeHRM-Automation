@@ -372,11 +372,21 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 15)
     // Search function
-    // Test Case: PIM-15 - Verify search successfully with Job Title Is Only
-    public void searchSuccessfullyWithJobTitleIsOnly(){
+    // Test Case: PIM-15 - Verify search successfully with Job Title Is Fullstack Developer Only
+    public void searchSuccessfullyWithJobTitleIsFullstackDeveloperOnly(){
         employeeListPage.setModulePIM();
         employeeListPage.setSelectFullstackJobtitle();
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveJobTitle("Fullstack Developer");
+    }
+
+    @Test(priority = 16)
+    // Search function
+    // Test Case: PIM-16 - Verify search successfully with Job Title Is HR Administrator  Only
+    public void searchSuccessfullyWithJobTitleIsHRAdministratorOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectHRJobtitle();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveJobTitle("HR Administrator");
     }
 }
