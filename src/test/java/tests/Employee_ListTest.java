@@ -131,6 +131,46 @@ public class Employee_ListTest extends BaseTestLogin {
         }
     }
 
+    public void CheckThisIDRequiredInRows(String expectedId) {
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        int count = 0;
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+        for (WebElement row : rows) {
+            String actualRole = row.findElement(
+                    By.xpath(".//div[@role='cell'][2]")
+            ).getText();
+            if (actualRole.equals(expectedId)){
+                count +=1;
+            }
+        }
+        Assert.assertEquals(count , 1);
+    }
+
+    public void CheckThisIDRequiredIsNotInRows(String expectedId) {
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        int count = 0;
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+        for (WebElement row : rows) {
+            String actualRole = row.findElement(
+                    By.xpath(".//div[@role='cell'][2]")
+            ).getText();
+            if (actualRole.equals(expectedId)){
+                count +=1;
+            }
+        }
+        Assert.assertEquals(count , 0);
+    }
+
     public void Sleep(){
         try {
             Thread.sleep(5000);
@@ -216,6 +256,7 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 4)
+    // Search function
     // Test Case: PIM-04 - Verify search successfully with Employee Name Only
     public void searchSuccessfullyWithEmployeeNameOnly(){
         employeeListPage.setModulePIM();
@@ -226,6 +267,7 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 5)
+    // Search function
     // Test Case: PIM-05 - Verify search successfully with Employee Name Only case_insensitive
     public void searchSuccessfullyWithEmployeeNameOnlyCase_insensitive(){
         employeeListPage.setModulePIM();
@@ -236,6 +278,7 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 6)
+    // Search function
     // Test Case: PIM-06 - Verify search successfully with Employee id Only
     public void searchSuccessfullyWithEmployeeIdOnly(){
         employeeListPage.setModulePIM();
@@ -245,6 +288,7 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 7)
+    // Search function
     // Test Case: PIM-07 - Verify search successfully with Employment Status is Full-Time Only
     public void searchSuccessfullyWithEmploymentStatusIsFullTimeOnly(){
         employeeListPage.setModulePIM();
@@ -254,6 +298,7 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 8)
+    // Search function
     // Test Case: PIM-08 - Verify search successfully with Employment Status is Part-Time Only
     public void searchSuccessfullyWithEmploymentStatusIsPartTimeOnly(){
         employeeListPage.setModulePIM();
@@ -263,11 +308,23 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 9)
+    // Search function
     // Test Case: PIM-09 - Verify search successfully with Employment Status is Intern Only
     public void searchSuccessfullyWithEmploymentStatusIsInternOnly(){
         employeeListPage.setModulePIM();
         employeeListPage.setSelectInternEmploymentStatus();
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveEmploymentStatus("Intern");
+    }
+
+    @Test(priority = 10)
+    // Search function
+    // Test Case: PIM-10 - Verify search successfully with Include Is Current Only
+    public void searchSuccessfullyWithIncludeIsCurrentOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectCurrentInclude();
+        employeeListPage.clickButtonSearch();
+        CheckThisIDRequiredInRows("0009");
+        CheckThisIDRequiredIsNotInRows("0007");
     }
 }
