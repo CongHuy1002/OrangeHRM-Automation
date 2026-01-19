@@ -338,4 +338,15 @@ public class Employee_ListTest extends BaseTestLogin {
         CheckThisIDRequiredInRows("0009");
         CheckThisIDRequiredInRows("0007");
     }
+
+    @Test(priority = 12)
+    // Search function
+    // Test Case: PIM-12 - Verify search successfully with Include Is Past Only
+    public void searchSuccessfullyWithIncludeIsPastOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectPastInclude();
+        employeeListPage.clickButtonSearch();
+        CheckThisIDRequiredInRows("0007");
+        CheckThisIDRequiredIsNotInRows("0009");
+    }
 }
