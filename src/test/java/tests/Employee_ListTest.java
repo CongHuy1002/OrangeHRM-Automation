@@ -469,4 +469,21 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveSubUnit("Marketing Department");
     }
+
+    @Test(priority = 25)
+    // Search function
+    // Test Case: PIM-25 - Verify search successfully with Values Is Empty
+    public void searchSuccessfullyWithValuesIsEmpty(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonSearch();
+        CheckThisIDRequiredInRows("0001");
+        CheckThisIDRequiredInRows("0002");
+        CheckThisIDRequiredInRows("0003");
+        CheckThisIDRequiredInRows("0004");
+        CheckThisIDRequiredInRows("0005");
+        CheckThisIDRequiredInRows("0006");
+        CheckThisIDRequiredInRows("0008");
+        CheckThisIDRequiredInRows("0009");
+        CheckThisIDRequiredIsNotInRows("0007");
+    }
 }
