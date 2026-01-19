@@ -359,4 +359,14 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveSupervisor("Công Huy Trương");
     }
+
+    @Test(priority = 14)
+    // Search function
+    // Test Case: PIM-14 - Verify search successfully with Supervisor Name Only case_insensitive
+    public void searchSuccessfullyWithSupervisorNameOnlyCase_insensitive(){
+        employeeListPage.setModulePIM();
+        employeeListPage.enterSupervisorName("công huy trương");
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveSupervisor("Công Huy Trương");
+    }
 }
