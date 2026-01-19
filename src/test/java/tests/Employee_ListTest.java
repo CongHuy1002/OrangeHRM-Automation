@@ -152,7 +152,7 @@ public class Employee_ListTest extends BaseTestLogin {
         CheckTitleIsEmployeeInformation();
         // Check Employee Name Input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Employee Name']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-autocomplete-text-input')]")).isEnabled());
-        // Check Employee Id Input
+        // Check Employee id Input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
         // Check Employee Status Input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Employment Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
@@ -171,9 +171,9 @@ public class Employee_ListTest extends BaseTestLogin {
         // Check Button Add
         Assert.assertTrue( driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--secondary']")).isEnabled());
         Sleep();
-        // Check Checkbox All Id
+        // Check Checkbox All id
         Assert.assertTrue( driver.findElement(By.xpath("//div[contains(@class,'oxd-table-header')]//label")).isEnabled());
-        // Check Checkbox Id
+        // Check Checkbox id
         Assert.assertTrue( driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Anh Đạt  ']]//span[contains(@class,'oxd-checkbox-input')]")).isEnabled());
         // Check Icon Button Edit
         Assert.assertTrue( driver.findElement(By.xpath("//div[@role='row'][.//div[text()='Anh Đạt  ']]//button[contains(@class,'oxd-icon-button')][2]")).isEnabled());
@@ -236,7 +236,7 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 6)
-    // Test Case: PIM-06 - Verify search successfully with Employee Id Only
+    // Test Case: PIM-06 - Verify search successfully with Employee id Only
     public void searchSuccessfullyWithEmployeeIdOnly(){
         employeeListPage.setModulePIM();
         employeeListPage.enterEmployeeId("0005");
@@ -245,8 +245,17 @@ public class Employee_ListTest extends BaseTestLogin {
     }
 
     @Test(priority = 7)
-    // Test Case: PIM-07 - Verify search successfully with Employment Status Only
-    public void searchSuccessfullyWithEmploymentStatusOnly(){
+    // Test Case: PIM-07 - Verify search successfully with Employment Status is Full-Time Only
+    public void searchSuccessfullyWithEmploymentStatusIsFullTimeOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectFullTimeEmploymentStatus();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveEmploymentStatus("Full-Time");
+    }
+
+    @Test(priority = 8)
+    // Test Case: PIM-08 - Verify search successfully with Employment Status is Part-Time Only
+    public void searchSuccessfullyWithEmploymentStatusIsPartTimeOnly(){
         employeeListPage.setModulePIM();
         employeeListPage.setSelectPartTimeEmploymentStatus();
         employeeListPage.clickButtonSearch();
