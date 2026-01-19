@@ -382,11 +382,21 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 16)
     // Search function
-    // Test Case: PIM-16 - Verify search successfully with Job Title Is HR Administrator  Only
+    // Test Case: PIM-16 - Verify search successfully with Job Title Is HR Administrator Only
     public void searchSuccessfullyWithJobTitleIsHRAdministratorOnly(){
         employeeListPage.setModulePIM();
         employeeListPage.setSelectHRJobtitle();
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveJobTitle("HR Administrator");
+    }
+
+    @Test(priority = 17)
+    // Search function
+    // Test Case: PIM-17 - Verify search successfully with Job Title Is Project Manager Only
+    public void searchSuccessfullyWithJobTitleIsProjectManagerOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectPMJobtitle();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveJobTitle("Project Manager");
     }
 }
