@@ -589,4 +589,20 @@ public class Employee_ListTest extends BaseTestLogin {
         CheckJobTitleDropdown();
         CheckSubUnitDropdown();
     }
+
+    @Test(priority = 28)
+    // Reset function
+    // Test Case: PIM-28 - Verify reset successfully with value is empty
+    public void resetSuccessfullyWithValueIsEmpty(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonReset();
+        CheckTitleIsEmployeeInformation();
+        CheckEmployeeNameInput();
+        CheckIdInput();
+        CheckEmploymentStatusDropdown();
+        CheckIncludeDropdown();
+        CheckSupervisorNameInput();
+        CheckJobTitleDropdown();
+        CheckSubUnitDropdown();
+    }
 }
