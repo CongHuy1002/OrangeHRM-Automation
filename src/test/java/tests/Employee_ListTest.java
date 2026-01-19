@@ -261,4 +261,13 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         verifyAllRowsHaveEmploymentStatus("Part-Time");
     }
+
+    @Test(priority = 9)
+    // Test Case: PIM-09 - Verify search successfully with Employment Status is Intern Only
+    public void searchSuccessfullyWithEmploymentStatusIsInternOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.setSelectInternEmploymentStatus();
+        employeeListPage.clickButtonSearch();
+        verifyAllRowsHaveEmploymentStatus("Intern");
+    }
 }
