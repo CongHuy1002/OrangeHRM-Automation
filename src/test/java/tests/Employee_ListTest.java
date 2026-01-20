@@ -797,4 +797,24 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),4);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test(priority = 37)
+    // Add function
+    // Test Case: PIM-38 - Verify add user fail with Password only
+    public void addUserFailWithPasswordOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        employeeListPage.clickCheckboxCreateLoginDetails();
+        employeeListPage.enterpassword("123456Huy***");
+        employeeListPage.clickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),4);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }
