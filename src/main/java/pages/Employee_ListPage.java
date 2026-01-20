@@ -193,7 +193,6 @@ public class Employee_ListPage extends BasePage {
     public void clickButtonSave(){click(saveButton);}
     public void clickButtonEnabled(){click(enabledRadioButton);}
     public void clickButtonDisabled(){click(disabledRadioButton);}
-    public void clickButtonCreateLoginDetails(){click(checkboxCreateLoginDetails);}
     public void clickButtonReset(){
         click(resetButton);
     }

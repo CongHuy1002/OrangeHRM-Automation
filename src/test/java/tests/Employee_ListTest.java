@@ -705,7 +705,11 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.enteremployeelastname("Nguyễn");
         employeeListPage.clearandenterEmployeeId("");
         employeeListPage.clickButtonSave();
-        Sleep();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
         List<String> messages = employeeListPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),1);
@@ -719,7 +723,11 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.setModulePIM();
         employeeListPage.clickButtonAdd();
         employeeListPage.clickButtonSave();
-        Sleep();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
         List<String> messages = employeeListPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),2);
@@ -740,10 +748,34 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.uploadEmployeePhoto(imagePath);
         employeeListPage.clearandenterEmployeeId("");
         employeeListPage.clickButtonSave();
-        Sleep();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
         List<String> messages = employeeListPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),3);
+        Assert.assertTrue(messages.contains("Required"));
+    }
+
+    @Test(priority = 35)
+    // Add function
+    // Bug ID: OTP-129
+    // Test Case: PIM-36 - Verify add user fail with Status only
+    public void addUserFailWithStatusOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        employeeListPage.clickCheckboxCreateLoginDetails();
+        employeeListPage.clickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),5);
         Assert.assertTrue(messages.contains("Required"));
     }
 }
