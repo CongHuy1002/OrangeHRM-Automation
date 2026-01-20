@@ -891,4 +891,14 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),1);
         Assert.assertTrue(messages.contains("Passwords do not match"));
     }
+
+    @Test(priority = 41)
+    // Add function
+    // Test Case: PIM-42 - Verify cancel with values is empty
+    public void cancelWithValuesIsEmpty(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        employeeListPage.clickButtonCancel();
+        CheckTitleIsEmployeeInformation();
+    }
 }
