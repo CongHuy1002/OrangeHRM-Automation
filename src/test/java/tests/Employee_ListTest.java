@@ -837,8 +837,8 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 39)
     // Add function
-    // Test Case: PIM-40 - Verify add user fail with valid credentials and an id matching an existing user
-    public void addUserFailWithValidCredentialsAndAnIdMatchingAnExistingUser(){
+    // Test Case: PIM-40 - Verify add user fail with valid credentials but an id matching an existing user
+    public void addUserFailWithValidCredentialsButAnIdMatchingAnExistingUser(){
         employeeListPage.setModulePIM();
         String imagePath = System.getProperty("user.dir")
                 + "/src/test/java/images/Avatar.jpg";
@@ -862,5 +862,33 @@ public class Employee_ListTest extends BaseTestLogin {
         System.out.println(messages);
         Assert.assertEquals(messages.size(),1);
         Assert.assertTrue(messages.contains("Employee Id already exists"));
+    }
+
+    @Test(priority = 40)
+    // Add function
+    // Test Case: PIM-41 - Verify add user fail with valid credentials but the confirmpassword is not match with the password
+    public void addUserFailWithValidCredentialsButTheConfirmpasswordIsNotMatchWithThePassword(){
+        employeeListPage.setModulePIM();
+        String imagePath = System.getProperty("user.dir")
+                + "/src/test/java/images/Avatar.jpg";
+        employeeListPage.clickButtonAdd();
+        employeeListPage.enteremployeefirstname("Công Vinh");
+        employeeListPage.enteremployeelastname("Lê");
+        employeeListPage.uploadEmployeePhoto(imagePath);
+        employeeListPage.clickCheckboxCreateLoginDetails();
+        employeeListPage.enterusername("LCVinh");
+        employeeListPage.clickButtonDisabled();
+        employeeListPage.enterpassword("123456Vinh***");
+        employeeListPage.enterconfirmpassword("Vinh***123456");
+        employeeListPage.clickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),1);
+        Assert.assertTrue(messages.contains("Passwords do not match"));
     }
 }
