@@ -901,4 +901,13 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonCancel();
         CheckTitleIsEmployeeInformation();
     }
+
+    @Test(priority = 42)
+    // Check navigate
+    // Test Case: PIM-43 - Check navigate to Personal Details page
+    public void CheckNavigateToPersonalDetailsPage(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditPHTPhat();
+        CheckTitleIsPersonalDetails();
+    }
 }
