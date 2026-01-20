@@ -910,4 +910,63 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickIconButtonEditPHTPhat();
         CheckTitleIsPersonalDetails();
     }
+
+    @Test(priority = 43)
+    // Check UI
+    // Test Case: PIM-44 - Check UI Personal Details page
+    public void CheckUIPersonalDetailsPage(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditPHTPhat();
+        Sleep();
+        // Check Employee first name input
+        Assert.assertTrue( driver.findElement(By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-firstname']")).isEnabled());
+        // Check Employee middle name input
+        Assert.assertTrue( driver.findElement(By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-middlename']")).isEnabled());
+        // Check Employee last name input
+        Assert.assertTrue( driver.findElement(By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-lastname']")).isEnabled());
+        // Check Employee id input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Employee Id']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Other id input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Driver's License Number input
+        //Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Driver's License Number']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class, 'oxd-input oxd-input--active')]//input")).isEnabled());
+        // Check License Expiry Date input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='License Expiry Date']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Nationality input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Nationality']/ancestor::div[contains(@class,'oxd-input-group')]//div[@class = 'oxd-select-text oxd-select-text--active']")).isEnabled());
+        // Check Marital Status input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Marital Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[@class = 'oxd-select-text oxd-select-text--active']")).isEnabled());
+        // Check Date of Birth input
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Date of Birth']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
+        // Check Gender radio Male
+        Assert.assertTrue( driver.findElement(By.xpath("//label[normalize-space()='Male']//span[contains(@class,'oxd-radio-input')]")).isEnabled());
+        // Check Gender radio Female
+        Assert.assertTrue( driver.findElement(By.xpath("//label[normalize-space()='Female']//span[contains(@class,'oxd-radio-input')]")).isEnabled());
+        // Check Save button
+        Assert.assertTrue( driver.findElement(By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']")).isEnabled());
+        // Check Add button
+        Assert.assertTrue( driver.findElement(By.xpath("//button[@class = 'oxd-button oxd-button--medium oxd-button--text']")).isEnabled());
+        // Check Avatar button
+        Assert.assertTrue( driver.findElement(By.xpath("//div[@class = 'orangehrm-edit-employee-image']")).isEnabled());
+        // CheckPersonal Details button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Personal Details']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Contact Details button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Contact Details']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Emergency Contacts button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Emergency Contacts']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Dependents button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Dependents']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Immigration button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Immigration']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Job button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Job']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Salary button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Salary']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Report-to button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Report-to']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Qualifications button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Qualifications']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+        // Check Memberships button Menu
+        Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Memberships']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+    }
 }
