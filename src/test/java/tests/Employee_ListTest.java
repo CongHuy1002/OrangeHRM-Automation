@@ -761,7 +761,6 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 35)
     // Add function
-    // Bug ID: OTP-129
     // Test Case: PIM-36 - Verify add user fail with Status only
     public void addUserFailWithStatusOnly(){
         employeeListPage.setModulePIM();
@@ -776,6 +775,26 @@ public class Employee_ListTest extends BaseTestLogin {
         List<String> messages = employeeListPage.getAllRequiredMessages();
         System.out.println(messages);
         Assert.assertEquals(messages.size(),5);
+        Assert.assertTrue(messages.contains("Required"));
+    }
+
+    @Test(priority = 36)
+    // Add function
+    // Test Case: PIM-37 - Verify add user fail with Username only
+    public void addUserFailWithUsernameOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        employeeListPage.clickCheckboxCreateLoginDetails();
+        employeeListPage.enterusername("TCHuy");
+        employeeListPage.clickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),4);
         Assert.assertTrue(messages.contains("Required"));
     }
 }
