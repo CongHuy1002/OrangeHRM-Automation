@@ -817,4 +817,21 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),4);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test(priority = 38)
+    // Add function
+    // Test Case: PIM-39 - Verify add user fail with Confirm Password only
+    public void addUserFailWithConfirmPasswordOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        employeeListPage.clickCheckboxCreateLoginDetails();
+        employeeListPage.enterconfirmpassword("123456Huy***");
+        employeeListPage.clickButtonSave();
+        Sleep();
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),5);
+        Assert.assertTrue(messages.contains("Required"));
+        Assert.assertTrue(messages.contains("Passwords do not match"));
+    }
 }
