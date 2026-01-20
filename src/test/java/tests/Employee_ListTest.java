@@ -725,4 +725,25 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),2);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test(priority = 34)
+    // Add function
+    // Bug ID: OTP-129
+    // Test Case: PIM-34 - Verify add user fail with upload Avatar only and clear Employee id
+    public void addUserFailWithUploadAvatarOnlyAndClearEmployeeId(){
+        employeeListPage.setModulePIM();
+        String imagePath = System.getProperty("user.dir")
+                + "/src/test/java/images/Avatar.jpg";
+        employeeListPage.clickButtonAdd();
+        employeeListPage.enteremployeefirstname("");
+        employeeListPage.enteremployeelastname("");
+        employeeListPage.uploadEmployeePhoto(imagePath);
+        employeeListPage.clearandenterEmployeeId("");
+        employeeListPage.clickButtonSave();
+        Sleep();
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),3);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }
