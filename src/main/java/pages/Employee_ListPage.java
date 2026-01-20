@@ -6,6 +6,9 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee_ListPage extends BasePage {
 
     public Employee_ListPage(WebDriver driver) {super(driver);}
@@ -77,6 +80,7 @@ public class Employee_ListPage extends BasePage {
     private By confirmDeleteCheckBox = By.xpath("//button[contains(@class, 'oxd-button--medium oxd-button--label-danger')]");
     private By checkboxCreateLoginDetails = By.xpath("//span[@class = 'oxd-switch-input oxd-switch-input--active --label-right']");
     private By avatarButton = By.xpath("//div[@class = 'employee-image-wrapper']");
+    private By requiredmessage = By.xpath("//span[contains(@class, 'oxd-input-group__message')]");
 
     // Actions
     public void setModulePIM(){
@@ -167,6 +171,15 @@ public class Employee_ListPage extends BasePage {
                 By.xpath("//input[@type='file']")
         );
         uploadInput.sendKeys(filePath);
+    }
+    public List<String> getAllRequiredMessages() {
+        List<WebElement> elements = driver.findElements(requiredmessage);
+        List<String> messages = new ArrayList<>();
+
+        for (WebElement el : elements) {
+            messages.add(el.getText());
+        }
+        return messages;
     }
     public void enteremployeefirstname(String firstname){type(employeenameFirstNameInput,firstname);}
     public void enteremployeemiddlename(String middlename){type(employeenameMiddleNameInput,middlename);}

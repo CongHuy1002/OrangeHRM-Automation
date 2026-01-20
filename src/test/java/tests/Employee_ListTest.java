@@ -674,7 +674,7 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 31)
     // Add function
-    // Test Case: PIM-30 - Verify add user successfully with valid credentials
+    // Test Case: PIM-31 - Verify add user successfully with valid credentials
     public void addUserSuccessfullyWithValidCredentials(){
         employeeListPage.setModulePIM();
         employeeListPage.clickButtonAdd();
@@ -692,5 +692,22 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSave();
         Sleep();
         CheckTitleIsPersonalDetails();
+    }
+
+    @Test(priority = 32)
+    // Add function
+    // Bug ID: OTP-129
+    // Test Case: PIM-32 - Verify add user fail with Employee Full Name only and clear Employee Id
+    public void addUserFailWithEmployeeFullNameOnlyAndClearEmployeeId(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickButtonAdd();
+        employeeListPage.enteremployeefirstname("Minh Tâm");
+        employeeListPage.enteremployeelastname("Nguyễn");
+        employeeListPage.clearandenterEmployeeId("");
+        employeeListPage.clickButtonSave();
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),1);
+        Assert.assertTrue(messages.contains("Required"));
     }
 }
