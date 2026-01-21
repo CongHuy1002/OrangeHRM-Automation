@@ -1159,4 +1159,26 @@ public class Employee_ListTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
     }
+
+    @Test(priority = 51)
+    // Edit function
+    // Bug ID: OTP-130
+    // Test Case: PIM-54 - Verify edit information employee with Marital Status only
+    public void editInformationEmployeeWithMaritalStatusOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditMLTPhong();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//label[text()='Marital Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
+                );
+        employeeListPage.setSelectSingleMaritalStatus();
+        employeeListPage.clickButtonSave();
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
+    }
 }

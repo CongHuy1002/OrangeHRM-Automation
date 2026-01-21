@@ -50,6 +50,9 @@ public class Employee_ListPage extends BasePage {
     private By licenseexpirydateInput = By.xpath("//label[text()='License Expiry Date']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By nationlityInput = By.xpath("//label[text()='Nationality']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
     private By selectVietnameseNationlity = By.xpath("//div[@role='listbox']//span[text()='Vietnamese']");
+    private By maritalstatusInput = By.xpath("//label[text()='Marital Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
+    private By selectSingleMaritalStatus = By.xpath("//div[@role='listbox']//span[text()='Single']");
+
 
     private By enabledRadioButton = By.xpath("//label[normalize-space()='Enabled']//span[contains(@class,'oxd-radio-input')]");
     private By disabledRadioButton = By.xpath("//label[normalize-space()='Disabled']//span[contains(@class,'oxd-radio-input')]");
@@ -232,6 +235,10 @@ public class Employee_ListPage extends BasePage {
     public void setSelectVietnameseNationlity (){
         click(nationlityInput);
         click(selectVietnameseNationlity);
+    }
+    public void setSelectSingleMaritalStatus (){
+        click(maritalstatusInput);
+        click(selectSingleMaritalStatus);
     }
 
     public void clickButtonCancel(){click(cancleButton);}
