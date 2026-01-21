@@ -1273,4 +1273,22 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         CheckThisIDRequiredInRows("0005");
     }
+
+    @Test(priority = 58)
+    // Delete function
+    // Test Case: PIM-61 - Verify delete employee with all Checkbox ID and Confirm Delete
+    public void deleteEmployeeWithAllCheckboxIDAndConfirmDelete() {
+        employeeListPage.setModulePIM();
+        employeeListPage.clickCheckboxAllId();
+        employeeListPage.clickButtonconfirmDeleteCheckbox();
+        employeeListPage.clickButtonconfirmDelete();
+        employeeListPage.clickButtonSearch();
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        Assert.assertTrue(rows.size() == 0, "Confirm Delete all Employee ID fail!");
+    }
 }
