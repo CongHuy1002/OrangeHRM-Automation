@@ -1261,4 +1261,16 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonSearch();
         CheckThisIDRequiredIsNotInRows("0006");
     }
+
+    @Test(priority = 57)
+    // Delete function
+    // Test Case: PIM-60 - Verify delete employee with Checkbox ID and Confirm Cancel
+    public void deleteEmployeeWithCheckboxIDAndConfirmCancel() {
+        employeeListPage.setModulePIM();
+        employeeListPage.clickCheckboxVTGiang();
+        employeeListPage.clickButtonconfirmDeleteCheckbox();
+        employeeListPage.clickButtonconfirmCancel();
+        employeeListPage.clickButtonSearch();
+        CheckThisIDRequiredInRows("0005");
+    }
 }
