@@ -152,6 +152,46 @@ public class Employee_ListTest extends BaseTestLogin {
         }
     }
 
+    public void CheckThisFirstNameRequiredInRows(String expectedFirstName) {
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        int count = 0;
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả");
+        for (WebElement row : rows) {
+            String actualRole = row.findElement(
+                    By.xpath(".//div[@role='cell'][3]")
+            ).getText();
+            if (actualRole.equals(expectedFirstName)){
+                count +=1;
+            }
+        }
+        Assert.assertEquals(count , 1);
+    }
+
+    public void CheckThisFirstNameRequiredIsNotInRows(String expectedFirstName) {
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        int count = 0;
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả");
+        for (WebElement row : rows) {
+            String actualRole = row.findElement(
+                    By.xpath(".//div[@role='cell'][3]")
+            ).getText();
+            if (actualRole.equals(expectedFirstName)){
+                count +=1;
+            }
+        }
+        Assert.assertEquals(count , 0);
+    }
+
     public void CheckThisIDRequiredInRows(String expectedId) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -160,7 +200,7 @@ public class Employee_ListTest extends BaseTestLogin {
                 By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
         );
         int count = 0;
-        Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả");
         for (WebElement row : rows) {
             String actualRole = row.findElement(
                     By.xpath(".//div[@role='cell'][2]")
@@ -180,7 +220,7 @@ public class Employee_ListTest extends BaseTestLogin {
                 By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
         );
         int count = 0;
-        Assert.assertTrue(rows.size() > 0, "Không có kết quả Search");
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả");
         for (WebElement row : rows) {
             String actualRole = row.findElement(
                     By.xpath(".//div[@role='cell'][2]")
@@ -968,5 +1008,29 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Qualifications']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
         // Check Memberships button Menu
         Assert.assertTrue( driver.findElement(By.xpath("//a[text()='Memberships']/ancestor::div[contains(@class,'orangehrm-tabs-wrapper')]")).isEnabled());
+    }
+
+    @Test(priority = 44)
+    // Edit function
+    // Bug ID: OTP-130
+    // Test Case: PIM-45 - Verify edit information employee with Employee Full Name only
+    public void editInformationEmployeeWithEmployeeFullNameOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditPHTPhat();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//input[@class = 'oxd-input oxd-input--active orangehrm-firstname']"))
+                );
+        employeeListPage.clearandenterEmployeeFirstName("Vinh");
+        employeeListPage.clearandenterEmployeeMiddleName("Công");
+        employeeListPage.clearandenterEmployeeLastName("Lê");
+        employeeListPage.clickButtonSave();
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
     }
 }

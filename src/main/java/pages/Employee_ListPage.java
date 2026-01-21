@@ -182,8 +182,29 @@ public class Employee_ListPage extends BasePage {
         return messages;
     }
     public void enteremployeefirstname(String firstname){type(employeenameFirstNameInput,firstname);}
+    public void clearandenterEmployeeFirstName(String employeefirstname) {
+        WebElement input = driver.findElement(employeenameFirstNameInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(employeefirstname);
+    }
     public void enteremployeemiddlename(String middlename){type(employeenameMiddleNameInput,middlename);}
+    public void clearandenterEmployeeMiddleName(String employeemiddlename) {
+        WebElement input = driver.findElement(employeenameMiddleNameInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(employeemiddlename);
+    }
     public void enteremployeelastname(String lastname){type(employeenameLastNameInput,lastname);}
+    public void clearandenterEmployeeLastName(String employeelastname) {
+        WebElement input = driver.findElement(employeenameLastNameInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(employeelastname);
+    }
     public void enterusername(String username){type(usernameInput,username);}
     public void enterpassword(String password){type(passwordInput,password);}
     public void enterconfirmpassword(String confirmpassword){type(confirmpasswordInput,confirmpassword);}
