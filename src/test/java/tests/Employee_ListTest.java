@@ -1099,4 +1099,24 @@ public class Employee_ListTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
     }
+
+    @Test(priority = 48)
+    // Edit function
+    // Bug ID: OTP-131
+    // Test Case: PIM-49 - Verify edit information employee with Other ID is matching an existing user only
+    public void editInformationEmployeeWithOtherIDIsMatchingAnExistingUserOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditMLTPhong();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//label[text()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//input"))
+                );
+        employeeListPage.clearandenterOtherId("1123");
+        employeeListPage.clickButtonSave();
+        List<String> messages = employeeListPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),1);
+        Assert.assertTrue(messages.contains("Other Id already exists"));
+    }
 }
