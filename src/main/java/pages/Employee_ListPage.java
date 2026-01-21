@@ -52,6 +52,7 @@ public class Employee_ListPage extends BasePage {
     private By selectVietnameseNationlity = By.xpath("//div[@role='listbox']//span[text()='Vietnamese']");
     private By maritalstatusInput = By.xpath("//label[text()='Marital Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
     private By selectSingleMaritalStatus = By.xpath("//div[@role='listbox']//span[text()='Single']");
+    private By dateofbirthInput = By.xpath("//label[text()='Date of Birth']/ancestor::div[contains(@class,'oxd-input-group')]//input");
 
 
     private By enabledRadioButton = By.xpath("//label[normalize-space()='Enabled']//span[contains(@class,'oxd-radio-input')]");
@@ -239,6 +240,14 @@ public class Employee_ListPage extends BasePage {
     public void setSelectSingleMaritalStatus (){
         click(maritalstatusInput);
         click(selectSingleMaritalStatus);
+    }
+    public void enterdateofbirth(String dateofbirth){type(dateofbirthInput,dateofbirth);}
+    public void clearandenterdateofbirth(String dateofbirth) {
+        WebElement input = driver.findElement(dateofbirthInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(dateofbirth);
     }
 
     public void clickButtonCancel(){click(cancleButton);}
