@@ -1228,12 +1228,23 @@ public class Employee_ListTest extends BaseTestLogin {
 
     @Test(priority = 54)
     // Delete function
-    // Test Case: PIM-57 - Verify delete employee with Icon Button Delete
-    public void deleteEmployeeWithIconButtonDelete(){
+    // Test Case: PIM-57 - Verify delete employee with Icon Button Delete and Confirm Delete
+    public void deleteEmployeeWithIconButtonDeleteAndConfirmDelete(){
         employeeListPage.setModulePIM();
         employeeListPage.clickIconButtonDeleteMLTDat();
         employeeListPage.clickButtonconfirmDelete();
         employeeListPage.clickButtonSearch();
         CheckThisIDRequiredIsNotInRows("0036");
+    }
+
+    @Test(priority = 55)
+    // Delete function
+    // Test Case: PIM-58 - Verify delete employee with Icon Button Delete and Confirm Cancel
+    public void deleteEmployeeWithIconButtonDeleteAndConfirmCancel(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonDeleteVTGiang();
+        employeeListPage.clickButtonconfirmCancel();
+        employeeListPage.clickButtonSearch();
+        CheckThisIDRequiredInRows("0005");
     }
 }
