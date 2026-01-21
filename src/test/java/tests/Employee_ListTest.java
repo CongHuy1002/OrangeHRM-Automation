@@ -1229,6 +1229,7 @@ public class Employee_ListTest extends BaseTestLogin {
     @Test(priority = 54)
     // Delete function
     // Test Case: PIM-57 - Verify delete employee with Icon Button Delete and Confirm Delete
+    // Employee: ID-0036, first name - Lê Tiến Đạt, last name - Mai, Sub Unit - Sales, Status - Intern
     public void deleteEmployeeWithIconButtonDeleteAndConfirmDelete(){
         employeeListPage.setModulePIM();
         employeeListPage.clickIconButtonDeleteMLTDat();
@@ -1246,5 +1247,18 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.clickButtonconfirmCancel();
         employeeListPage.clickButtonSearch();
         CheckThisIDRequiredInRows("0005");
+    }
+
+    @Test(priority = 56)
+    // Delete function
+    // Test Case: PIM-59 - Verify delete employee with Checkbox ID and Confirm Delete
+    // Employee: ID-0006, first name - Lê Tiến Phong, last name - Mai, Job Title - FullStack, Sub Unit - IT, Status - Intern
+    public void deleteEmployeeWithCheckboxIDAndConfirmDelete() {
+        employeeListPage.setModulePIM();
+        employeeListPage.clickCheckboxMLTPhong();
+        employeeListPage.clickButtonconfirmDeleteCheckbox();
+        employeeListPage.clickButtonconfirmDelete();
+        employeeListPage.clickButtonSearch();
+        CheckThisIDRequiredIsNotInRows("0006");
     }
 }
