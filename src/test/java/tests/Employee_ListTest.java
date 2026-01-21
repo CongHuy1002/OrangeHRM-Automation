@@ -1078,4 +1078,25 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),1);
         Assert.assertTrue(messages.contains("Employee Id already exists"));
     }
+
+    @Test(priority = 47)
+    // Edit function
+    // Test Case: PIM-48 - Verify edit information employee with Other ID valid only
+    public void editInformationEmployeeWithOtherIDValidOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditMLTDat();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//label[text()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//input"))
+                );
+        employeeListPage.clearandenterOtherId("1123");
+        employeeListPage.clickButtonSave();
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
+    }
 }

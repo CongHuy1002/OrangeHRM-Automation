@@ -46,6 +46,8 @@ public class Employee_ListPage extends BasePage {
     private By usernameInput = By.xpath("//label[text()='Username']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By passwordInput = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By confirmpasswordInput = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By otheridInput = By.xpath("//label[text()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+
     private By enabledRadioButton = By.xpath("//label[normalize-space()='Enabled']//span[contains(@class,'oxd-radio-input')]");
     private By disabledRadioButton = By.xpath("//label[normalize-space()='Disabled']//span[contains(@class,'oxd-radio-input')]");
     private By cancleButton = By.xpath("//button[contains(@class,'oxd-button--ghost') and normalize-space()='Cancel']");
@@ -208,6 +210,14 @@ public class Employee_ListPage extends BasePage {
     public void enterusername(String username){type(usernameInput,username);}
     public void enterpassword(String password){type(passwordInput,password);}
     public void enterconfirmpassword(String confirmpassword){type(confirmpasswordInput,confirmpassword);}
+    public void enterotherid(String otherid){type(otheridInput,otherid);}
+    public void clearandenterOtherId(String otherid) {
+        WebElement input = driver.findElement(otheridInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(otherid);
+    }
 
 
     public void clickButtonCancel(){click(cancleButton);}
