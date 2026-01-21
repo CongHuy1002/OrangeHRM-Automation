@@ -48,6 +48,8 @@ public class Employee_ListPage extends BasePage {
     private By confirmpasswordInput = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By otheridInput = By.xpath("//label[text()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By licenseexpirydateInput = By.xpath("//label[text()='License Expiry Date']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By nationlityInput = By.xpath("//label[text()='Nationality']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
+    private By selectVietnameseNationlity = By.xpath("//div[@role='listbox']//span[text()='Vietnamese']");
 
     private By enabledRadioButton = By.xpath("//label[normalize-space()='Enabled']//span[contains(@class,'oxd-radio-input')]");
     private By disabledRadioButton = By.xpath("//label[normalize-space()='Disabled']//span[contains(@class,'oxd-radio-input')]");
@@ -226,6 +228,10 @@ public class Employee_ListPage extends BasePage {
         input.sendKeys(Keys.CONTROL + "a");
         input.sendKeys(Keys.DELETE);
         input.sendKeys(licenseexpirydate);
+    }
+    public void setSelectVietnameseNationlity (){
+        click(nationlityInput);
+        click(selectVietnameseNationlity);
     }
 
     public void clickButtonCancel(){click(cancleButton);}

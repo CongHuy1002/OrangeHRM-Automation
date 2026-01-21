@@ -973,7 +973,7 @@ public class Employee_ListTest extends BaseTestLogin {
         // Check License Expiry Date input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='License Expiry Date']/ancestor::div[contains(@class,'oxd-input-group')]//input")).isEnabled());
         // Check Nationality input
-        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Nationality']/ancestor::div[contains(@class,'oxd-input-group')]//div[@class = 'oxd-select-text oxd-select-text--active']")).isEnabled());
+        Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Nationality']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")).isEnabled());
         // Check Marital Status input
         Assert.assertTrue( driver.findElement(By.xpath("//label[text()='Marital Status']/ancestor::div[contains(@class,'oxd-input-group')]//div[@class = 'oxd-select-text oxd-select-text--active']")).isEnabled());
         // Check Date of Birth input
@@ -1130,6 +1130,28 @@ public class Employee_ListTest extends BaseTestLogin {
         employeeListPage.enterlicenseexpirydate("2025-12-20");
         employeeListPage.clickButtonSave();
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
+    }
+
+    @Test(priority = 50)
+    // Edit function
+    // Bug ID: OTP-130
+    // Test Case: PIM-53 - Verify edit information employee with Nationality only
+    public void editInformationEmployeeWithNationalityOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditMLTPhong();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//label[text()='Nationality']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]"))
+                );
+        employeeListPage.setSelectVietnameseNationlity();
+        employeeListPage.clickButtonSave();
         WebElement title = wait.until
                 (ExpectedConditions.visibilityOfElementLocated
                         (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
