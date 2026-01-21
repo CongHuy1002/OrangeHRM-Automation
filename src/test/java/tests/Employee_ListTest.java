@@ -1225,4 +1225,15 @@ public class Employee_ListTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
     }
+
+    @Test(priority = 54)
+    // Delete function
+    // Test Case: PIM-57 - Verify delete employee with Icon Button Delete
+    public void deleteEmployeeWithIconButtonDelete(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonDeleteMLTDat();
+        employeeListPage.clickButtonconfirmDelete();
+        employeeListPage.clickButtonSearch();
+        CheckThisIDRequiredIsNotInRows("0036");
+    }
 }
