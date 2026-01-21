@@ -47,6 +47,7 @@ public class Employee_ListPage extends BasePage {
     private By passwordInput = By.xpath("//label[text()='Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By confirmpasswordInput = By.xpath("//label[text()='Confirm Password']/ancestor::div[contains(@class,'oxd-input-group')]//input");
     private By otheridInput = By.xpath("//label[text()='Other Id']/ancestor::div[contains(@class,'oxd-input-group')]//input");
+    private By licenseexpirydateInput = By.xpath("//label[text()='License Expiry Date']/ancestor::div[contains(@class,'oxd-input-group')]//input");
 
     private By enabledRadioButton = By.xpath("//label[normalize-space()='Enabled']//span[contains(@class,'oxd-radio-input')]");
     private By disabledRadioButton = By.xpath("//label[normalize-space()='Disabled']//span[contains(@class,'oxd-radio-input')]");
@@ -218,7 +219,14 @@ public class Employee_ListPage extends BasePage {
         input.sendKeys(Keys.DELETE);
         input.sendKeys(otherid);
     }
-
+    public void enterlicenseexpirydate(String licenseexpirydate){type(licenseexpirydateInput,licenseexpirydate);}
+    public void clearandenterlicenseexpirydate(String licenseexpirydate) {
+        WebElement input = driver.findElement(licenseexpirydateInput);
+        input.click();
+        input.sendKeys(Keys.CONTROL + "a");
+        input.sendKeys(Keys.DELETE);
+        input.sendKeys(licenseexpirydate);
+    }
 
     public void clickButtonCancel(){click(cancleButton);}
     public void clickButtonSave(){click(saveButton);}

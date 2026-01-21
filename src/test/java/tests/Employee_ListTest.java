@@ -1119,4 +1119,22 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),1);
         Assert.assertTrue(messages.contains("Other Id already exists"));
     }
+
+    @Test(priority = 49)
+    // Edit function
+    // Bug ID: OTP-130
+    // Test Case: PIM-52 - Verify edit information employee with License Expiry Date only
+    public void editInformationEmployeeWithLicenseExpiryDateOnly(){
+        employeeListPage.setModulePIM();
+        employeeListPage.clickIconButtonEditMLTPhong();
+        employeeListPage.enterlicenseexpirydate("2025-12-20");
+        employeeListPage.clickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Employee Information","It's not navigate to Employee List Page");
+    }
 }
