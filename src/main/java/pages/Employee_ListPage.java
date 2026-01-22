@@ -92,6 +92,8 @@ public class Employee_ListPage extends BasePage {
     private By avatarButton = By.xpath("//div[@class = 'employee-image-wrapper']");
     private By requiredmessage = By.xpath("//span[contains(@class, 'oxd-input-group__message')]");
 
+
+
     // Actions
     public void setModulePIM(){
         click(modulePIM);

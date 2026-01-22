@@ -26,16 +26,6 @@ public class Employee_ListTest extends BaseTestLogin {
         Assert.assertEquals(title.getText(),"Employee Information","It's not Employee List Page");
     }
 
-    public void CheckTitleIsAddEmployee(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement title = wait.until
-                (ExpectedConditions.visibilityOfElementLocated
-                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
-                );
-        System.out.println(title.getText());
-        Assert.assertEquals(title.getText(),"Add Employee","It's not Add Employee Page");
-    }
-
     public void CheckTitleIsPersonalDetails(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement title = wait.until
@@ -673,7 +663,13 @@ public class Employee_ListTest extends BaseTestLogin {
     public void VerifyNavigateToAddEmployeePage(){
         employeeListPage.setModulePIM();
         employeeListPage.clickButtonAdd();
-        CheckTitleIsAddEmployee();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h6[contains(@class, 'orangehrm-main-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Add Employee","It's not Add Employee Page");
     }
 
     @Test(priority = 30)
