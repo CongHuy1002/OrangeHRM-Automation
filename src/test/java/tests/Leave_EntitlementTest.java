@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import pages.Leave_EntitlementPage;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Leave_EntitlementTest extends BaseTestLogin {
     Leave_EntitlementPage leaveEntitlementPage;
@@ -18,6 +19,45 @@ public class Leave_EntitlementTest extends BaseTestLogin {
     @BeforeMethod
     public void initPage() {
         leaveEntitlementPage = new Leave_EntitlementPage(driver);
+    }
+
+    public void CheckThisLeaveTypeRequiredInRows(String expectedFirstName) {
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        int count = 0;
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả");
+        for (WebElement row : rows) {
+            String actualRole = row.findElement(
+                    By.xpath(".//div[@role='cell'][2]")
+            ).getText();
+            if (actualRole.equals(expectedFirstName)){
+                count +=1;
+            }
+        }
+        Assert.assertEquals(count , 1);
+    }
+    public void CheckThisDaysRequiredInRows(String expectedFirstName) {
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        int count = 0;
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả");
+        for (WebElement row : rows) {
+            String actualRole = row.findElement(
+                    By.xpath(".//div[@role='cell'][6]")
+            ).getText();
+            if (actualRole.equals(expectedFirstName)){
+                count +=1;
+            }
+        }
+        Assert.assertEquals(count , 1);
     }
 
 
@@ -52,6 +92,29 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         Assert.assertTrue(driver.findElement(By.xpath("//button[contains(@class,'oxd-button--secondary') and normalize-space()='Save']")).isEnabled());
     }
 
-
+    @Test(priority = 2)
+    // Add function
+    // Test Case: LEA-30 - Verify add leave entitlement for employee with valid credentials
+    public void addLeaveEntitlementWithValidCredentials(){
+        leaveEntitlementPage.setModuleLeave();
+        leaveEntitlementPage.setSelectAddEntitlements();
+        leaveEntitlementPage.ClickRadioButtonIndividualEmployee();
+        leaveEntitlementPage.enterEmployeeName("Thu Giang Vũ");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.enterEntitlement("12");
+        leaveEntitlementPage.ClickButtonSave();
+        leaveEntitlementPage.ClickButtonConfirm();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h5[contains(@class, 'oxd-table-filter-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Leave Entitlements","It's not a Leave Entitlements page");
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("12");
+    }
 
 }
