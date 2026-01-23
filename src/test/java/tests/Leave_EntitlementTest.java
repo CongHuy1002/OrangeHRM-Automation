@@ -256,4 +256,25 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
     }
+
+    @Test(priority = 9)
+    // Add function
+    // Test Case: LEA-37 - Verify add leave entitlement for multiple employees with Location only
+    public void addLeaveEntitlementForMultipleEmployeesWithLocationOnly(){
+        leaveEntitlementPage.setModuleLeave();
+        leaveEntitlementPage.setSelectAddEntitlements();
+        leaveEntitlementPage.ClickRadioButtonMultipleEmployees();
+        leaveEntitlementPage.setSelectHaNoiLocation();
+        leaveEntitlementPage.setSelectperioddefault();
+        leaveEntitlementPage.ClickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
+        List<String> messages = leaveEntitlementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),3);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }
