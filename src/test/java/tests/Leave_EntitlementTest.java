@@ -339,4 +339,25 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),2);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test(priority = 13)
+    // Add function
+    // Test Case: LEA-41 - Verify add leave entitlement for multiple employees with Entitlement only
+    public void addLeaveEntitlementForMultipleEmployeesWithEntitlementOnly(){
+        leaveEntitlementPage.setModuleLeave();
+        leaveEntitlementPage.setSelectAddEntitlements();
+        leaveEntitlementPage.ClickRadioButtonMultipleEmployees();
+        leaveEntitlementPage.setSelectperioddefault();
+        leaveEntitlementPage.enterEntitlement("5");
+        leaveEntitlementPage.ClickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
+        List<String> messages = leaveEntitlementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),2);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }
