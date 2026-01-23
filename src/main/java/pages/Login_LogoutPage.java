@@ -15,11 +15,11 @@ public class Login_LogoutPage extends BasePage {
     }
 
     // Locators
-    private By usernameInput = By.name("username");
-    private By passwordInput = By.name("password");
-    private By loginButton   = By.cssSelector("button[type='submit']");
+    private By usernameInput = By.xpath("//div[contains(@class, 'oxd-input-group')]//input[@name = 'username']");
+    private By passwordInput = By.xpath("//div[contains(@class, 'oxd-input-group')]//input[@name = 'password']");
+    private By loginButton   = By.xpath("//div[@class = 'oxd-form-actions orangehrm-login-action']//button");
     private By logoutButton   = By.xpath("//a[text()='Logout']");
-    private By avatarButton = By.cssSelector("span[class='oxd-userdropdown-tab']");
+    private By avatarButton = By.xpath("//span[@class = 'oxd-userdropdown-tab']");
     private By errorMessage  = By.cssSelector("span.oxd-input-field-error-message");
     private By errorMessages  = By.cssSelector("span.oxd-input-field-error-message");
     private By invalidAlert  = By.cssSelector("p.oxd-alert-content-text");
