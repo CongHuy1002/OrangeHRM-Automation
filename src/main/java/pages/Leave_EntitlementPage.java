@@ -23,6 +23,8 @@ public class Leave_EntitlementPage extends BasePage {
     private By employeenameSuggestion = By.xpath("//div[@role='listbox']//span");
     private By leavetypeInput = By.xpath("//label[text()='Leave Type']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
     private By selectNVCN = By.xpath("//div[@role='listbox']//span[text()='Nghỉ việc cá nhân']");
+    private By selectNBVK = By.xpath("//div[@role='listbox']//span[text()='Nghỉ vì bận việc khác của công ty']");
+    private By selectNP = By.xpath("//div[@role='listbox']//span[text()='Nghỉ phép']");
     private By leaveperiodInput = By.xpath("//label[text()='Leave Period']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]");
     private By selectperiod1 = By.xpath("//div[@role='listbox']//span[text()='2026-01-01 - 2026-12-31']");
     private By selectperioddefault = By.xpath("//label[text()='Leave Period']/ancestor::div[contains(@class,'oxd-input-group')]//div[text()='-- Select --']");
@@ -56,6 +58,14 @@ public class Leave_EntitlementPage extends BasePage {
     public void setSelectNVCN(){
         click(leavetypeInput);
         click(selectNVCN);
+    }
+    public void setSelectNBVK(){
+        click(leavetypeInput);
+        click(selectNBVK);
+    }
+    public void setSelectNP(){
+        click(leavetypeInput);
+        click(selectNP);
     }
     public void setSelectperiod1(){
         click(leaveperiodInput);

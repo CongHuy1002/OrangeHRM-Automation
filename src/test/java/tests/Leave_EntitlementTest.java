@@ -21,7 +21,7 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         leaveEntitlementPage = new Leave_EntitlementPage(driver);
     }
 
-    public void CheckThisLeaveTypeRequiredInRows(String expectedFirstName) {
+    public void CheckThisLeaveTypeRequiredInRows(String expectedLeaveType) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
@@ -34,13 +34,32 @@ public class Leave_EntitlementTest extends BaseTestLogin {
             String actualRole = row.findElement(
                     By.xpath(".//div[@role='cell'][2]")
             ).getText();
-            if (actualRole.equals(expectedFirstName)){
+            if (actualRole.equals(expectedLeaveType)){
                 count +=1;
             }
         }
         Assert.assertEquals(count , 1);
     }
-    public void CheckThisDaysRequiredInRows(String expectedFirstName) {
+    public void CheckThisLeaveTypeRequiredIsNotInRows(String expectedLeaveType) {
+        By tableBody = By.xpath("//div[@class='oxd-table-body']");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
+        List<WebElement> rows = driver.findElements(
+                By.xpath("//div[@class='oxd-table-body']//div[@role='row']")
+        );
+        int count = 0;
+        Assert.assertTrue(rows.size() > 0, "Không có kết quả");
+        for (WebElement row : rows) {
+            String actualRole = row.findElement(
+                    By.xpath(".//div[@role='cell'][2]")
+            ).getText();
+            if (actualRole.equals(expectedLeaveType)){
+                count +=1;
+            }
+        }
+        Assert.assertEquals(count , 0);
+    }
+    public void CheckThisDaysRequiredInRows(String expectedDays) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
@@ -53,7 +72,7 @@ public class Leave_EntitlementTest extends BaseTestLogin {
             String actualRole = row.findElement(
                     By.xpath(".//div[@role='cell'][6]")
             ).getText();
-            if (actualRole.equals(expectedFirstName)){
+            if (actualRole.equals(expectedDays)){
                 count +=1;
             }
         }
@@ -368,7 +387,7 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         leaveEntitlementPage.setModuleLeave();
         leaveEntitlementPage.setSelectAddEntitlements();
         leaveEntitlementPage.ClickRadioButtonMultipleEmployees();
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
         leaveEntitlementPage.enterEntitlement("5");
         leaveEntitlementPage.ClickButtonSave();
@@ -381,75 +400,97 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         System.out.println(title.getText());
         Assert.assertEquals(title.getText(),"Leave Entitlements","It's not a Leave Entitlements page");
         leaveEntitlementPage.enterEmployeeName("Anh Đạt   Huỳnh");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Lê Tiến Hùng  Mai");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Lê Tiến Đạt  Mai");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Công Huy  Trương");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Việt Thành  Mai");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Thu Giang  Vũ");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Vinh Công Lê");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Đức Huy  Bùi");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
 
         leaveEntitlementPage.clearandenterEmployeeName("Minh Tâm  Đặng");
-        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectNBVK();
         leaveEntitlementPage.setSelectperiod1();
-        leaveEntitlementPage.ClickButtonSearch();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
+    }
+
+    @Test(priority = 15)
+    // Add function
+    // Test Case: LEA-43 - Verify Cancel add leave entitlement for multiple employees with valid credentials
+    public void CancelAddLeaveEntitlementForMultipleEmployeesWithValidCredentials(){
+        leaveEntitlementPage.setModuleLeave();
+        leaveEntitlementPage.setSelectAddEntitlements();
+        leaveEntitlementPage.ClickRadioButtonMultipleEmployees();
+        leaveEntitlementPage.setSelectHaNoiLocation();
+        leaveEntitlementPage.setSelectQASubunit();
+        leaveEntitlementPage.setSelectNP();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.enterEntitlement("5");
+        leaveEntitlementPage.ClickButtonCancel();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h5[contains(@class, 'oxd-table-filter-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Leave Entitlements","It's not a Leave Entitlements page");
+        leaveEntitlementPage.enterEmployeeName("Anh Đạt   Huỳnh");
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredIsNotInRows("Nghỉ phép");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Lê Tiến Đạt  Mai");
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredIsNotInRows("Nghỉ phép");
     }
 }
