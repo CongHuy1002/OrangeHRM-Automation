@@ -117,4 +117,24 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         CheckThisDaysRequiredInRows("12");
     }
 
+    @Test(priority = 3)
+    // Add function
+    // Test Case: LEA-31 - Verify add leave entitlement for employee with Employee Name only
+    public void addLeaveEntitlementForEmployeeWithEmployeeNameOnly(){
+        leaveEntitlementPage.setModuleLeave();
+        leaveEntitlementPage.setSelectAddEntitlements();
+        leaveEntitlementPage.ClickRadioButtonIndividualEmployee();
+        leaveEntitlementPage.enterEmployeeName("Thu Giang Vũ");
+        leaveEntitlementPage.setSelectperioddefault();
+        leaveEntitlementPage.ClickButtonSave();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//span[contains(@class, 'oxd-input-group__message')]"))
+                );
+        List<String> messages = leaveEntitlementPage.getAllRequiredMessages();
+        System.out.println(messages);
+        Assert.assertEquals(messages.size(),3);
+        Assert.assertTrue(messages.contains("Required"));
+    }
 }
