@@ -360,4 +360,96 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         Assert.assertEquals(messages.size(),2);
         Assert.assertTrue(messages.contains("Required"));
     }
+
+    @Test(priority = 14)
+    // Add function
+    // Test Case: LEA-42 - Verify add leave entitlement for all employees with valid credentials
+    public void addLeaveEntitlementForAllEmployeesWithValidCredentials(){
+        leaveEntitlementPage.setModuleLeave();
+        leaveEntitlementPage.setSelectAddEntitlements();
+        leaveEntitlementPage.ClickRadioButtonMultipleEmployees();
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.enterEntitlement("5");
+        leaveEntitlementPage.ClickButtonSave();
+        leaveEntitlementPage.ClickButtonConfirm2();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//h5[contains(@class, 'oxd-table-filter-title')]"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Leave Entitlements","It's not a Leave Entitlements page");
+        leaveEntitlementPage.enterEmployeeName("Anh Đạt   Huỳnh");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Lê Tiến Hùng  Mai");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Lê Tiến Đạt  Mai");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Công Huy  Trương");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Việt Thành  Mai");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Thu Giang  Vũ");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Vinh Công Lê");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Đức Huy  Bùi");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Minh Tâm  Đặng");
+        leaveEntitlementPage.setSelectNVCN();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
+    }
 }
