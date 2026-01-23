@@ -44,7 +44,7 @@ public class Leave_EntitlementPage extends BasePage {
     private By confirmAddButton1 = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='Confirm']");
     private By confirmCancelButton1 = By.xpath("//div[contains(@class,'orangehrm-modal-footer')]//button[normalize-space()='Cancel']");
     private By confirmAddButton2 = By.xpath("//button[text()=' Confirm ']");
-    private By confirmCancelButton2 = By.xpath("//button[text()=' Cancel ']");
+    private By confirmCancelButton2 = By.xpath("//div[contains(@class,'orangehrm-dialog-vertical-padding')]//button[text() = ' Cancel ']");
     private By searchButton = By.xpath("//button[@type='submit']");
     private By requiredmessage = By.xpath("//span[contains(@class, 'oxd-input-group__message')]");
 

@@ -461,6 +461,13 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
         CheckThisDaysRequiredInRows("5");
+
+        leaveEntitlementPage.clearandenterEmployeeName("Lê Tiến Phong  Mai");
+        leaveEntitlementPage.setSelectNBVK();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.ClickButtonSearch();
+        CheckThisLeaveTypeRequiredInRows("Nghỉ việc cá nhân");
+        CheckThisDaysRequiredInRows("5");
     }
 
     @Test(priority = 15)
@@ -492,5 +499,28 @@ public class Leave_EntitlementTest extends BaseTestLogin {
         leaveEntitlementPage.setSelectperiod1();
         leaveEntitlementPage.ClickButtonSearch();
         CheckThisLeaveTypeRequiredIsNotInRows("Nghỉ phép");
+    }
+
+    @Test(priority = 16)
+    // Add function
+    // Test Case: LEA-44 - Verify Confirm Cancel add leave entitlement for multiple employees with valid credentials
+    public void ConfirmCancelAddLeaveEntitlementForMultipleEmployeesWithValidCredentials(){
+        leaveEntitlementPage.setModuleLeave();
+        leaveEntitlementPage.setSelectAddEntitlements();
+        leaveEntitlementPage.ClickRadioButtonMultipleEmployees();
+        leaveEntitlementPage.setSelectHoChiMinhLocation();
+        leaveEntitlementPage.setSelectITSubunit();
+        leaveEntitlementPage.setSelectNP();
+        leaveEntitlementPage.setSelectperiod1();
+        leaveEntitlementPage.enterEntitlement("7");
+        leaveEntitlementPage.ClickButtonSave();
+        leaveEntitlementPage.ClickButtonConfirmCancel2();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement title = wait.until
+                (ExpectedConditions.visibilityOfElementLocated
+                        (By.xpath("//p[@class = 'oxd-text oxd-text--p orangehrm-main-title']"))
+                );
+        System.out.println(title.getText());
+        Assert.assertEquals(title.getText(),"Add Leave Entitlement","Confirm Cancel add leave entitlement fail!");
     }
 }
