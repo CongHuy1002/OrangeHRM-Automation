@@ -16,6 +16,10 @@ import java.util.List;
 public class User_ManagementTest extends BaseTestLogin {
     User_ManagementPage user_managementPage;
 
+    public void waitToTable(){
+
+    }
+
     // Kiểm tra giá trị sau khi search
     public void verifyAllRowsHaveUsername(String expectedUsername) {
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
@@ -245,7 +249,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.enterEmployeeName("Huỳnh Tấn Phát  Phạm");
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveUsername("PHTPhat");
         verifyAllRowsHaveUserRole("ESS");
         verifyAllRowsHaveEmployeeName("Huỳnh Tấn Phát Phạm");
@@ -259,7 +262,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.enterUsername("VTGiang");
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveUsername("VTGiang");
     }
 
@@ -270,7 +272,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.enterUsername("vtgiang");
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveUsername("VTGiang");
     }
 
@@ -281,7 +282,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.setselectAdminUserRole();
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveUserRole("Admin");
     }
 
@@ -292,7 +292,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.setselectESSUserRole();
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveUserRole("ESS");
     }
 
@@ -303,7 +302,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.enterEmployeeName("Công Huy Trương");
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveEmployeeName("Công Huy Trương");
     }
 
@@ -314,7 +312,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.enterEmployeeName("công huy trương");
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveEmployeeName("Công Huy Trương");
     }
 
@@ -325,7 +322,6 @@ public class User_ManagementTest extends BaseTestLogin {
         user_managementPage.setModuleAdmin();
         user_managementPage.setSelectEnabledStatus();
         user_managementPage.clickSearch();
-        Sleep();
         verifyAllRowsHaveStatus("Enabled");
     }
 
@@ -360,7 +356,12 @@ public class User_ManagementTest extends BaseTestLogin {
     // Reset Function
     // Test Case: ADM-12 - Verify reset successfully with enter all the information and do not search
     public void resetSuccessfullyWithEnterAllTheInformationAndDoNotSearch() {
-        user_managementPage.ResetBeforeSearch("Admin","Công Huy Trương");
+        user_managementPage.setModuleAdmin();
+        user_managementPage.enterUsername("Admin");
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.enterEmployeeName("Công Huy Trương");
+        user_managementPage.setSelectDisabledStatus();
+        user_managementPage.clickReset();
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
@@ -379,7 +380,13 @@ public class User_ManagementTest extends BaseTestLogin {
     // Reset Function
     // Test Case: ADM-13 - Verify reset successfully with enter all the information and completing the search
     public void resetSuccessfullyWithEnterAllTheInformationAndCompletingTheSearch(){
-        user_managementPage.ResetAfterSearch("Admin123","Việt Thành Mai");
+        user_managementPage.setModuleAdmin();
+        user_managementPage.enterUsername("Admin123");
+        user_managementPage.setselectAdminUserRole();
+        user_managementPage.enterEmployeeName("Việt Thành Mai");
+        user_managementPage.setSelectEnabledStatus();
+        user_managementPage.clickSearch();
+        user_managementPage.clickReset();
         By tableBody = By.xpath("//div[@class='oxd-table-body']");
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));

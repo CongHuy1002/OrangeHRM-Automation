@@ -181,32 +181,6 @@ public class User_ManagementPage extends BasePage {
         return messages;
     }
 
-
-    public void Search(String username,String employeeName ){
-        setModuleAdmin();
-        enterUsername(username);
-        setselectAdminUserRole();
-        enterEmployeeName(employeeName);
-        setSelectEnabledStatus();
-        clickSearch();
-    }
-    public void ResetBeforeSearch(String username,String employeeName ){
-        setModuleAdmin();
-        enterUsername(username);
-        setselectAdminUserRole();
-        enterEmployeeName(employeeName);
-        setSelectDisabledStatus();
-        clickReset();
-    }
-    public void ResetAfterSearch(String username,String employeeName ){
-        setModuleAdmin();
-        enterUsername(username);
-        setselectAdminUserRole();
-        enterEmployeeName(employeeName);
-        setSelectEnabledStatus();
-        clickSearch();
-        clickReset();
-    }
     public void DeleteAndConfirmDeleteIcon(){
         setModuleAdmin();
         clickIconButtonDeleteAdmin123();
