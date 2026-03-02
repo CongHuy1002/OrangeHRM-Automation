@@ -33,7 +33,6 @@ The objective of this project is to simulate a real-world testing process includ
 + Test Plan
 + Test Scenario
 + Test Case
-+ Test Data
 + Bug Report
 + Requirement Traceability Matrix (RTM)
 + Test Summary Report
@@ -82,3 +81,6 @@ You can access full test documentation here:
 
 
 + Requirements Traceability Matrix (RTM) :  https://docs.google.com/spreadsheets/d/1UUtTnVood8UPexazhUm8hkE8j4N3TgHG/edit?usp=drive_link&ouid=102486252625503016739&rtpof=true&sd=true
+
+
++ Jira Bug Report: https://docs.google.com/spreadsheets/d/1NutOxpbG_385c9VtxhVoTda6ou_r33zs/edit?usp=sharing&ouid=102486252625503016739&rtpof=true&sd=true
