@@ -72,10 +72,13 @@ The automation framework is designed using:
 
 ## 📂 Test Documents (Full Version)
 You can access full test documentation here:
-+ SRS: https://docs.google.com/document/d/1ckqi7tnoyaPqIpSzuceSsiv0DYSo3EYk/edit?usp=drive_link&ouid=102486252625503016739&rtpof=true&sd=true\
++ Software Requirement Specification (SRS): https://docs.google.com/document/d/1ckqi7tnoyaPqIpSzuceSsiv0DYSo3EYk/edit?usp=drive_link&ouid=102486252625503016739&rtpof=true&sd=true\
 
 
 + Test Plan: https://docs.google.com/document/d/1LVixO_LOAjOFMGeh5fuzD37yYc2a-bJm/edit?usp=drive_link&ouid=102486252625503016739&rtpof=true&sd=true
 
 
 + Test Case: https://docs.google.com/spreadsheets/d/1fYO9XhB-cuMY_l4qwIM8_6Zx07bOur3M/edit?usp=drive_link&ouid=102486252625503016739&rtpof=true&sd=true
+
+
++ Requirements Traceability Matrix (RTM) :  https://docs.google.com/spreadsheets/d/1UUtTnVood8UPexazhUm8hkE8j4N3TgHG/edit?usp=drive_link&ouid=102486252625503016739&rtpof=true&sd=true
